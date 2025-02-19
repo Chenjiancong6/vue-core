@@ -1,20 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { commonRouter } from './config/commonRouter';
 
 const routeConfig = [
   {
     path: '/',
     component: () => import('@/layout/index.vue'),
-    children: [
-      {
-        path: '',
-        redirect: '/home'
-      },
-      {
-        path: '/home',
-        component: () => import('@/views/home/index.vue')
-
-      }
-    ]
+    children: [...commonRouter]
   }
 ];
 

@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import './style.css';
+import '@/global/style/main.less';
 import App from './App.vue';
 import { setupRouter } from './router/index';
 import ElementPlus from 'element-plus';
