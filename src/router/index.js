@@ -1,11 +1,17 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { commonRouter } from './config/commonRouter';
+import { createRouter, createWebHashHistory } from 'vue-router';;
+import { useMenu } from '@/layout/components/useMenu.ts';
+import { commonRouter } from '@/router/config/commonRouter';
+import { echartsRouter } from '@/router/config/echartsRouter';
+import { mapRouter } from '@/router/config/mapRouter';
+
+const { redirectRouter } = useMenu();
 
 const routeConfig = [
   {
     path: '/',
+    redirect: redirectRouter.value['redirect'],
     component: () => import('@/layout/index.vue'),
-    children: [...commonRouter]
+    children: [...commonRouter, ...echartsRouter, ...mapRouter]
   }
 ];
 

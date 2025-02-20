@@ -3,7 +3,7 @@
   <el-container>
     <el-aside>
       <div class="logo">logo</div>
-      <AsideMenu :menuList="asideMenuList" :basePath="asideMenuList[0].path"/>
+      <AsideMenu :menuList="asideMenuList" />
     </el-aside>
     <el-container>
       <el-header>
@@ -24,8 +24,6 @@ import { useMenu } from './components/useMenu';
 
 const { asideMenuList,activeMenu } = useMenu();
 
-onMounted(()=> {
-})
 </script>
 <style lang="less" scoped>
 .logo {

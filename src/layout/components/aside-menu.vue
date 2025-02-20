@@ -4,7 +4,10 @@
     <el-menu
       ellipsis
       router
+      :default-active="redirectRouter['redirect']"
+      :default-openeds="redirectRouter['path']" 
     >
+    <!-- :default-openeds="['/common']"   :default-active="'/common/home'"-->
       <template v-for="item in menuList" :key="item?.path">
         <el-sub-menu v-if="item?.children && item?.children.length > 0" :index="getFullRoutePath(item)">
           <template #title>
@@ -23,6 +26,11 @@
  </div>
 </template>
 <script setup lang="ts">
+import { watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useMenu } from '@/layout/components/useMenu.ts';
+
+const { redirectRouter } = useMenu();
 
 interface MenuItem {
   meta: {
@@ -37,13 +45,24 @@ const props = defineProps<{
   parentPath?: string; // 新增父路径属性
 }>();
 
+const router = useRouter();
+
 // 计算完整的路径（包括父路径）
 function getFullRoutePath(item: MenuItem): string {
   if (props.parentPath) {
     return `${props.parentPath}/${item.path}`; // 拼接父路径和当前路径
   }
   return item.path; // 没有父路径时直接返回当前路径
-}
+};
+
+
+watch(()=> props.menuList, () => {
+  // 初始化时跳转到默认路由页面
+  router.push(redirectRouter.value['redirect']);
+}, {
+  deep: true,
+  immediate: true
+})
 
 </script>
 <style lang="less" scoped>
@@ -52,7 +71,9 @@ function getFullRoutePath(item: MenuItem): string {
   width: 100%;
 }
 .aside-menu-list {
+  width: 100%;
   .el-menu {
+    border-right: none !important;
     background-color: var(--aside-menu-bg-color);
   }
   /* 使用深度选择器覆盖默认样式 */
