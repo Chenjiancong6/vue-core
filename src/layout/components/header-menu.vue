@@ -31,7 +31,7 @@ const handleClickMenu = (item:string) => {
  align-items: center;
 }
 .header-menu-list--item {
-  color: var(--body-color-default);
+  color: var(--header-menu-color);
   display: flex;
   cursor: pointer;
   .list-item {
@@ -41,7 +41,7 @@ const handleClickMenu = (item:string) => {
       position: absolute;
       width: 50%;
       height: 1px;
-      background: var(--body-color-default);
+      background: var(--header-menu-color);
       margin-top: 10px; /* 距离文字的距离 */
     }
   }

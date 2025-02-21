@@ -5,7 +5,8 @@
       ellipsis
       router
       :default-active="redirectRouter['redirect']"
-      :default-openeds="redirectRouter['path']" 
+      :default-openeds="redirectRouter['path']"
+      :text-color="'#fff'"
     >
     <!-- :default-openeds="['/common']"   :default-active="'/common/home'"-->
       <template v-for="item in menuList" :key="item?.path">

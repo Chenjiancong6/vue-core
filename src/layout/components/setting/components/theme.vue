@@ -29,8 +29,8 @@ const toggleTheme = (isDarkTheme:boolean) => {
     document.body.style.setProperty('--main-bg-color', 'rgba(31, 31, 31, 0.95)');
     root.style.setProperty('--el-bg-color', 'rgba(31, 31, 31, 0.95)');
   } else {
-    document.body.style.setProperty('--header-menu-bg-color', '#00B0FF');
-    document.body.style.setProperty('--main-bg-color', '#fff');
+    document.body.style.setProperty('--header-menu-bg-color', '#fff');
+    document.body.style.setProperty('--main-bg-color', '#E6E8EB');
     root.style.setProperty('--el-bg-color', '#f5f5f5');
   }
 }
