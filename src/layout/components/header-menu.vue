@@ -6,10 +6,13 @@
       <div class="line" v-if="item === activeMenu"></div>
     </div>
   </div>
+  <!--  -->
+  <Setting />
  </div>
 </template>
 <script setup lang="ts">
 import { useMenu } from './useMenu';
+import Setting from './setting/index.vue';
 
 const { activeMenu, setActiveMenu, headerMenuMap } = useMenu();
 
@@ -26,9 +29,9 @@ const handleClickMenu = (item:string) => {
   display: flex;
   justify-content: flex-end;
  align-items: center;
- color: var(--body-color-default);
 }
 .header-menu-list--item {
+  color: var(--body-color-default);
   display: flex;
   cursor: pointer;
   .list-item {

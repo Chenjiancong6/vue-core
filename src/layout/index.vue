@@ -22,7 +22,7 @@ import HeaderMenu from './components/header-menu.vue';
 import AsideMenu from './components/aside-menu.vue';
 import { useMenu } from './components/useMenu';
 
-const { asideMenuList,activeMenu } = useMenu();
+const { asideMenuList } = useMenu();
 
 </script>
 <style lang="less" scoped>
@@ -48,6 +48,9 @@ const { asideMenuList,activeMenu } = useMenu();
   .el-header {
     height:50px;
     background-color: var(--header-menu-bg-color);
+  }
+  .el-main {
+    background-color: var(--main-bg-color);
   }
 }
 </style>

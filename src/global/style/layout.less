@@ -4,17 +4,27 @@ html, body, #app {
   margin: 0;
   padding: 0;
   color: var(--aside-menu-dark-color);
+}
+
+:root {
   // 背景颜色
   // header-menu bg-color
   --header-menu-bg-color: #00B0FF;
   // aside-menu bg-color
   --aside-menu-bg-color: #001529;
+  //el-main
+  --main-bg-color:#fff;
 
   // 字体颜色
   --body-color-default: #fff;
-  --aside-menu-dark-color: #000;
+  --aside-menu-dark-color: rgba(0, 0, 0, 0.45);
   --aside-menu-bright-color: #fff;
 }
+
+// 暗黑模式
+// body.dark-theme {
+//   --header-menu-bg-color: #001529;
+// }
 
 ul, ol {
   list-style-type: none;
