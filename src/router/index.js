@@ -11,7 +11,17 @@ const routeConfig = [
     path: '/',
     redirect: redirectRouter.value['redirect'],
     component: () => import('@/layout/index.vue'),
-    children: [...commonRouter, ...echartsRouter, ...mapRouter]
+    children: [
+      ...commonRouter,
+       ...echartsRouter,
+      ...mapRouter,
+      // 路由顺序：确保 404 路由规则放在路由列表的最后，否则它可能会覆盖其他路由
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/views/NotFound/index.vue')
+      }
+    ]
   }
 ];
 
