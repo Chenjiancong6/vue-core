@@ -3,7 +3,7 @@ export const commonRouter = [
   {
     path: '/common',
     meta: {
-      name: '公共组件'
+      name: 'canvas'
     },
     children: [
       {
