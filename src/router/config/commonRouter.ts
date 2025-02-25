@@ -13,6 +13,13 @@ export const commonRouter = [
           name: '水印'
         },
       },
+      {
+        path:'text-waterfall-flow',
+        component: () => import('@/views/comp/text-waterfall-flow/index.vue'),
+        meta: {
+          name:'文字瀑布流'
+        }
+      }
     ]
   },
 ]

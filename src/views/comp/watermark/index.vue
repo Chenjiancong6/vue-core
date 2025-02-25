@@ -34,7 +34,7 @@ const takeScreenshot = async () => {
   if (screenshotRef.value) {
     // 调用子组件暴露的方法
     const data = await screenshotRef.value.captureScreen();
-    console.log('截图数据', data)
+    // console.log('截图数据', data)
     resultImage.value = data
   }
 }
