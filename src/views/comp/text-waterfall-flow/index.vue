@@ -10,8 +10,8 @@ import { useCanvasTextWaterfallFlow } from '@/hooks/useCanvasTextWaterfallFlow';
 
 const { canvasTextWaterfallFlow } = useCanvasTextWaterfallFlow();
 
-onMounted(()=> {
-  canvasTextWaterfallFlow()
+onMounted(() => {
+  canvasTextWaterfallFlow('#fff')
 })
 </script>
 <style lang="less" scoped>
@@ -21,9 +21,12 @@ onMounted(()=> {
   overflow: hidden;
   background: #000;
 }
+
 ::v-deep .el-main {
-  padding: 0 !important; /* 覆盖默认的 padding */
+  padding: 0 !important;
+  /* 覆盖默认的 padding */
 }
+
 canvas {
   height: 100%;
   width: 100%;
