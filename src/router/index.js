@@ -3,6 +3,7 @@ import { useMenu } from '@/layout/components/useMenu.ts';
 import { commonRouter } from '@/router/config/commonRouter';
 import { echartsRouter } from '@/router/config/echartsRouter';
 import { mapRouter } from '@/router/config/mapRouter';
+import { AIRouter } from '@/router/config/AIRouter';
 
 const { redirectRouter } = useMenu();
 
@@ -13,8 +14,9 @@ const routeConfig = [
     component: () => import('@/layout/index.vue'),
     children: [
       ...commonRouter,
-       ...echartsRouter,
+      ...echartsRouter,
       ...mapRouter,
+      ...AIRouter,
       // 路由顺序：确保 404 路由规则放在路由列表的最后，否则它可能会覆盖其他路由
       {
         path: '/:pathMatch(.*)*',

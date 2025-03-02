@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
     "element-plus": "^2.9.4",
     "html2canvas": "^1.4.1",

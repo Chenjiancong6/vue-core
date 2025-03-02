@@ -1,18 +1,21 @@
 import { commonRouter, defaultRedirectCommonRouter } from '@/router/config/commonRouter';
 import { echartsRouter, defaultRedirectEchartsRouterr } from '@/router/config/echartsRouter';
 import { mapRouter, defaultRedirectMapRouterr } from '@/router/config/mapRouter';
+import { AIRouter, defaultRedirectAIRouter } from '@/router/config/AIRouter';
 import { ref, computed } from 'vue';
 
 const headerMenuMap = {
   '组件': commonRouter,
   '图表': echartsRouter,
-  '地图': mapRouter
+  '地图': mapRouter,
+  'AI': AIRouter
 };
 
 const defaultRedirectRouter = {
   '组件': defaultRedirectCommonRouter,
   '图表': defaultRedirectEchartsRouterr,
-  '地图': defaultRedirectMapRouterr
+  '地图': defaultRedirectMapRouterr,
+  'AI': defaultRedirectAIRouter
 }
 const activeMenu = ref(Object.keys(headerMenuMap)[0]);
 
