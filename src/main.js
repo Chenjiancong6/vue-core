@@ -9,6 +9,15 @@ import zhLocale from 'element-plus/es/locale/lang/zh-cn';
 import dayjs from 'dayjs';
 import { dayjs as elDayjs } from 'element-plus';
 import zhcn from 'dayjs/locale/zh-cn';
+// v3-drag-zoom 组件
+import V3DragZoom from "v3-drag-zoom";
+// v3-drag-zoom 全局样式（必须导入，否则无法正常使用）
+import "v3-drag-zoom/dist/style.css";
+
+import Vue3DraggableResizable from '@v3e/vue3-draggable-resizable'
+//需引入默认样式
+import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css'
+
 
 dayjs.locale(zhcn);
 // 构建后，element-plus是script引入，它里面也有打包一个dayjs
@@ -22,7 +31,8 @@ const createRootApp = () => {
   app.use(ElementPlus, {
     locale: zhLocale
   });
-
+  app.use(Vue3DraggableResizable);
+  app.use(V3DragZoom);
   app.mount('#app');
   return app;
 }

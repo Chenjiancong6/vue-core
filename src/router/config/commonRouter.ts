@@ -22,6 +22,13 @@ export const commonRouter = [
       }
     ]
   },
+  {
+    path:'/drag-zoom',
+    component: () => import('@/views/comp/drag-zoom/index.vue'),
+    meta: {
+      name: '拖拽缩放'
+    }
+  }
 ]
 
 // 默认的打开的第一个菜单
