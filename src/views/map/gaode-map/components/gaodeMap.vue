@@ -25,7 +25,8 @@ const emits = defineEmits(['map-ready']);
 const defaultMapOption = {
   resizeEnable: true,
   center: [114.0608047, 22.5439314],
-  zoom: 13
+  zoom: 13,
+  plugin: ['AMap.Subway']
 }
 
 const amapRef = ref();
@@ -61,7 +62,8 @@ const loadAMap = async () => {
 
   AMapLoader.load({
     key: props.mapKey,       // 申请好的Web端开发者Key，首次调用 load 时必填
-    version: "2.0",                 // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+    version: "2.0", 
+    subway: '1.0'               // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
   }).then((AMap) => {
 
     window.AMap = AMap;
@@ -74,7 +76,7 @@ onMounted(async () => {
   await loadAMap();
 });
 onUnmounted(() => {
-  map.value.destroy?.() // 销毁map实例,避免内存泄漏
+  map.value?.destroy?.() // 销毁map实例,避免内存泄漏
 });
 defineExpose({
   map

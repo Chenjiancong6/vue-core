@@ -2,8 +2,8 @@
  <div class="gaode-map-wrap">
   <GaodeMap 
     ref="amapRef" 
-    mapKey="d04f0992d1bd2b8ac57afccb677eda5e"
-    encrypt="9836f587b94d62c3a0310b1ced86da51" 
+    mapKey="ad223c3fe563f20a827cf8eb79ab2bff"
+    encrypt="3d3e89e6f0309534066bfef90aa0238c" 
     :option="mapOption" @map-ready="handleMapReady"
   ></GaodeMap>
  </div>
@@ -15,6 +15,7 @@ import GaodeMap from './components/gaodeMap.vue';
 const amapRef = ref(null);
 const mapOption = reactive({
   mapStyle: 'amap://styles/a673d8d9ec88e83c3e7509281bd9495e',
+  plugin: ['AMap.Subway']
 })
 
 const mapObj = reactive({
@@ -25,6 +26,17 @@ provide('mapObj', mapObj);
 
 const handleMapReady = () => {
   mapObj.map = amapRef.value.map;
+  // mapObj.map.plugin(['AMap.Subway'], () => {
+  //   if (mapObj.map.Subway) {
+  //     new AMap.Subway({
+  //       map: mapObj.map,
+  //       city: '深圳',
+  //       opacity: 0.8
+  //     });
+  //   } else {
+  //     console.error('AMap.Subway 插件未加载！');
+  //   }
+  // });
 };
 </script>
 <style lang="less" scoped>
