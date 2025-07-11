@@ -8,8 +8,15 @@ const root = process.cwd();
 const pathResolve = (dir: string) => resolve(root, '.', dir);
 // https://vite.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig =>{
-  console.log('pathResolve',pathResolve);
+
+  const isBuild = command === 'build';
+  const argMode = process.argv[3] === '--mode' ? process.argv[4] : process.argv[3];
+  const configDir = pathResolve('config');
+  const env = loadEnv(isBuild ? mode : argMode, configDir);
+  
   return {
+    envDir: pathResolve('config'),
+    base: env.VITE_BASE_PATH,
     plugins: [
       vue(), 
       svgLoader(), // 动态加载 SVG 文件

@@ -54,7 +54,7 @@ export default function ViteConsole() {
       config.logger.info(`\n  ${
         pixelColor.green('项目应用 ' + packageJson.name)  // 绿色显示应用名称
       } ${
-        pixelColor.yellow('[' + (config?.env?.VITE_APP_TITLE || import.meta.env.VITE_APP_TITLE || '') + ']')  // 黄色显示环境标题
+        pixelColor.yellow('[' + (config?.env?.VITE_APP_TITLE || import.meta?.env?.VITE_APP_TITLE || '') + ']')  // 黄色显示环境标题
       } ${
         pixelColor.green('正在运行于:')  // 绿色显示提示文本
       }\n`);
