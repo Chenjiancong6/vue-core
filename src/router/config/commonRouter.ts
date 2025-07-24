@@ -28,7 +28,14 @@ export const commonRouter = [
     meta: {
       name: '拖拽缩放'
     }
-  }
+  },
+  {
+    path:'/dynamic-form',
+    component: () => import('@/views/comp/dynamic-form/index.vue'),
+    meta: {
+      name: 'vue 动态表单'
+    }
+  },
 ]
 
 // 默认的打开的第一个菜单
