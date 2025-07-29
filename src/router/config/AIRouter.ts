@@ -6,6 +6,14 @@ export const AIRouter =[
     meta:{
       name:'讯飞语音听写识别'
     }
+  }, 
+  {
+    path:'/chat',
+    component:()=>import('@/views/AI/chat/index.vue'),
+    children: [],
+    meta:{
+      name:'AI助手'
+    }
   }
 ];
 
