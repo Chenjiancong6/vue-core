@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import './style.css';
 import '@/global/style/main.less';
 import App from './App.vue';
+// 引入ai库, 初始化llm大语音模型函数
+import '@/ai-lib/llm.ts';
 import { setupRouter } from './router/index';
 import ElementPlus from 'element-plus';
 import 'element-plus/theme-chalk/index.css';

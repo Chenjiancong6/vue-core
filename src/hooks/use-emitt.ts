@@ -11,7 +11,7 @@ export const emitter = mitt();
 
 /**
  * mitt的vue3 hooks封装
- * import { emitter, useEmitt } from './use-emitt.ts';
+ * import { emitter, useEmitt } from '@/hooks/use-emitt';
  * emitter.emit('xxx');
  * useEmitt('xxx', () => {})
  * @param option 事件名称

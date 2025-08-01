@@ -3,7 +3,7 @@
  * 通过暴露一个Crequest类，不同的接口请求可以进行多个实例化
  */
 import Crequest from './request';
-const TIME_OUT = 5000;
+const TIME_OUT = 20000;
 import localCache from '@/utils/cache';
 
 // deepseek v3 模型 API 接口的 token

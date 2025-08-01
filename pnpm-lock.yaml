@@ -38,6 +38,9 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
       v3-drag-zoom:
         specifier: ^1.1.20
         version: 1.1.20
@@ -984,6 +987,10 @@ packages:
 
   utrie@1.0.2:
     resolution: {integrity: sha512-1MLa5ouZiOmQzUbjbu9VmjLzn1QLXBhwpUa7kdLUQK+KQ5KA9I1vk5U4YHe/X2Ch7PYnJfWuWT+VbuxbGwljhw==}
+
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
 
   v3-drag-zoom@1.1.20:
     resolution: {integrity: sha512-X5DZiwOsw9beUHnK6YNn2R0yThLKPtSZPz0tzd5/iawTgG8HPeGYQPXkkllkQBkXkcpjfTe0qkrDgVD4Fyyu5w==}
@@ -1941,6 +1948,8 @@ snapshots:
   utrie@1.0.2:
     dependencies:
       base64-arraybuffer: 1.0.2
+
+  uuid@11.1.0: {}
 
   v3-drag-zoom@1.1.20:
     dependencies:
