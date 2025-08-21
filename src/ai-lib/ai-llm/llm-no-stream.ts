@@ -49,7 +49,7 @@ export class LLMNoStream {
         ...Object.values(this._presendMsgObj),
         ...this._requestData.messages,
         {
-          role: 'user',
+          role: 'user', // 用户发送的消息
           content: msg
         }
       ]
@@ -65,7 +65,7 @@ export class LLMNoStream {
       // console.log(res, '非流式处理-llm');
       // 把ai返回的消息保存到栈中
       this._requestData.messages.push({
-        role: 'assistant',
+        role: 'assistant', // 助手发送的消息
         content: res?.choices[0]?.message?.content,
       });
       // 回调响应数据

@@ -13,4 +13,5 @@ export const aiMsgHandler = new AIMsgHandler({
 /**
  * 添加预发送消息
  */
-noStreamLLM.addPresendMsg('system', 'system', '你的名字叫超级大哈克');
+noStreamLLM.addPresendMsg('who-are-you', 'system', '你的名字叫超级大哈克');
+

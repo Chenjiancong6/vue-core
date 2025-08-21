@@ -58,8 +58,8 @@ const handleSendMsg = () => {
 .bottom-input-com--wrap {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 60%;
+  transform: translateX(-60%);
 }
 
 .bottom-input-com--container {

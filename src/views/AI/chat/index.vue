@@ -1,8 +1,21 @@
 <template>
   <div class="ai-chat--wrap">
     <div>chat 聊天</div>
-    <div class="chat-wrap">
-      <div v-for="item in msgList" :key="item.id">{{item.content}}</div>
+    <div class="ai-chat-container">
+      <div class="ai-chat-list">
+        <div class="ai-chat-msglist__item" v-for="item in msgList" :key="item.id">
+          <template v-if="item.type === 'ask'">
+            <div class="user-msg">
+              <div class="user-msg-content">{{item.content}}</div>
+            </div>
+          </template>
+          <template v-if="item.type === 'reply'">
+            <div class="ai-msg">
+              <div class="ai-msg-content">{{item.content}}</div>
+            </div>
+          </template>
+        </div>
+      </div>
     </div>
     <BottomInputCom />
  </div>
@@ -16,11 +29,11 @@ import BottomInputCom from './components/bottom-input-com/index.vue';
 
 const inputText = ref('')
 
-// watch(()=> msgList.value, () => {
-//   console.log('msgList.value',msgList.value);
-// }, {
-//   deep: true
-// })
+watch(()=> msgList.value, () => {
+  console.log('msgList.value',msgList.value);
+}, {
+  deep: true
+})
 
 onMounted(()=> {
   initStore();
@@ -32,8 +45,44 @@ onUnmounted(()=> {
 
 </script>
 <style lang="less" scoped>
-.chat-wrap {
-  margin-top: 20px;
-  width: 40%;
+.ai-chat--wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
+.ai-chat-container {
+  margin-top: 20px;
+  width: 60%;
+  max-height: 75%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.ai-chat-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.user-msg {
+  display: flex;
+  justify-content: flex-end;
+
+  flex:1;
+  margin-top: 20px;
+  .user-msg-content {
+    max-width: 90%;
+    padding: 10px 15px;
+    border-radius: 14px;
+    background-color: #fff;
+  }
+}
+.ai-msg {
+  max-width: 95%;
+  margin-top: 30px;
+}
+
+
 </style>
