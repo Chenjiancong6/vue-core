@@ -10,6 +10,7 @@
       <div class="bottom-input-com--btn-group">
         <div class="left-btn-group">
           <AIModelList />
+          <NewDialogue />
         </div>
         <div class="right-btn">
           <div class="ai-send" @click="handleSendMsg">
@@ -33,7 +34,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { sendMessage } from '@/views/AI/chat/ai-msg-store';
-import AIModelList from './ai-model-list.vue';
+import AIModelList from './components/ai-model-list.vue';
+import NewDialogue from './components/new-dialogue.vue';
 
 const inputText = ref('');
 
@@ -130,6 +132,10 @@ const handleSendMsg = () => {
     background: #FFF;
     color: #c1c1c1;
     border-radius: 50%;
-  }
+    &:hover {
+      background: #888585;
+    }
+
+ }
 }
 </style>

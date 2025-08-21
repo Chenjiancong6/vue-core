@@ -6,22 +6,22 @@
         <div class="ai-chat-msglist__item" v-for="item in msgList" :key="item.id">
           <template v-if="item.type === 'ask'">
             <div class="user-msg">
-              <div class="user-msg-content">{{item.content}}</div>
+              <div class="user-msg-content">{{ item.content }}</div>
             </div>
           </template>
           <template v-if="item.type === 'reply'">
             <div class="ai-msg">
-              <div class="ai-msg-content">{{item.content}}</div>
+              <div class="ai-msg-content">{{ item.content }}</div>
             </div>
           </template>
         </div>
       </div>
     </div>
     <BottomInputCom />
- </div>
+  </div>
 </template>
 <script setup lang="ts">
-import { ref,onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { emitter, useEmitt } from '@/hooks/use-emitt';
 import { Event } from '@/events/event'
 import { sendMessage, msgList, initStore, resetStore } from './ai-msg-store';
@@ -29,17 +29,17 @@ import BottomInputCom from './components/bottom-input-com/index.vue';
 
 const inputText = ref('')
 
-watch(()=> msgList.value, () => {
-  console.log('msgList.value',msgList.value);
+watch(() => msgList.value, () => {
+  console.log('msgList.value', msgList.value);
 }, {
   deep: true
 })
 
-onMounted(()=> {
+onMounted(() => {
   initStore();
 })
 
-onUnmounted(()=> {
+onUnmounted(() => {
   resetStore();
 })
 
@@ -52,26 +52,31 @@ onUnmounted(()=> {
   width: 100%;
   height: 100%;
 }
+
 .ai-chat-container {
   margin-top: 20px;
   width: 60%;
   max-height: 75%;
   overflow-y: auto;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
+
 .ai-chat-list {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
+
 .user-msg {
   display: flex;
   justify-content: flex-end;
 
-  flex:1;
+  flex: 1;
   margin-top: 20px;
+
   .user-msg-content {
     max-width: 90%;
     padding: 10px 15px;
@@ -79,6 +84,7 @@ onUnmounted(()=> {
     background-color: #fff;
   }
 }
+
 .ai-msg {
   max-width: 95%;
   margin-top: 30px;

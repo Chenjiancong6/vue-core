@@ -104,4 +104,12 @@ export class LLMNoStream {
       delete this._presendMsgObj[key];
     }
   }
+
+  /**
+   * 清空多轮对话中的历史对话消息
+   */
+  clearHistoryMsg() {
+    this._requestData.messages = [];
+  }
+
 }

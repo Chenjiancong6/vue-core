@@ -11,6 +11,10 @@ import { ElMessage } from 'element-plus'
  */
 export const msgList = ref<AIMsg[]>([]);
 
+export const resetMsgList = () => {
+  msgList.value = [];
+}
+
 /**
  * 发送消息,每次输入问题后发送前，都会调用这个函数
  * 这里处理的逻辑是把用户提问的消息，添加到msgList数组对象中
