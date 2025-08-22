@@ -1,8 +1,12 @@
+
+const headerMenu = '地图';
+
 export const mapRouter = [{
   path:'/gaodeMap',
   component: () => import('@/views/map/gaode-map/index.vue'),
   meta:{
-    name:'高德地图'
+    name:'高德地图',
+    headerMenu
   }
 }];
 

@@ -6,7 +6,6 @@
       <div class="line" v-if="item === activeMenu"></div>
     </div>
   </div>
-  <!-- setting -->
   <Setting />
  </div>
 </template>

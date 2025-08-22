@@ -1,8 +1,11 @@
+
+const headerMenu = '图表';
 export const echartsRouter = [{
   path:'/ec',
   component: () => import('@/views/ec/index.vue'),
   meta:{
-    name:'图表'
+    name:'图表',
+    headerMenu
   }
 }];
 

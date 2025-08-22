@@ -27,7 +27,7 @@
  </div>
 </template>
 <script setup lang="ts">
-import { watch } from 'vue';
+import { watch, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useMenu } from '@/layout/components/useMenu.ts';
 
@@ -57,13 +57,13 @@ function getFullRoutePath(item: MenuItem): string {
 };
 
 
-watch(()=> props.menuList, () => {
-  // 初始化时跳转到默认路由页面
-  router.push(redirectRouter.value['redirect']);
-}, {
-  deep: true,
-  immediate: true
-})
+// watch(()=> props.menuList, () => {
+//   // 初始化时跳转到默认路由页面
+//   router.push(redirectRouter.value['redirect']);
+// }, {
+//   deep: true,
+//   immediate: true
+// })
 
 </script>
 <style lang="less" scoped>

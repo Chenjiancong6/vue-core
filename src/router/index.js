@@ -7,7 +7,7 @@ import { AIRouter } from '@/router/config/AIRouter';
 
 const { redirectRouter } = useMenu();
 
-const routeConfig = [
+export const routeConfig = [
   {
     path: '/',
     redirect: redirectRouter.value['redirect'],

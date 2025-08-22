@@ -1,10 +1,12 @@
+const headerMenu = 'AI';
 export const AIRouter =[
   {
     path:'/iat',
     component:()=>import('@/views/AI/iat/index.vue'),
     children: [],
     meta:{
-      name:'讯飞语音听写识别'
+      name:'讯飞语音听写识别',
+      headerMenu
     }
   }, 
   {
@@ -12,7 +14,8 @@ export const AIRouter =[
     component:()=>import('@/views/AI/chat/index.vue'),
     children: [],
     meta:{
-      name:'AI助手'
+      name:'AI助手',
+      headerMenu
     }
   }
 ];

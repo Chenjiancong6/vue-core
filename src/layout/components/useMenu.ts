@@ -2,6 +2,8 @@ import { commonRouter, defaultRedirectCommonRouter } from '@/router/config/commo
 import { echartsRouter, defaultRedirectEchartsRouterr } from '@/router/config/echartsRouter';
 import { mapRouter, defaultRedirectMapRouterr } from '@/router/config/mapRouter';
 import { AIRouter, defaultRedirectAIRouter } from '@/router/config/AIRouter';
+import { routeConfig } from '@/router/index';
+
 import { ref, computed } from 'vue';
 
 const headerMenuMap = {
@@ -16,12 +18,48 @@ const defaultRedirectRouter = {
   '图表': defaultRedirectEchartsRouterr,
   '地图': defaultRedirectMapRouterr,
   'AI': defaultRedirectAIRouter
+};
+// 路由菜单
+const routerMap = [
+  ...commonRouter,
+  ...echartsRouter,
+  ...mapRouter,
+  ...AIRouter,
+];
+
+/**
+ * 获取url链接的最后一个/后面的内容
+ */
+const getUrlLastPath = (url: string) => {
+  const urlArr = url.split('/');
+  return urlArr[urlArr.length - 1];
 }
-const activeMenu = ref(Object.keys(headerMenuMap)[0]);
+/**
+ * 递归遍历routerMap，找到和getUrlLastPath(window.location.href) 相等的path，返回该path的meta.headerMenu
+ */
+const getHeaderMenu = (routeConfigArr) => {
+  const lastPath = getUrlLastPath(window.location.href);
+  for (const item of routeConfigArr) {
+    // 存在children的情况
+    if (item?.children && item.children.length > 0) {
+      // 将递归调用的结果存储在 result 变量中，并检查如果结果不为空，则返回该结果
+      const result = getHeaderMenu(item.children);
+      if (result) return result;
+    }else {
+      if (item.path?.includes(lastPath)) {
+        return item.meta?.headerMenu || '';
+      }
+    }
+  }
+};
+
+// const activeMenu = ref(Object.keys(headerMenuMap)[0]);
+const activeMenu = ref(getHeaderMenu(routerMap));
 
 export const useMenu = () => {
 
   const setActiveMenu = (menu: string) => {
+    console.log('setActiveMenu', menu);
     activeMenu.value = menu;
   };
   

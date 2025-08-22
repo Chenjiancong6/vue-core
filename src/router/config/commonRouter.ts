@@ -1,4 +1,5 @@
 // 子路由的路径前不要加 /，因为它是相对于父路由的路径
+const headerMenu = '组件';
 export const commonRouter = [
   {
     path: '/common',
@@ -10,14 +11,16 @@ export const commonRouter = [
         path: 'watermark',
         component: () => import('@/views/comp/watermark/index.vue'),
         meta: {
-          name: '水印'
+          name: '水印',
+          headerMenu
         },
       },
       {
         path:'text-waterfall-flow',
         component: () => import('@/views/comp/text-waterfall-flow/index.vue'),
         meta: {
-          name:'文字瀑布流'
+          name:'文字瀑布流',
+          headerMenu
         }
       }
     ]
@@ -26,14 +29,16 @@ export const commonRouter = [
     path:'/drag-zoom',
     component: () => import('@/views/comp/drag-zoom/index.vue'),
     meta: {
-      name: '拖拽缩放'
+      name: '拖拽缩放',
+      headerMenu
     }
   },
   {
     path:'/dynamic-form',
     component: () => import('@/views/comp/dynamic-form/index.vue'),
     meta: {
-      name: 'vue 动态表单'
+      name: 'vue 动态表单',
+      headerMenu
     }
   },
 ]
