@@ -59,7 +59,6 @@ const activeMenu = ref(getHeaderMenuName(routerMap));
 export const useMenu = () => {
 
   const setActiveMenu = (menu: string) => {
-    console.log('setActiveMenu', menu);
     activeMenu.value = menu;
   };
   
