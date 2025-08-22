@@ -37,13 +37,13 @@ const getUrlLastPath = (url: string) => {
 /**
  * 递归遍历routerMap，找到和getUrlLastPath(window.location.href) 相等的path，返回该path的meta.headerMenu
  */
-const getHeaderMenu = (routeConfigArr) => {
+const getHeaderMenuName = (routeConfigArr) => {
   const lastPath = getUrlLastPath(window.location.href);
   for (const item of routeConfigArr) {
     // 存在children的情况
     if (item?.children && item.children.length > 0) {
       // 将递归调用的结果存储在 result 变量中，并检查如果结果不为空，则返回该结果
-      const result = getHeaderMenu(item.children);
+      const result = getHeaderMenuName(item.children);
       if (result) return result;
     }else {
       if (item.path?.includes(lastPath)) {
@@ -54,7 +54,7 @@ const getHeaderMenu = (routeConfigArr) => {
 };
 
 // const activeMenu = ref(Object.keys(headerMenuMap)[0]);
-const activeMenu = ref(getHeaderMenu(routerMap));
+const activeMenu = ref(getHeaderMenuName(routerMap));
 
 export const useMenu = () => {
 
