@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
+    "resize-observer-polyfill": "^1.5.1",
     "vite": "^6.1.0"
   }
 }
