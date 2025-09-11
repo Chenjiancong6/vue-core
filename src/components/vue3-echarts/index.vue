@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, useTemplateRef, onMounted, onBeforeMount } from 'vue';
+import { ref, computed, useTemplateRef, onMounted, onBeforeUnmount, watch } from 'vue';
 import * as echarts from 'echarts';
 import makeOption from './font-seize-option.js';
 import config from '@/components/scaleConfig';
@@ -133,15 +133,24 @@ const ecStyle = computed(() => {
 onMounted(() => {
   // 监听尺寸变化
   ResizeObserver.resizeObserver(ecResizeRefInstance.value, () => {
+    // 初始化 echarts 实例 和配置项
+    optionChange();
+    // 图表容器大小改变时自适应容器大小
     resizeEcharts();
   });
-  // 初始化 echarts 实例 和配置项
-  optionChange();
 })
 
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   // 销毁实例
   destroyEcharts(true);
+  // 销毁dom元素监听
+  ResizeObserver.unobserve(ecResizeRefInstance.value);
+})
+
+watch(() => [props.option, props.fontSizeScale,props.width, props.height], () => {
+  optionChange();
+},{
+  deep: true
 })
 
 defineExpose({
@@ -152,10 +161,13 @@ defineExpose({
 </script>
 <style lang="less" scoped>
 .cjc-ec--resize {
+  width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .cjc-ec--resize__echarts {
+  width: 100%;
   height: 100%;
 }
 </style>
