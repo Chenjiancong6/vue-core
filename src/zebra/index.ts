@@ -1,0 +1,1 @@
+export { getHashParam } from './lib/get-hash-param.js';
