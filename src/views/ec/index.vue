@@ -18,7 +18,8 @@
 </template>
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import EcResize from '@/components/vue3-echarts';
+// import EcResize from '@/components/vue3-echarts';
+import EcResize from '@cjc/vue3-echarts';
 
 const barWidth = ref(400);
 const barHeight = ref(400);

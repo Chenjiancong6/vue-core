@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cjc/scaleConfig": "^1.0.0",
+    "@cjc/vue3-echarts": "^1.0.0",
+    "@cjc/zebra": "^1.0.0",
     "@v3e/vue3-draggable-resizable": "^1.0.0",
     "@vueuse/core": "^13.0.0",
     "axios": "^1.11.0",

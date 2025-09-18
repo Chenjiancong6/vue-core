@@ -26,6 +26,7 @@
 <script setup>
 import { ref,onMounted } from 'vue'
 import ScreenshotComponent from '@/components/watermark/index.vue'
+import { isPhoneValid } from '@cjc/zebra';
 
 const screenshotRef = ref(null)
 const resultImage = ref(null)
