@@ -41,6 +41,14 @@ export const commonRouter = [
       headerMenu
     }
   },
+  {
+    path:'/btn-loading',
+    component: () => import('@/views/comp/btn-loading/index.vue'),
+    meta: {
+      name: '按钮loading封装',
+      headerMenu
+    }
+  }
 ]
 
 // 默认的打开的第一个菜单
