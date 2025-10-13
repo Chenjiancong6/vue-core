@@ -15,8 +15,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       '@cjc/vue3-echarts':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.0.1
+        version: 1.0.1
       '@cjc/zebra':
         specifier: ^1.0.1
         version: 1.0.1(lodash-es@4.17.21)
@@ -107,8 +107,8 @@ packages:
   '@cjc/vite-plugin-console@1.0.5':
     resolution: {integrity: sha512-rgZfOQXCTNNUogwr/9bbiC9OhYPa5D4zRlMmzBF/MkA3YUIgQXRtIfo2JxHvQsKbveSUpAdn6mPGZHGcLjdv6g==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-console/-/@cjc/vite-plugin-console-1.0.5.tgz}
 
-  '@cjc/vue3-echarts@1.0.0':
-    resolution: {integrity: sha512-x3sH6yWZjfnpUHOz3WMprys+9iMk9L/IJr0SgZ82TSide3B6O4bWcxIec/Wx7dv3hORpJvG5Yt+lgt5ZQ1J+2A==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vue3-echarts/-/@cjc/vue3-echarts-1.0.0.tgz}
+  '@cjc/vue3-echarts@1.0.1':
+    resolution: {integrity: sha512-aBoOJZBI0anD3HmR+ZDGsdIDGcXR9hISNHBqr76x7GZIJQpmAMHZqBINODtiPNwv8/MCZI0gUJY0rL+3pe6DlA==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vue3-echarts/-/@cjc/vue3-echarts-1.0.1.tgz}
 
   '@cjc/zebra@1.0.1':
     resolution: {integrity: sha512-TWsOdXw5ps3OG/m3hvUPJUgOpTF854ma5iYXkjZL6amHdv5w5wVZ6CZXtgVDgsxxRUTHIFp0/dFDyQYNNkmGiw==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/zebra/-/@cjc/zebra-1.0.1.tgz}
@@ -1610,7 +1610,7 @@ snapshots:
 
   '@cjc/vite-plugin-console@1.0.5': {}
 
-  '@cjc/vue3-echarts@1.0.0':
+  '@cjc/vue3-echarts@1.0.1':
     dependencies:
       '@cjc/dom-resize-observer': 1.0.0
       '@cjc/scaleConfig': 1.0.0
