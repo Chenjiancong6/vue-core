@@ -15,8 +15,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@cjc/zebra':
-        specifier: ^1.0.0
-        version: 1.0.0(lodash-es@4.17.21)
+        specifier: ^1.0.1
+        version: 1.0.1(lodash-es@4.17.21)
       '@v3e/vue3-draggable-resizable':
         specifier: ^1.0.0
         version: 1.0.0
@@ -104,8 +104,8 @@ packages:
   '@cjc/vue3-echarts@1.0.0':
     resolution: {integrity: sha512-x3sH6yWZjfnpUHOz3WMprys+9iMk9L/IJr0SgZ82TSide3B6O4bWcxIec/Wx7dv3hORpJvG5Yt+lgt5ZQ1J+2A==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vue3-echarts/-/@cjc/vue3-echarts-1.0.0.tgz}
 
-  '@cjc/zebra@1.0.0':
-    resolution: {integrity: sha512-kqg9Bhnl+aTEVeNAktqBcZF0mdzwmd231kBZ2RBsFRlr1Ox4OuZt1qmw4X6Xuag3y6t3uFPp19McKHM35ziLHQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/zebra/-/@cjc/zebra-1.0.0.tgz}
+  '@cjc/zebra@1.0.1':
+    resolution: {integrity: sha512-TWsOdXw5ps3OG/m3hvUPJUgOpTF854ma5iYXkjZL6amHdv5w5wVZ6CZXtgVDgsxxRUTHIFp0/dFDyQYNNkmGiw==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/zebra/-/@cjc/zebra-1.0.1.tgz}
     peerDependencies:
       lodash-es: ^4.17.21
 
@@ -1425,7 +1425,7 @@ packages:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
 
   source-map@0.6.1:
-    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, tarball: https://packages.aliyun.com/68747ea6ef24fb34afabd70d/npm/badg-npm/source-map/-/source-map-0.6.1.tgz}
     engines: {node: '>=0.10.0'}
 
   splaytree@3.1.2:
@@ -1609,7 +1609,7 @@ snapshots:
       echarts: 5.6.0
       lodash-es: 4.17.21
 
-  '@cjc/zebra@1.0.0(lodash-es@4.17.21)':
+  '@cjc/zebra@1.0.1(lodash-es@4.17.21)':
     dependencies:
       '@turf/turf': 6.5.0
       lodash-es: 4.17.21
