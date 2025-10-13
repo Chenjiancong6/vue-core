@@ -3,7 +3,8 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import type { UserConfig, ConfigEnv } from 'vite';
-import ViteConsole from './plugin/vite-console/console.js';
+// import ViteConsole from './plugin/vite-console/console.js';
+import ViteConsole from "@cjc/vite-plugin-console"
 const root = process.cwd();
 const pathResolve = (dir: string) => resolve(root, '.', dir);
 // https://vite.dev/config/
