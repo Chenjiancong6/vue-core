@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cjc/gaode-map": "^1.0.0",
     "@cjc/scaleConfig": "^1.0.0",
     "@cjc/vite-plugin-console": "^1.0.5",
     "@cjc/vue3-echarts": "^1.0.1",

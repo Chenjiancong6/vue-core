@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@cjc/gaode-map':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.13)
       '@cjc/scaleConfig':
         specifier: ^1.0.0
         version: 1.0.0
@@ -100,6 +103,9 @@ packages:
 
   '@cjc/dom-resize-observer@1.0.0':
     resolution: {integrity: sha512-7bVR8EJPi25GOY+OkzRtLLb8MDfXfy93hGjpW4PQNdbhq62Xe6wVgMjs/Wf+RPx82r0VHSN4Ujz48DwbkeSlaQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/dom-resize-observer/-/@cjc/dom-resize-observer-1.0.0.tgz}
+
+  '@cjc/gaode-map@1.0.0':
+    resolution: {integrity: sha512-FkY2M8/eSoCVQPl3jEUpqkBKVCs/o/tnstyMHL3i4q927Lwkb0hg3hU5R7syqro2DAWoyxkpzqiwYIWRXyZwtg==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/gaode-map/-/@cjc/gaode-map-1.0.0.tgz}
 
   '@cjc/scaleConfig@1.0.0':
     resolution: {integrity: sha512-8bAYhQsY2oe0DS4LCp5sLP9PZ3H7deXII7mHF1w31ir3nO1vDzM+UZCV5pciY/xZCoyweQG1cDBtnIQEwCqRDQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/scaleConfig/-/@cjc/scaleConfig-1.0.0.tgz}
@@ -764,6 +770,9 @@ packages:
     resolution: {integrity: sha512-WDElkBv/o4lVwu6wYHB06AXs4Xo2fwDjJUpvPRc1QQdzkUSiGFjrYuSCy8raxLE5FObgKq8ND7R5gSZTFLK60w==}
     deprecated: This is a stub types definition for vuejs (https://github.com/vuejs/vue). vuejs provides its own type definitions, so you don't need @types/vue installed!
 
+  '@types/web-bluetooth@0.0.14':
+    resolution: {integrity: sha512-5d2RhCard1nQUC3aHcq/gHzWYO6K0WJmAbjO7mQJgCQKtZpgXxv1rOM6O/dBDhDYYVutk1sciOgNSe+5YyfM8A==}
+
   '@types/web-bluetooth@0.0.16':
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
 
@@ -817,11 +826,25 @@ packages:
     peerDependencies:
       vue: ^3.5.0
 
+  '@vueuse/core@8.9.4':
+    resolution: {integrity: sha512-B/Mdj9TK1peFyWaPof+Zf/mP9XuGAngaJZBwPaXBvU3aCTZlx3ltlrFFFyMV4iGBwsjSCeUCgZrtkEj9dS2Y3Q==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+
   '@vueuse/core@9.13.0':
     resolution: {integrity: sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==}
 
   '@vueuse/metadata@13.0.0':
     resolution: {integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==}
+
+  '@vueuse/metadata@8.9.4':
+    resolution: {integrity: sha512-IwSfzH80bnJMzqhaapqJl9JRIiyQU0zsRGEgnxN6jhq7992cPUJIRfV+JHRIZXjYqbwt07E1gTEp0R0zPJ1aqw==, tarball: https://packages.aliyun.com/68747ea6ef24fb34afabd70d/npm/badg-npm/@vueuse/metadata/-/metadata-8.9.4.tgz}
 
   '@vueuse/metadata@9.13.0':
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
@@ -830,6 +853,17 @@ packages:
     resolution: {integrity: sha512-9MiHhAPw+sqCF/RLo8V6HsjRqEdNEWVpDLm2WBRW2G/kSQjb8X901sozXpSCaeLG0f7TEfMrT4XNaA5m1ez7Dg==}
     peerDependencies:
       vue: ^3.5.0
+
+  '@vueuse/shared@8.9.4':
+    resolution: {integrity: sha512-wt+T30c4K6dGRMVqPddexEVLa28YwxW5OFIPmzUHICjphfAuBFTTdDoyqREZNDOFJZ44ARH1WWQNCUK8koJ+Ag==, tarball: https://packages.aliyun.com/68747ea6ef24fb34afabd70d/npm/badg-npm/@vueuse/shared/-/shared-8.9.4.tgz}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
 
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
@@ -1605,6 +1639,14 @@ snapshots:
   '@cjc/dom-resize-observer@1.0.0':
     dependencies:
       resize-observer-polyfill: 1.5.1
+
+  '@cjc/gaode-map@1.0.0(vue@3.5.13)':
+    dependencies:
+      '@vueuse/core': 8.9.4(vue@3.5.13)
+      lodash-es: 4.17.21
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   '@cjc/scaleConfig@1.0.0': {}
 
@@ -2643,6 +2685,8 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@types/web-bluetooth@0.0.14': {}
+
   '@types/web-bluetooth@0.0.16': {}
 
   '@types/web-bluetooth@0.0.21': {}
@@ -2717,6 +2761,15 @@ snapshots:
       '@vueuse/shared': 13.0.0(vue@3.5.13)
       vue: 3.5.13
 
+  '@vueuse/core@8.9.4(vue@3.5.13)':
+    dependencies:
+      '@types/web-bluetooth': 0.0.14
+      '@vueuse/metadata': 8.9.4
+      '@vueuse/shared': 8.9.4(vue@3.5.13)
+      vue-demi: 0.14.10(vue@3.5.13)
+    optionalDependencies:
+      vue: 3.5.13
+
   '@vueuse/core@9.13.0(vue@3.5.13)':
     dependencies:
       '@types/web-bluetooth': 0.0.16
@@ -2729,10 +2782,18 @@ snapshots:
 
   '@vueuse/metadata@13.0.0': {}
 
+  '@vueuse/metadata@8.9.4': {}
+
   '@vueuse/metadata@9.13.0': {}
 
   '@vueuse/shared@13.0.0(vue@3.5.13)':
     dependencies:
+      vue: 3.5.13
+
+  '@vueuse/shared@8.9.4(vue@3.5.13)':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.13)
+    optionalDependencies:
       vue: 3.5.13
 
   '@vueuse/shared@9.13.0(vue@3.5.13)':

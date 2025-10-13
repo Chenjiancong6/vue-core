@@ -10,7 +10,9 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive, provide } from 'vue';
-import GaodeMap from './components/GaodeMap.vue';
+// import GaodeMap from './components/GaodeMap.vue';
+import GaodeMap from '@cjc/gaode-map';
+
 
 
 const amapRef = ref(null);
