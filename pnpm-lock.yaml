@@ -17,6 +17,9 @@ importers:
       '@cjc/vite-plugin-console':
         specifier: ^1.0.5
         version: 1.0.5
+      '@cjc/vue3-data-container':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@cjc/vue3-echarts':
         specifier: ^1.0.1
         version: 1.0.1
@@ -112,6 +115,9 @@ packages:
 
   '@cjc/vite-plugin-console@1.0.5':
     resolution: {integrity: sha512-rgZfOQXCTNNUogwr/9bbiC9OhYPa5D4zRlMmzBF/MkA3YUIgQXRtIfo2JxHvQsKbveSUpAdn6mPGZHGcLjdv6g==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-console/-/@cjc/vite-plugin-console-1.0.5.tgz}
+
+  '@cjc/vue3-data-container@1.0.1':
+    resolution: {integrity: sha512-UqINKiLlZTubqldpteoBRFfG+upQDWLG4Y40vRBiw01TX6N36WrO2dUMcNgRrBPUbm07It1ycihbhQbr9QO4YA==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vue3-data-container/-/@cjc/vue3-data-container-1.0.1.tgz}
 
   '@cjc/vue3-echarts@1.0.1':
     resolution: {integrity: sha512-aBoOJZBI0anD3HmR+ZDGsdIDGcXR9hISNHBqr76x7GZIJQpmAMHZqBINODtiPNwv8/MCZI0gUJY0rL+3pe6DlA==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vue3-echarts/-/@cjc/vue3-echarts-1.0.1.tgz}
@@ -1651,6 +1657,8 @@ snapshots:
   '@cjc/scaleConfig@1.0.0': {}
 
   '@cjc/vite-plugin-console@1.0.5': {}
+
+  '@cjc/vue3-data-container@1.0.1': {}
 
   '@cjc/vue3-echarts@1.0.1':
     dependencies:

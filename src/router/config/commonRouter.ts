@@ -48,6 +48,14 @@ export const commonRouter = [
       name: '按钮loading封装',
       headerMenu
     }
+  },
+  {
+    path:'/data-container',
+    component: () => import('@/views/comp/data-container/index.vue'),
+    meta: {
+      name: '数据加载状态容器',
+      headerMenu
+    }
   }
 ]
 
