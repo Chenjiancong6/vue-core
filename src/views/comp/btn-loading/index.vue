@@ -4,12 +4,17 @@
       {{ state }}
     </component> -->
     <!-- 函数式组件写法 -->
-    <ComButton @click="onClick" :aaa="111"></ComButton>
+    <ComButton @click="onClick" :aaa="111">
+      {{ state }}
+    </ComButton>
 
-    <!-- h函数写法 -->
+    <!-- h函数写法,下面两种是一样的 -->
     <!-- <component :is="hFn" @click="onClick">
       {{ state }}
     </component> -->
+    <!-- <hFn @click="onClick" :aaa="111">
+      {{ state }}
+    </hFn> -->
   </div>
 </template>
 
@@ -22,16 +27,16 @@ import myButton from "./my-button.vue";
  * @param com 
  */
 const hCom = (com) => {
-  return (props) => {
+  return (props, { slots, emits }) => {
     console.log('函数式组件写法----props:', props)
-    return h(com, props, state.value)
+    return h(com, props, slots)
   }
 }
 let ComButton = hCom(myButton)
 
 
 /**
- * h函数写法
+ * h函数写法，函数式组件写法 简洁写法
  */
 const hFn = (props, { slots, emits }) => {
   console.log('h函数----props:', props);
