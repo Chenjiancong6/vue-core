@@ -1,15 +1,42 @@
 <template>
   <div class="package-btn-loading">
-    <my-button @click="onClick">
-      <!-- <template #default>按钮</template> -->
+    <!-- <component :is="hCom" @click="onClick" :aaa="111">
       {{ state }}
-    </my-button>
+    </component> -->
+    <!-- 函数式组件写法 -->
+    <ComButton @click="onClick" :aaa="111"></ComButton>
+
+    <!-- h函数写法 -->
+    <!-- <component :is="hFn" @click="onClick">
+      {{ state }}
+    </component> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, h } from "vue";
 import myButton from "./my-button.vue";
+
+/**
+ * 函数式组件写法，使用h函数
+ * @param com 
+ */
+const hCom = (com) => {
+  return (props) => {
+    console.log('函数式组件写法----props:', props)
+    return h(com, props, state.value)
+  }
+}
+let ComButton = hCom(myButton)
+
+
+/**
+ * h函数写法
+ */
+const hFn = (props, { slots, emits }) => {
+  console.log('h函数----props:', props);
+  return h(myButton, props, slots)
+}
 
 const state = ref('获取数据');
 
