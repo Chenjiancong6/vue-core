@@ -26,12 +26,28 @@ export const commonRouter = [
     ]
   },
   {
-    path:'/drag-zoom',
-    component: () => import('@/views/comp/drag-zoom/index.vue'),
+    path:'/drag',
     meta: {
-      name: '拖拽缩放',
-      headerMenu
-    }
+      name: '拖拽功能',
+    },
+    children: [
+      {
+        path:'drag-zoom',
+        component: () => import('@/views/comp/drag-zoom/index.vue'),
+        meta: {
+          name: '拖拽缩放',
+          headerMenu
+        }
+      },
+      {
+        path:'com-draggable',
+        component: () => import('@/views/comp/com-draggable/index.vue'),
+        meta: {
+          name: '可拖拽组件',
+          headerMenu
+        }
+      },
+    ]
   },
   {
     path:'/dynamic-form',
