@@ -1,4 +1,5 @@
 <template>
+  <!-- 拖拽组件文档， https://github.com/a7650/vue3-draggable-resizable/blob/main/docs/document_zh.md -->
   <!-- <div class="v3-drag-zoom-wrap"> -->
   <Vue3DraggableResizable :parent="true" class="v3-drag-zoom-container">
 
