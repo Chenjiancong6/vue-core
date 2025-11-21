@@ -4,6 +4,7 @@ interface IArgs {
   containerRef: Ref<HTMLElement>;
   draggableSelector: string;
   autoInit?: boolean;
+  dragContainerSelector?: string;
 }
 
 /**
@@ -11,9 +12,10 @@ interface IArgs {
  * @param containerRef 可拖拽组件的父容器ref
  * @param draggableSelector 可拖拽组件的选择器
  * @param autoInit 是否自动初始化
+ * @param dragContainerSelector 限制可拖拽容器的选择器(拖拽区域的范围，默认是整个屏幕) 
  * @returns initDrag 初始化拖拽功能
  */
-export function useDraggable({ containerRef, draggableSelector, autoInit = true }: IArgs) {
+export function useDraggable({ containerRef, draggableSelector, dragContainerSelector = '', autoInit = true, }: IArgs) {
 
   let _isInited = false; // 是否已经初始化
 
@@ -28,19 +30,33 @@ export function useDraggable({ containerRef, draggableSelector, autoInit = true 
 
   // 计算可拖拽元素的边界位置（X轴和Y轴）重要！
   const _calculateBoundaryPosition = (x: number, y: number) => {
-    // 屏幕的高度和宽度
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+    // 拖拽区域的范围
+    let screenWidth = 0;
+    let screenHeight = 0;
+    // 拖拽区域的范围
+    let canDragContainer = null;
+    if (dragContainerSelector) {
+      canDragContainer = document.querySelector(dragContainerSelector) || null;
+      if (canDragContainer) {
+        screenWidth = canDragContainer.clientWidth;
+        screenHeight = canDragContainer.clientHeight;
+      }
+    } else {
+      // 屏幕的高度和宽度
+      screenWidth = window.innerWidth;
+      screenHeight = window.innerHeight;
+    }
 
     // X轴：左右最多可隐藏一半
-    const maxHiddenX = containerWidth.value / 2;
-    const minX = -maxHiddenX;
+    const maxHiddenX = canDragContainer ? screenWidth / 2 : containerWidth.value / 2;
+    const minX = canDragContainer ? maxHiddenX - containerWidth.value : -maxHiddenX;
     // X轴：右最多可隐藏一半
     const maxX = screenWidth - containerWidth.value + maxHiddenX;
 
     // Y轴：上不能出屏幕，下不能出屏幕
-    const minY = 0;
-    const maxY = screenHeight - dragHandleHeight.value;
+    let dragContainerRectTop = canDragContainer?.getBoundingClientRect().top || 0;
+    const minY = canDragContainer ? dragContainerRectTop : 0;
+    const maxY = canDragContainer ? screenHeight - dragHandleHeight.value + dragContainerRectTop : screenHeight - dragHandleHeight.value;
 
     // 计算拖拽后的位置，确保在边界内
     const boundedX = Math.max(minX, Math.min(maxX, x));
@@ -69,10 +85,6 @@ export function useDraggable({ containerRef, draggableSelector, autoInit = true 
     const boundedPos = _calculateBoundaryPosition(newX, newY);
     // 更新可拖拽元素的位置
     containerRef.value.style.transform = `translate(${boundedPos.x}px, ${boundedPos.y}px)`;
-
-    console.log('e.clientX', e.clientX);
-    console.log('e.clientY', e.clientY);
-
   }
 
   // 拖拽事件- 拖拽结束
@@ -94,8 +106,6 @@ export function useDraggable({ containerRef, draggableSelector, autoInit = true 
     dragStartComponentPos.value = { x: rect.left, y: rect.top };
 
     e.preventDefault();
-    // console.log('开始拖拽e.clientX', e.clientX);
-    // console.log('开始拖拽e.clientY', e.clientY);
   }
 
   // 初始化可拖拽元素的父容器大小和位置
@@ -109,16 +119,11 @@ export function useDraggable({ containerRef, draggableSelector, autoInit = true 
     const rect = containerRef.value.getBoundingClientRect();
 
     // 设置可拖拽元素的父容器的css样式
-    containerRef.value.style.position = 'relative';
+    containerRef.value.style.position = 'fixed';
     containerRef.value.style.left = '0';
     containerRef.value.style.top = '0';
-    // 设置可拖拽元素的父容器的css偏移量位置,这个很重要！
+    // 初始化设置可拖拽元素的父容器的css偏移量位置,这个很重要！
     containerRef.value.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
-
-    // console.log('containerWidth', containerWidth.value);
-    // console.log('containerHeight', containerHeight.value);
-    // console.log('rect.left', rect.left);
-    // console.log('rect.top', rect.top);
   }
 
   // 初始化可拖拽元素的触发区域样式和鼠标事件
@@ -129,7 +134,7 @@ export function useDraggable({ containerRef, draggableSelector, autoInit = true 
     if (!dragDomRef.value) return;
 
     // 拿到可拖拽元素的触发区域高度
-    dragHandleHeight.value = dragDomRef.value.offsetHeight;
+    dragHandleHeight.value = dragDomRef.value.clientHeight;
 
     dragDomRef.value.style.cursor = 'move'; // 添加鼠标移动光标
 

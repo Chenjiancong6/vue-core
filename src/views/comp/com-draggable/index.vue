@@ -19,16 +19,24 @@ const containerIntance = useTemplateRef<HTMLElement>('containerRef');
 
 const { initDrag } = useDraggable({
   containerRef: containerIntance,
-  draggableSelector: '.com-draggable--container',
+  draggableSelector: '.com-draggable--header',
+  dragContainerSelector: '.com-draggable--wrapper',
+  // autoInit: false, // 手动初始化拖拽
 });
+
+// 手动初始化拖拽
+// setTimeout(() => {
+//   initDrag();
+// }, 3000);
 
 </script>
 <style lang="less" scoped>
 .com-draggable--wrapper {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   position: relative;
   user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .com-draggable--container {
   width: 350px;
