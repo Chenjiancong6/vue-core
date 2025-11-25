@@ -72,6 +72,14 @@ export const commonRouter = [
       name: '数据加载状态容器',
       headerMenu
     }
+  },
+  {
+    path:'/ellipsis-text',
+    component: () => import('@/views/comp/ellipsis-text/index.vue'),
+    meta: {
+      name: '文本省略自动tooltip',
+      headerMenu
+    }
   }
 ]
 

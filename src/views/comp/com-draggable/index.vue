@@ -6,9 +6,7 @@
       <span>···</span>
     </div>
     <div class="com-draggable--content">
-      <div class="com-draggable--content-text">
-        <EllipsisText text="可拖拽组件文本文本"  />
-    </div>
+      可拖拽组件
     </div>
   </div>
  </div>
@@ -17,7 +15,6 @@
 import { ref, useTemplateRef } from 'vue';
 // import { useDraggable } from '@/hooks/use-draggable';
 import { useDraggable } from '@cjc/hooks';
-import EllipsisText from '@cjc/ellipsis-text';
 
 const containerIntance = useTemplateRef<HTMLElement>('containerRef');
 
