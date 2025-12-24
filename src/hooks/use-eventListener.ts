@@ -1,4 +1,19 @@
-import { watch, unref } from "vue";
+import { type Ref, watch, unref } from "vue";
+
+// 函数重载，定义函数的传参类型
+
+export function useEventListener<K extends keyof WindowEventMap>(
+  type: K,
+  callback: (event: WindowEventMap[K]) => void,
+  options?: boolean | AddEventListenerOptions
+)
+
+export function useEventListener<K extends keyof HTMLElementEventMap>(
+  target: Ref<HTMLElement>,
+  type: K,
+  callback: (event: HTMLElementEventMap[K]) => void,
+  options?: boolean | AddEventListenerOptions
+)
 
 /**
  * 封装事件监听的hooks函数
@@ -18,7 +33,7 @@ import { watch, unref } from "vue";
  * off()
  * }, 3000)
  */
-export const useEventListener = (...args) => {
+export function useEventListener(...args) {
   // 拿到传参的第一个参数，如果是字符串，说明传入的不是监听事件的节点，则这时默认是对window进行监听
   const target = typeof args[0] === "string" ? window : args.shift();
 
