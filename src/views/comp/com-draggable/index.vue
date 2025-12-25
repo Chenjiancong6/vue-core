@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
 // import { useDraggable } from '@/hooks/use-draggable';
-import { useDraggable } from '@cjc/hooks';
+import { useDraggable, useEventListener } from '@cjc/hooks';
 
 const containerIntance = useTemplateRef<HTMLElement>('containerRef');
 
@@ -29,6 +29,10 @@ const { initDrag } = useDraggable({
 // setTimeout(() => {
 //   initDrag();
 // }, 3000);
+
+// useEventListener(containerIntance,'mousemove',(e) => {
+//   console.log(e)
+// })
 
 </script>
 <style lang="less" scoped>
