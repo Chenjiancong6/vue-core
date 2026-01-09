@@ -80,7 +80,15 @@ export const commonRouter = [
       name: '文本省略自动tooltip',
       headerMenu
     }
-  }
+  },
+  {
+    path:'/list-lazyLoading',
+    component: () => import('@/views/comp/list-lazyLoading/index.vue'),
+    meta: {
+      name: '列表滚动懒加载',
+      headerMenu
+    }
+  },
 ]
 
 // 默认的打开的第一个菜单
