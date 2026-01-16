@@ -1,6 +1,7 @@
 // 列表容器-滚动懒加载数据-组件
 <template>
  <div class="chen_list-scroll-lazy-loading-container" ref="containerRef">
+  <!-- 需要给 scroll-item元素一个默认的高度（not-rendered），getToRenderItems函数才能拿到几何数据，因为初始化时所有列表项都是未渲染的 -->
   <div class="scroll-item" v-for="item in data" :key="item[keyProp]" :data-key="item[keyProp]" :class="{'not-rendered': !shouldRender(item)}">
     <slot :row="item" v-if="shouldRender(item)" />
   </div>
@@ -8,7 +9,7 @@
  </div>
 </template>
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, PropType, useTemplateRef, shallowReactive , nextTick } from 'vue';
+import { onMounted, onBeforeUnmount, PropType, useTemplateRef, shallowReactive , nextTick, watch } from 'vue';
 import { useEventListener } from "@/hooks/use-eventListener";
 import { throttle } from "lodash-es";
 
@@ -36,7 +37,6 @@ const renderObj = shallowReactive({});
 
 // 检查是否需要渲染列表项 （在renderObj中存在该列表项的key值时返回true）
 const shouldRender = (item: any) => {
-  console.log('renderObj',renderObj);
   return renderObj[item[props.keyProp]];
 };
 
@@ -62,8 +62,8 @@ const hasElementInViewPort = (container, element) => {
 
   /**
    * 判断元素是否在容器的可见范围内
-   * 1. 元素底部距离视口顶部的距离 大于 容器顶部距离视口顶部的距离
-   * 2. 元素顶部距离视口顶部的距离 小于 容器底部距离视口顶部的距离
+   * 1. 元素底部距离视口的距离 大于 容器顶部距离视口的距离
+   * 2. 元素顶部距离视口的距离 小于 容器底部距离视口的距离
    * 3. 容器宽度大于0
    * 4. 元素宽度大于0
    */
@@ -93,7 +93,7 @@ const hasElementBelowInViewPort = (container, element) => {
 
   /**
    * 判断元素是否在容器的可见范围内下方
-   * 1. 元素顶部距离视口顶部的距离 大于等于 容器底部距离视口顶部的距离
+   * 1. 元素顶部距离视口的距离 大于等于 容器底部距离视口的距离
    */
   return elementTop >= containerBottom;
 };
@@ -132,7 +132,7 @@ const getToRenderItems = throttle(() => {
  * 滚动到指定的列表项
  * @param id 列表项的唯一标识值,可以是唯一的id,也可以是其他属性值
  */
-const scrollToItem = async (id: string) => {
+const scrollToItem = async (id: string | number) => {
   // 如果要滚动时，还未有数据，则等下下一帧，如果还没数据则取消滚动
   if (!props.data) {
     // 这个nextTick不能去掉
@@ -143,7 +143,9 @@ const scrollToItem = async (id: string) => {
   }
   // 找到要滚动的列表项的下标，然后给它前后2个元素都渲染出来，再滚动到它
   const scrollItemIndex = props.data.findIndex((item: any) => item[props.keyProp] === id);
-  if (scrollItemIndex === -1) return;
+  if (scrollItemIndex === -1) {
+    throw new Error(`列表中不存在唯一标识值为${id}的元素`);
+  };
 
   // 给它前后2个元素都渲染出来
   let beforeItem = props.data[scrollItemIndex - 1],
@@ -174,12 +176,19 @@ const resizeObserver = new ResizeObserver(() => {
   getToRenderItems();
 });
 
-
 onMounted(() => {
   //1. 监听容器变化
   resizeObserver.observe(containerInstall.value);
   // 2. 监听滚动事件
   useEventListener(containerInstall, 'scroll', getToRenderItems);
+});
+
+//3. 监听数据变化，数据变化时，重新获取需要渲染的列表项
+watch(() => props.data, () => {
+  nextTick(() => {
+    if(!containerInstall.value) return;
+    getToRenderItems();
+  });
 });
 
 onBeforeUnmount(() => {
@@ -203,11 +212,12 @@ defineExpose({
 .scroll-item {
   width: 100%;
   &.not-rendered {
-    min-height: 100px;
+    min-height: 214px;
   }
 }
 .no-more-data {
   margin-top: 30px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 14px;
   color: #667085;
