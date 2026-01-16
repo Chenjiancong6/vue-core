@@ -69,7 +69,7 @@ export const commonRouter = [
     path:'/data-container',
     component: () => import('@/views/comp/data-container/index.vue'),
     meta: {
-      name: '数据加载状态容器',
+      name: '数据/图片加载状态容器',
       headerMenu
     }
   },
