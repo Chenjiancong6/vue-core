@@ -15,8 +15,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 // import DataContainer from './src/index.vue';
+// import ImageSkeleton from '@/components/image-skeleton/index.vue';
 import DataContainer from '@cjc/vue3-data-container';
-import ImageSkeleton from '@/components/image-skeleton/index.vue';
+import ImageSkeleton from '@cjc/image-skeleton';
 
   // 加载中···
   let dataList = ref(null);

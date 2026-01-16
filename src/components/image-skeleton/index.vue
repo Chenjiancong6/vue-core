@@ -1,11 +1,10 @@
 // 图片加载骨架屏
 <template>
   <div class="image-skeleton__wrap">
-    <img src="./images//image-loading.svg" alt="" class="image-skeleton__img" />
+    <img src="./images/image-loading.svg" alt="" class="image-skeleton__img" />
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
 
 </script>
 <style lang="less" scoped>

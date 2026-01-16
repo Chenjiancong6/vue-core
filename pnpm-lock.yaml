@@ -17,6 +17,9 @@ importers:
       '@cjc/hooks':
         specifier: ^1.0.2
         version: 1.0.2(vue@3.5.25)
+      '@cjc/image-skeleton':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@cjc/scaleConfig':
         specifier: ^1.0.0
         version: 1.0.0
@@ -121,6 +124,9 @@ packages:
 
   '@cjc/hooks@1.0.2':
     resolution: {integrity: sha512-rdO87Cv290hxD4FTGov3sHr6yr6vp834eadzcmOu+yUTm5Dmt0mGLfK/noiFfBMgFVmCHxbJ3kWsXTCF/8TRvQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/hooks/-/@cjc/hooks-1.0.2.tgz}
+
+  '@cjc/image-skeleton@1.0.0':
+    resolution: {integrity: sha512-av9Gb2sHEkB37i6QY+dzyKcAgSOCA0KDf3Wexk3ZakfwpIv8KgWRABtgRK+MCV+R2LDAFb9sw5xbECpS/PpHug==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/image-skeleton/-/@cjc/image-skeleton-1.0.0.tgz}
 
   '@cjc/scaleConfig@1.0.0':
     resolution: {integrity: sha512-8bAYhQsY2oe0DS4LCp5sLP9PZ3H7deXII7mHF1w31ir3nO1vDzM+UZCV5pciY/xZCoyweQG1cDBtnIQEwCqRDQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/scaleConfig/-/@cjc/scaleConfig-1.0.0.tgz}
@@ -1705,6 +1711,8 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@cjc/image-skeleton@1.0.0': {}
 
   '@cjc/scaleConfig@1.0.0': {}
 
