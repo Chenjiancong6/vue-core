@@ -1,32 +1,56 @@
-
 <template>
- <div class="list-lazyLoading">
-  <div class="list-container">
-    <ListScrollLazyLoading
-      ref="listScrollLazyLoadingRef"
-      :data="listData"
-      :keyProp="'id'"
-    >
-      <template #default="{ row }">
-        <div class="scroll-item">
-          <img :src="setImgUrl(row.id)" alt="" @load="row.isLoaded = true" v-show="row.isLoaded" />
-          <ImageSkeleton v-if="!row.isLoaded" />
+  <div class="list-lazyLoading">
+    <div class="scroll-list">
+
+      <!-- 列表懒加载-计算元素高度的方式 -->
+      <div class="scroll-list-content">
+        <div class="title">列表懒加载-计算元素高度的方式</div>
+        <div class="scroll-list-com">
+          <ListScrollLazyLoading ref="listScrollLazyLoadingRef" :data="listData" :keyProp="'id'">
+            <template #default="{ row }">
+              <div class="scroll-item">
+                <img :src="setImgUrl(row.id)" alt="" @load="row.isLoaded = true" v-show="row.isLoaded" />
+                <ImageSkeleton v-if="!row.isLoaded" />
+              </div>
+            </template>
+          </ListScrollLazyLoading>
         </div>
-      </template>
-    </ListScrollLazyLoading>
-  </div>
-  <div class="btn-container">
-    <el-button @click="handleScrollToItem">滚动到指定项</el-button>
-    <el-button @click="handleScrollToTop">滚动到顶部</el-button>
-  </div>
+        <div class="btn-container">
+          <el-button @click="handleScrollToItem">滚动到指定项</el-button>
+          <el-button @click="handleScrollToTop">滚动到顶部</el-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 列表懒加载-使用intersectionObserver -->
+    <div class="scroll-list-content">
+      <div class="title">列表懒加载-使用intersectionObserver</div>
+      <div class="scroll-list-com">
+        <ListScrollIntersectionObserver :data="listData" :keyProp="'id'"
+          ref="listScrollLazyLoadingIntersectionObserverRef">
+          <template #default="{ row }">
+            <div class="scroll-item">
+              <img :src="setImgUrl(row.id)" alt="" @load="row.isLoaded = true" v-show="row.isLoaded" />
+              <ImageSkeleton v-if="!row.isLoaded" />
+            </div>
+          </template>
+        </ListScrollIntersectionObserver>
+      </div>
+      <div class="btn-container">
+        <el-button @click="handleScrollToItem_IntersectionObserver">滚动到指定项</el-button>
+        <el-button @click="handleScrollToTop_IntersectionObserver">滚动到顶部</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
 import ListScrollLazyLoading from '@/components/list-scroll-lazy-loading/index.vue';
 import ImageSkeleton from '@/components/image-skeleton/index.vue';
+import ListScrollIntersectionObserver from '@/components/list-scroll-intersectionObserver/index.vue';
 
 const listScrollLazyLoadingInstall = useTemplateRef('listScrollLazyLoadingRef');
+const listScrollLazyLoadingIntersectionObserverInstall = useTemplateRef('listScrollLazyLoadingIntersectionObserverRef');
 
 const setImgUrl = (id) => {
   return `https://images.unsplash.com/photo-${id}?w=560&auto=format&fit=crop&q=60&ixlib=rb-4.1.0`;
@@ -59,9 +83,20 @@ const handleScrollToTop = () => {
   listScrollLazyLoadingInstall.value?.scrollToTop();
 }
 
-
-
+/**
+ * 滚动到指定的列表项
+ */
+const handleScrollToItem_IntersectionObserver = () => {
+  listScrollLazyLoadingIntersectionObserverInstall.value?.scrollToItem('1768137533320-8ebcf67456cc');
+}
+/**
+ * 滚动到顶部
+ */
+const handleScrollToTop_IntersectionObserver = () => {
+  listScrollLazyLoadingIntersectionObserverInstall.value?.scrollToTop();
+};
 </script>
+
 <style lang="less" scoped>
 .list-lazyLoading {
   width: 100%;
@@ -70,12 +105,27 @@ const handleScrollToTop = () => {
   align-items: center;
   justify-content: center;
 }
-.list-container {
+
+.title {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.scroll-list {
+  display: flex;
+}
+
+.scroll-list-com {
   width: 400px;
   height: 700px;
   border: 1px solid #000;
   overflow-y: auto;
+  margin-right: 50px;
 }
+
 .scroll-item {
   width: 100%;
   height: 250px;
@@ -84,12 +134,17 @@ const handleScrollToTop = () => {
   justify-content: center;
   background: #e46d6d;
   margin-bottom: 10px;
+
   img {
     width: 100%;
     height: 100%;
   }
 }
+
 .btn-container {
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
 </style>
