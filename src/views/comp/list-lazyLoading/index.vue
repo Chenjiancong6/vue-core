@@ -45,8 +45,10 @@
 </template>
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
-import ListScrollLazyLoading from '@/components/list-scroll-lazy-loading/index.vue';
-import ImageSkeleton from '@/components/image-skeleton/index.vue';
+// import ListScrollLazyLoading from '@/components/list-scroll-lazy-loading/index.vue';
+// import ImageSkeleton from '@/components/image-skeleton/index.vue';
+import ImageSkeleton from '@cjc/image-skeleton';
+import ListScrollLazyLoading from '@cjc/list-scroll-lazy-loading';
 import ListScrollIntersectionObserver from '@/components/list-scroll-intersectionObserver/index.vue';
 
 const listScrollLazyLoadingInstall = useTemplateRef('listScrollLazyLoadingRef');

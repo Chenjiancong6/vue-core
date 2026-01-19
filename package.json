@@ -13,6 +13,7 @@
     "@cjc/gaode-map": "^1.0.0",
     "@cjc/hooks": "^1.0.2",
     "@cjc/image-skeleton": "^1.0.0",
+    "@cjc/list-scroll-lazy-loading": "^1.0.0",
     "@cjc/scaleConfig": "^1.0.0",
     "@cjc/vite-plugin-console": "^1.0.5",
     "@cjc/vue3-data-container": "^1.0.1",
