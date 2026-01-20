@@ -1,6 +1,6 @@
 <template>
   <div class="gaode-map-wrap">
-    <GaodeMap ref="amapRef" mapKey="d04f0992d1bd2b8ac57afccb677eda5e" encrypt="9836f587b94d62c3a0310b1ced86da51"
+    <GaodeMap ref="amapRef" mapKey="0ed446c7b6aa2d2ae89d24022fcbf581" encrypt="cafddb0ed09139d23e2ea144feaf72f0"
       :option="mapOption" @map-ready="handleMapReady">
     </GaodeMap>
     <div class="slot-map" v-if="mapObj.map">
