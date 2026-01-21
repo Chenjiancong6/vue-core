@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cjc/dom-resize-observer": "^1.0.1",
     "@cjc/ellipsis-text": "^1.0.1",
     "@cjc/gaode-map": "^1.0.0",
     "@cjc/hooks": "^1.0.2",
@@ -17,6 +18,7 @@
     "@cjc/scaleConfig": "^1.0.0",
     "@cjc/scroll-table": "^1.0.0",
     "@cjc/vite-plugin-console": "^1.0.5",
+    "@cjc/vite-plugin-lib-static-import": "^1.0.0",
     "@cjc/vue3-data-container": "^1.0.1",
     "@cjc/vue3-echarts": "^1.0.1",
     "@cjc/zebra": "^1.0.1",

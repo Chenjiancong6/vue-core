@@ -8,6 +8,13 @@ export const mapRouter = [{
     name:'高德地图',
     headerMenu
   }
+},{
+  path:'/mapboxglMap',
+  component: () => import('@/views/map/mapboxgl-map/index.vue'),
+  meta:{
+    name:'mapboxgl地图',
+    headerMenu
+  }
 }];
 
 // 默认的打开的第一个菜单

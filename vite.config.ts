@@ -4,7 +4,8 @@ import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import type { UserConfig, ConfigEnv } from 'vite';
 // import ViteConsole from './plugin/vite-console/console.js';
-import ViteConsole from "@cjc/vite-plugin-console"
+import ViteConsole from "@cjc/vite-plugin-console";
+import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
 const root = process.cwd();
 const pathResolve = (dir: string) => resolve(root, '.', dir);
 // https://vite.dev/config/
@@ -19,7 +20,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     envDir: pathResolve('config'),
     base: env.VITE_BASE_PATH,
     plugins: [
-      vue(), 
+      vue(),
+      ViteLibStaticImport(),
       svgLoader(), // 动态加载 SVG 文件
       ViteConsole(),
     ],
