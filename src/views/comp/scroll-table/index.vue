@@ -13,7 +13,7 @@
     <div class="item">
       <div class="title">自动滚动(传入interval 设置滚动间隔)</div>
       <ScrollTable :autoScroll="true" v-model="currentIndex1" :interval="1000" :data="gridInfo.data1"
-        @current-change="currentChange" ref="scrollTableRef">
+        @current-change="currentChange" ref="scrollTableRef" style="height: 200px;">
         <el-table-column v-for="(item, index) in gridInfo.columnKeyList" :key="index" :prop="item.prop" align="center"
           :label="item.label">
         </el-table-column>
@@ -156,8 +156,6 @@ const tableData: User[] = [
   margin-right: 10px;
 
   .title {
-    // display: flex;
-    // justify-content: center;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
