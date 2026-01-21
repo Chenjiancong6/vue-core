@@ -55,7 +55,9 @@
 
 <script lang="ts" setup>
 import { reactive, ref, computed } from 'vue';
-import ScrollTable from './components/scroll-table.vue';
+// import ScrollTable from './components/scroll-table.vue';
+import ScrollTable from '@cjc/scroll-table';
+
 
 let currentIndex = ref(0);
 let currentIndex1 = ref(0);

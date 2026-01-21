@@ -26,6 +26,9 @@ importers:
       '@cjc/scaleConfig':
         specifier: ^1.0.0
         version: 1.0.0
+      '@cjc/scroll-table':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@cjc/vite-plugin-console':
         specifier: ^1.0.5
         version: 1.0.5
@@ -136,6 +139,9 @@ packages:
 
   '@cjc/scaleConfig@1.0.0':
     resolution: {integrity: sha512-8bAYhQsY2oe0DS4LCp5sLP9PZ3H7deXII7mHF1w31ir3nO1vDzM+UZCV5pciY/xZCoyweQG1cDBtnIQEwCqRDQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/scaleConfig/-/@cjc/scaleConfig-1.0.0.tgz}
+
+  '@cjc/scroll-table@1.0.0':
+    resolution: {integrity: sha512-IrsyiN38IQej2afqIf10F/7Xrm2QcfUX2fjvg3It6wGR99kkkSUFUr756ZUP7HAYJ+PF3mPnpnAgwoj63ZfAug==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/scroll-table/-/@cjc/scroll-table-1.0.0.tgz}
 
   '@cjc/vite-plugin-console@1.0.5':
     resolution: {integrity: sha512-rgZfOQXCTNNUogwr/9bbiC9OhYPa5D4zRlMmzBF/MkA3YUIgQXRtIfo2JxHvQsKbveSUpAdn6mPGZHGcLjdv6g==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-console/-/@cjc/vite-plugin-console-1.0.5.tgz}
@@ -1729,6 +1735,8 @@ snapshots:
       - vue
 
   '@cjc/scaleConfig@1.0.0': {}
+
+  '@cjc/scroll-table@1.0.0': {}
 
   '@cjc/vite-plugin-console@1.0.5': {}
 

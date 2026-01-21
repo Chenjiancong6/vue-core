@@ -15,6 +15,7 @@
     "@cjc/image-skeleton": "^1.0.0",
     "@cjc/list-scroll-lazy-loading": "^1.0.0",
     "@cjc/scaleConfig": "^1.0.0",
+    "@cjc/scroll-table": "^1.0.0",
     "@cjc/vite-plugin-console": "^1.0.5",
     "@cjc/vue3-data-container": "^1.0.1",
     "@cjc/vue3-echarts": "^1.0.1",
