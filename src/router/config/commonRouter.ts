@@ -89,6 +89,23 @@ export const commonRouter = [
       headerMenu
     }
   },
+  {
+    path:'/table',
+    meta: {
+      name: '表格',
+      headerMenu
+    },
+    children: [
+      {
+        path:'scroll-table',
+        component: () => import('@/views/comp/scroll-table/index.vue'),
+        meta: {
+          name: 'el-table 滚动表格',
+          headerMenu
+        }
+      }
+    ]
+  }
 ]
 
 // 默认的打开的第一个菜单
