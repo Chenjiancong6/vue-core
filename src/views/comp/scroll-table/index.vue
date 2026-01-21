@@ -12,7 +12,7 @@
     <!--  -->
     <div class="item">
       <div class="title">自动滚动(传入interval 设置滚动间隔)</div>
-      <ScrollTable :autoScroll="true" v-model="currentIndex1" :interval="1000" :data="gridInfo.data"
+      <ScrollTable :autoScroll="true" v-model="currentIndex1" :interval="1000" :data="gridInfo.data1"
         @current-change="currentChange" ref="scrollTableRef">
         <el-table-column v-for="(item, index) in gridInfo.columnKeyList" :key="index" :prop="item.prop" align="center"
           :label="item.label">
@@ -61,15 +61,7 @@ let currentIndex = ref(0);
 let currentIndex1 = ref(0);
 let currentIndex2 = ref(0);
 
-
-
-let gridInfo = reactive({
-  columnKeyList: [
-    { prop: 'pro', label: '编号', width: '' },
-    { prop: 'pro1', label: '发生时间', width: '' },
-    { prop: 'pro2', label: '影响情况', width: '' },
-  ],
-  data: [
+let tableDatas = [
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '11111' },
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '22222' },
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '33333' },
@@ -79,8 +71,21 @@ let gridInfo = reactive({
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '77777' },
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '88888' },
     { pro: 'SG20220430', pro1: '2022年4月30日', pro2: '999999' },
-  ]
+  ];
+
+let gridInfo = reactive({
+  columnKeyList: [
+    { prop: 'pro', label: '编号', width: '' },
+    { prop: 'pro1', label: '发生时间', width: '' },
+    { prop: 'pro2', label: '影响情况', width: '' },
+  ],
+  data: tableDatas,
+  data1: [],
 })
+
+setTimeout(() => {
+  gridInfo.data1 = tableDatas;
+}, 5000);
 
 let currentChange = (row) => {
   // 当前选中的行数据

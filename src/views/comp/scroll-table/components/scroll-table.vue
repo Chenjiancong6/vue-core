@@ -119,7 +119,10 @@ watch(() => currentIndex.value, (newVal, oldVal) => {
   setCurrentRow(newVal);
 });
 
-watch(() => props.data, () => {
+watch(() => props.data, (newVal, oldVal) => {
+  if(newVal?.length > 0 && oldVal?.length === 0) {
+    setCurrentRow(0);
+  };
   autoScroll();
 },{
   immediate: true
