@@ -4,6 +4,7 @@ import { commonRouter } from '@/router/config/commonRouter';
 import { echartsRouter } from '@/router/config/echartsRouter';
 import { mapRouter } from '@/router/config/mapRouter';
 import { AIRouter } from '@/router/config/AIRouter';
+import { PluginRouter } from '@/router/config/plugin.ts';
 
 const { redirectRouter } = useMenu();
 
@@ -17,6 +18,7 @@ export const routeConfig = [
       ...echartsRouter,
       ...mapRouter,
       ...AIRouter,
+      ...PluginRouter,
       // 路由顺序：确保 404 路由规则放在路由列表的最后，否则它可能会覆盖其他路由
       {
         path: '/:pathMatch(.*)*',

@@ -2,6 +2,7 @@ import { commonRouter, defaultRedirectCommonRouter } from '@/router/config/commo
 import { echartsRouter, defaultRedirectEchartsRouterr } from '@/router/config/echartsRouter';
 import { mapRouter, defaultRedirectMapRouterr } from '@/router/config/mapRouter';
 import { AIRouter, defaultRedirectAIRouter } from '@/router/config/AIRouter';
+import { PluginRouter, defaultRedirectPluginRouter } from '@/router/config/plugin.ts';
 import { routeConfig } from '@/router/index';
 
 import { ref, computed } from 'vue';
@@ -10,14 +11,16 @@ const headerMenuMap = {
   '组件': commonRouter,
   '图表': echartsRouter,
   '地图': mapRouter,
-  'AI': AIRouter
+  'AI': AIRouter,
+  '插件': PluginRouter
 };
 
 const defaultRedirectRouter = {
   '组件': defaultRedirectCommonRouter,
   '图表': defaultRedirectEchartsRouterr,
   '地图': defaultRedirectMapRouterr,
-  'AI': defaultRedirectAIRouter
+  'AI': defaultRedirectAIRouter,
+  '插件': defaultRedirectPluginRouter
 };
 // 路由菜单
 const routerMap = [
@@ -25,6 +28,7 @@ const routerMap = [
   ...echartsRouter,
   ...mapRouter,
   ...AIRouter,
+  ...PluginRouter,
 ];
 
 /**
