@@ -18,7 +18,9 @@ import "v3-drag-zoom/dist/style.css";
 
 import Vue3DraggableResizable from '@v3e/vue3-draggable-resizable'
 //需引入默认样式
-import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css'
+import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
+// 在入口文件注册vite-plugin-svg-icons插件虚拟模块，用于引入svg图标
+import 'virtual:svg-icons-register'; 
 
 
 dayjs.locale(zhcn);

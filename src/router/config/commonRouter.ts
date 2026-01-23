@@ -105,6 +105,23 @@ export const commonRouter = [
         }
       }
     ]
+  },
+    {
+    path:'/icon',
+    meta: {
+      name: 'svg图标',
+      headerMenu
+    },
+    children: [
+      {
+        path:'iconify-icon',
+        component: () => import('@/views/comp/iconify-icon/index.vue'),
+        meta: {
+          name: '本地/在线 svg图标',
+          headerMenu
+        }
+      }
+    ]
   }
 ]
 

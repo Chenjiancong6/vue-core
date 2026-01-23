@@ -58,7 +58,7 @@ const getHeaderMenuName = (routeConfigArr) => {
 };
 
 // const activeMenu = ref(Object.keys(headerMenuMap)[0]);
-const activeMenu = ref(getHeaderMenuName(routerMap));
+const activeMenu = ref(getHeaderMenuName(routerMap) || Object.keys(headerMenuMap)[0]);
 
 export const useMenu = () => {
 
