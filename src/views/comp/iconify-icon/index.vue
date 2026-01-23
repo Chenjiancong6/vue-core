@@ -5,6 +5,7 @@
   <Icon icon="svg-icon:ai-text"  />
   <Icon icon="svg-icon:fire" :color="'rgba(29, 107, 255, 1)'"/>
   <Icon icon="ic:baseline-10k" />
+  <Icon icon="ic:baseline-3p" />
  </div>
 </template>
 <script setup lang="ts">
