@@ -1,7 +1,8 @@
 <template>
  <div class="setting-wrap">
   <div class="setting-tool" @click="handleSwitchClick">
-    <img src="./svgs/setting.svg" alt="设置" />
+    <!-- <img src="./svgs/setting.svg" alt="设置" /> -->
+    <Icon icon="svg-icon:setting" size="20" />
   </div>
   <el-drawer
     v-model="drawer"
@@ -20,6 +21,7 @@
 import { ref } from 'vue';
 import Theme from './components/theme.vue';
 import { useSetting } from './useSetting';
+import Icon from "@cjc/vue3-svg-icon";
 
 const { drawer } = useSetting();
 

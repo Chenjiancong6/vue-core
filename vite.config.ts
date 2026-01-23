@@ -70,7 +70,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     plugins: [
       vue(),
       ViteLibStaticImport(),
-      // svgLoader(), // 动态加载 SVG 文件
+      svgLoader(), // 动态加载 SVG 文件
       ViteConsole(),
       //工作原理: 在构建时，扫描你的源码，找到所有 svg-icons组件使用的在线图标，然后从 Iconify 的库中只提取这些图标的代码，生成一个极小的图标包
       vitePluginPurgeIcons(),
