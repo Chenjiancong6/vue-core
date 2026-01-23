@@ -21,6 +21,7 @@
     "@cjc/vite-plugin-lib-static-import": "^1.0.0",
     "@cjc/vue3-data-container": "^1.0.1",
     "@cjc/vue3-echarts": "^1.0.1",
+    "@cjc/vue3-svg-icon": "^1.0.0",
     "@cjc/zebra": "^1.0.1",
     "@iconify/vue": "^5.0.0",
     "@v3e/vue3-draggable-resizable": "^1.0.0",
