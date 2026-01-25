@@ -23,6 +23,8 @@ import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
 import 'virtual:svg-icons-register'; 
 // 引入图片预加载函数
 import { preloadImages } from '@/hooks/preloadImages';
+// 引入列表滑动上升动画指令
+import vSlideIn from '../directives/vSlideIn';
 // 预加载3张图片
 preloadImages(3);
 
@@ -41,6 +43,8 @@ const createRootApp = () => {
   });
   app.use(Vue3DraggableResizable);
   app.use(V3DragZoom);
+  // 注册列表滑动上升动画指令
+  app.directive('slide-in', vSlideIn);
   app.mount('#app');
   return app;
 }
