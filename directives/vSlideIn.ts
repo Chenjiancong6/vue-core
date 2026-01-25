@@ -37,7 +37,7 @@ function isBelowViewport(el: HTMLElement) {
 
 export default {
   mounted(el: HTMLElement, binding) {
-  // 初始化时，元素只有在视口一下🌽触发动画
+  // 初始化时，元素只有在视口以下才触发动画
   if(!isBelowViewport(el)) return;
 
     /**
