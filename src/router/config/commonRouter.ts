@@ -122,6 +122,20 @@ export const commonRouter = [
         }
       }
     ]
+  },{
+    path:'/preload-images',
+    component: () => import('@/views/preload-images/index.vue'),
+    meta: {
+      name: '图片预加载',
+      headerMenu
+    }
+  },{
+    path:'/preload-images-about',
+    component: () => import('@/views/preload-images-about/index.vue'),
+    meta: {
+      name: '图片预加载说明',
+      headerMenu
+    }
   }
 ]
 

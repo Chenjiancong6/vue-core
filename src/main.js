@@ -21,6 +21,10 @@ import Vue3DraggableResizable from '@v3e/vue3-draggable-resizable'
 import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
 // 在入口文件注册vite-plugin-svg-icons插件虚拟模块，用于引入svg图标
 import 'virtual:svg-icons-register'; 
+// 引入图片预加载函数
+import { preloadImages } from '@/hooks/preloadImages';
+// 预加载3张图片
+preloadImages(3);
 
 
 dayjs.locale(zhcn);
