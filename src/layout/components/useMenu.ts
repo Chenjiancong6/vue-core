@@ -12,7 +12,7 @@ const headerMenuMap = {
   '图表': echartsRouter,
   '地图': mapRouter,
   'AI': AIRouter,
-  '插件': PluginRouter
+  'vite插件': PluginRouter
 };
 
 const defaultRedirectRouter = {
@@ -20,7 +20,7 @@ const defaultRedirectRouter = {
   '图表': defaultRedirectEchartsRouterr,
   '地图': defaultRedirectMapRouterr,
   'AI': defaultRedirectAIRouter,
-  '插件': defaultRedirectPluginRouter
+  'vite插件': defaultRedirectPluginRouter
 };
 // 路由菜单
 const routerMap = [
@@ -58,7 +58,7 @@ const getHeaderMenuName = (routeConfigArr) => {
 };
 
 // const activeMenu = ref(Object.keys(headerMenuMap)[0]);
-const activeMenu = ref(getHeaderMenuName(routerMap) || Object.keys(headerMenuMap)[0]);
+const activeMenu = ref(getHeaderMenuName(routerMap));
 
 export const useMenu = () => {
 

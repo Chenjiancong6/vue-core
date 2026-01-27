@@ -4,7 +4,7 @@
     <el-menu
       ellipsis
       router
-      :default-active="redirectRouter['redirect']"
+      :default-active="defaultActive"
       :default-openeds="redirectRouter['path']"
       :text-color="'#fff'"
     >
@@ -27,11 +27,21 @@
  </div>
 </template>
 <script setup lang="ts">
-import { watch, onMounted } from 'vue';
+import { watch, onMounted , ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useMenu } from '@/layout/components/useMenu.ts';
 
 const { redirectRouter } = useMenu();
+
+const defaultActive = ref();
+
+/**
+ * 获取url链接的最后一个/后面的内容
+ */
+const getUrlLastPath = (url: string) => {
+  const urlArr = url.split('/');
+  return urlArr[urlArr.length - 1];
+}
 
 interface MenuItem {
   meta: {
@@ -56,14 +66,11 @@ function getFullRoutePath(item: MenuItem): string {
   return item.path; // 没有父路径时直接返回当前路径
 };
 
-
-// watch(()=> props.menuList, () => {
-//   // 初始化时跳转到默认路由页面
-//   router.push(redirectRouter.value['redirect']);
-// }, {
-//   deep: true,
-//   immediate: true
-// })
+onMounted(() => {
+  // 拿到url最后一个/后面的内容
+  const lastPath = "/" + getUrlLastPath(window.location.href);
+  defaultActive.value = lastPath;
+});
 
 </script>
 <style lang="less" scoped>
