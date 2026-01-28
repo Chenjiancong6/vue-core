@@ -1,4 +1,4 @@
-const headerMenu = 'vite 插件';
+const headerMenu = 'vite插件';
 export const PluginRouter =[
   {
     path:'/icon-park',
@@ -6,6 +6,14 @@ export const PluginRouter =[
     children: [],
     meta:{
       name:'自引入icon park图标',
+      headerMenu
+    }
+  },{
+    path:'/vant-auto-import',
+    component:()=>import('@/views/plugin/vant-auto-import/index.vue'),
+    children: [],
+    meta:{
+      name:'按需自动引入vant组件样式',
       headerMenu
     }
   }

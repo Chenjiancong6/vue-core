@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import type { UserConfig, ConfigEnv } from 'vite';
 // import ViteConsole from './plugin/vite-console/console.js';
+import VitePluginChenVantAutoImport from './plugin/vant-auto-import/auto-import.cjs';
 import ViteConsole from "@cjc/vite-plugin-console";
 import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -69,6 +70,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     base: env.VITE_BASE_PATH,
     plugins: [
       vue(),
+      VitePluginChenVantAutoImport(),
       ViteLibStaticImport(),
       svgLoader(), // 动态加载 SVG 文件
       ViteConsole(),
@@ -82,7 +84,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
       })
     ],
     resolve: {
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css', 'vue'],
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css', 'vue', '.cjs'],
       alias: [
         {
           find: /\@\//,
@@ -90,5 +92,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
         }
       ]
     },
+    build: {
+      sourcemap: false
+    }
   }
 }
