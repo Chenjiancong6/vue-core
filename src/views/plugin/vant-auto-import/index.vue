@@ -30,8 +30,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { showDialog } from 'vant';
-import { showImagePreview } from 'vant';
 import { showNotify } from 'vant';
+import { handleClickImagePreview } from './index.js';
 
 const date = ref('');
 const show = ref(false);
@@ -63,13 +63,7 @@ const add = () => {
 const handleClick = () => {
   showDialog({ message: '提示' });
   showNotify({ message: '消息通知' });
-  showImagePreview({
-  images: [
-    'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-    'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-  ],
-  closeable: true,
-});
+  handleClickImagePreview();
 }
 
 </script>
