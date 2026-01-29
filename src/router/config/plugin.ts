@@ -16,6 +16,14 @@ export const PluginRouter =[
       name:'按需自动引入vant组件样式',
       headerMenu
     }
+  },{
+    path:'/project-console',
+    component:()=>import('@/views/plugin/project-console/index.vue'),
+    children: [],
+    meta:{
+      name:'项目信息控制台打印',
+      headerMenu
+    }
   }
 ];
 
