@@ -22,15 +22,16 @@
     <van-barrage v-model="list" :auto-play="true">
       <div class="video" style="width: 100%; height: 150px"></div>
     </van-barrage>
-    <van-space style="margin-top: 10px">
+    <van-space style="margin-bottom: 20px;">
       <van-button @click="add" type="primary" size="small"> 弹幕 </van-button>
     </van-space>
+    <Com />
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
 import { showDialog } from 'vant';
-import { showNotify } from 'vant';
+import Com from './com.vue';
 import { handleClickImagePreview } from './index.js';
 
 const date = ref('');
@@ -62,7 +63,6 @@ const add = () => {
 
 const handleClick = () => {
   showDialog({ message: '提示' });
-  showNotify({ message: '消息通知' });
   handleClickImagePreview();
 }
 
