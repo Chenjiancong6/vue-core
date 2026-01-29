@@ -41,7 +41,7 @@ module.exports = async function (options) {
     // 使用Vue编译器解析Vue单文件组件
     let res = parse(code);
     // 检查Vue组件是否有模板部分
-    if(res.descriptor.template.content){
+    if(res.descriptor.template){
       // 编译模板，获取AST（抽象语法树）
       let templateRes = compileTemplate({
         source: res.descriptor.template.content,
@@ -76,6 +76,16 @@ module.exports = async function (options) {
       return '\n' + importJsStr + '\n' + importCssStr;
     }).join("\n");
 
+    // 特殊的vant组件，全局导入css 样式； 比如 import { showDialog } from 'vant';
+    const specialVantCssMap = [
+      "import 'vant/es/dialog/style';",
+      "import 'vant/es/notify/style';",
+      "import 'vant/es/image-preview/style';"
+    ];
+    for(let item of specialVantCssMap){
+      vantImportCssJsStr += '\n' + item;
+    };
+
     // 获取script setup部分的原始内容
   let setupOriginContent = res.descriptor.scriptSetup?.content;
    // 如果文件中没有写<script setup lang="ts"> 语法，则需要加上
@@ -83,7 +93,7 @@ module.exports = async function (options) {
     // 如果不存在script setup，创建一个新的script setup标签并插入导入语句(script 标签加到头部)
     transformCodeStr = `<script setup lang="ts">${vantImportCssJsStr}</script>` + transformCodeStr;
    }else {
-     // 如果存在script setup，将导入语句t替换插入到script setup标签中
+    // 如果存在script setup，将导入语句t替换插入到script setup标签中
      transformCodeStr = transformCodeStr.replace(setupOriginContent, `${vantImportCssJsStr}\n${setupOriginContent}`);
    }  
     return transformCodeStr;
