@@ -32,6 +32,9 @@ importers:
       '@cjc/scroll-table':
         specifier: ^1.0.0
         version: 1.0.0
+      '@cjc/vite-plugin-chen-clear-console-alert-debug':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.25)
       '@cjc/vite-plugin-console':
         specifier: ^1.0.5
         version: 1.0.5
@@ -169,6 +172,11 @@ packages:
 
   '@cjc/scroll-table@1.0.0':
     resolution: {integrity: sha512-IrsyiN38IQej2afqIf10F/7Xrm2QcfUX2fjvg3It6wGR99kkkSUFUr756ZUP7HAYJ+PF3mPnpnAgwoj63ZfAug==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/scroll-table/-/@cjc/scroll-table-1.0.0.tgz}
+
+  '@cjc/vite-plugin-chen-clear-console-alert-debug@1.0.0':
+    resolution: {integrity: sha512-+9l+C5qbc5ocqg5sueaM2nmwmy8qOX+emZIWHJbc5eayeQ34wlAATQ4RidX1Ru/SHQcki6/dAtKlPbdtU7I6qQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-chen-clear-console-alert-debug/-/@cjc/vite-plugin-chen-clear-console-alert-debug-1.0.0.tgz}
+    peerDependencies:
+      vue: ^3.x
 
   '@cjc/vite-plugin-chen-vant-auto-import@1.1.0':
     resolution: {integrity: sha512-6eCuwJOY8wkrm/LXYazFgVrlgm9YuEJb/CFRGn+sovxHyVl7igzyrjAb563cfuCXFFE7dDOKqlv0f7zFa4Q8VQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-chen-vant-auto-import/-/@cjc/vite-plugin-chen-vant-auto-import-1.1.0.tgz}
@@ -2755,6 +2763,10 @@ snapshots:
   '@cjc/scaleConfig@1.0.0': {}
 
   '@cjc/scroll-table@1.0.0': {}
+
+  '@cjc/vite-plugin-chen-clear-console-alert-debug@1.0.0(vue@3.5.25)':
+    dependencies:
+      vue: 3.5.25
 
   '@cjc/vite-plugin-chen-vant-auto-import@1.1.0(vue@3.5.25)':
     dependencies:

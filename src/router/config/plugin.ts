@@ -24,6 +24,14 @@ export const PluginRouter =[
       name:'项目信息控制台打印',
       headerMenu
     }
+  },{
+    path:'/clear-console',
+    component:()=>import('@/views/plugin/clear-console/index.vue'),
+    children: [],
+    meta:{
+      name:'清除浏览器控制台打印',
+      headerMenu
+    }
   }
 ];
 

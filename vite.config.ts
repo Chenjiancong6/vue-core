@@ -8,6 +8,8 @@ import type { UserConfig, ConfigEnv } from 'vite';
 // import ViteConsole from './plugin/vite-console/console.js';
 // import VitePluginLog from './plugin/vite-plugin-log/index.cjs';
 // import VitePluginChenVantAutoImport from './plugin/vant-auto-import/auto-import.cjs';
+// import ViteClearConsole from './plugin/vite-clear-console/clear-console.cts';
+import ViteClearConsoleAlertDebug from '@cjc/vite-plugin-chen-clear-console-alert-debug';
 import VitePluginChenVantAutoImport from '@cjc/vite-plugin-chen-vant-auto-import';
 import ViteConsole from "@cjc/vite-plugin-console";
 import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
@@ -72,6 +74,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     base: env.VITE_BASE_PATH,
     plugins: [
       vue(),
+      ViteClearConsoleAlertDebug(['alert', 'debugger', 'console']),
       VitePluginChenVantAutoImport(),
       ViteLibStaticImport(),
       svgLoader(), // 动态加载 SVG 文件
@@ -96,6 +99,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     },
     build: {
       sourcemap: false
-    }
+    },
+    //  esbuild:{
+    //   pure: ['console.log'], // 删除 console.log
+    //   drop: ['debugger'], // 删除 debugger
+    // }
   }
 }
