@@ -88,6 +88,7 @@ onMounted(() => {
   :deep(.el-menu-item:hover),
   :deep(.el-sub-menu__title:hover) {
     background-color: #00B0FF !important;
+    color: #fff !important;
   }
 }
 </style>
