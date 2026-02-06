@@ -2,12 +2,20 @@
 const headerMenu = '图表';
 export const echartsRouter = [{
   path:'/ec',
-  component: () => import('@/views/ec/index.vue'),
+  component: () => import('@/views/ec/pc-echarts/index.vue'),
   meta:{
-    name:'图表',
+    name:'PC端图表',
     headerMenu
   }
-}];
+},{
+  path:'/mobileEc',
+  component: () => import('@/views/ec/mobile-echarts/index.vue'),
+  meta:{
+    name:'移动端图表（按需引入）',
+    headerMenu
+  }
+}
+];
 
 // 默认的打开的第一个菜单
 // path: 菜单路由的父路径

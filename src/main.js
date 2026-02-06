@@ -15,6 +15,8 @@ import zhcn from 'dayjs/locale/zh-cn';
 import V3DragZoom from "v3-drag-zoom";
 // v3-drag-zoom 全局样式（必须导入，否则无法正常使用）
 import "v3-drag-zoom/dist/style.css";
+// 按需引入移动端的echarts
+import '@/global/js/echarts';
 
 import Vue3DraggableResizable from '@v3e/vue3-draggable-resizable'
 //需引入默认样式
