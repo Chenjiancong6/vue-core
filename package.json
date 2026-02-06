@@ -22,6 +22,7 @@
     "@cjc/vite-plugin-lib-static-import": "^1.0.0",
     "@cjc/vue3-data-container": "^1.0.1",
     "@cjc/vue3-echarts": "^1.0.1",
+    "@cjc/vue3-echarts-mobile": "^1.0.1",
     "@cjc/vue3-svg-icon": "^1.0.0",
     "@cjc/zebra": "^1.0.1",
     "@iconify/vue": "^5.0.0",
@@ -49,7 +50,9 @@
   "devDependencies": {
     "@cjc/vite-plugin-chen-vant-auto-import": "^1.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vueuse/motion": "^3.0.3",
     "resize-observer-polyfill": "^1.5.1",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "vite-plugin-md": "^0.21.5"
   }
 }

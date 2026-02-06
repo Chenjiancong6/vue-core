@@ -7,10 +7,14 @@
       <Vue3EchartsMobile :option="ecbarOption"></Vue3EchartsMobile>
     </div>
   </div>
+  <MyMarkdown></MyMarkdown>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import Vue3EchartsMobile from '@/components/vue3-echarts-mobile/index.vue';
+// import Vue3EchartsMobile from '@/components/vue3-echarts-mobile/index.vue';
+import Vue3EchartsMobile from '@cjc/vue3-echarts-mobile';
+// 直接导入 .md 文件作为 Vue 组件
+import MyMarkdown from './README.md';
 
 const ecOption = computed(() => {
   return {

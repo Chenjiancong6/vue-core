@@ -15,6 +15,8 @@ import ViteConsole from "@cjc/vite-plugin-console";
 import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vitePluginPurgeIcons from 'vite-plugin-purge-icons';
+import Markdown from 'vite-plugin-md';
+
 const root = process.cwd();
 const pathResolve = (dir: string) => resolve(root, '.', dir);
 // https://vite.dev/config/
@@ -73,7 +75,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     envDir: pathResolve('config'),
     base: env.VITE_BASE_PATH,
     plugins: [
-      vue(),
+      vue({
+        include: [/\.vue$/, /\.md$/], // <-- 让 Vue 也处理 md 文件
+      }),
+      Markdown(),
       ViteClearConsoleAlertDebug(['alert', 'debugger']),
       VitePluginChenVantAutoImport(),
       // ViteLibStaticImport(),
