@@ -5,7 +5,7 @@ import fs from 'fs';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import type { UserConfig, ConfigEnv } from 'vite';
-import VitePluginChenIconPark from './plugin/vite-plugin-icon-park/index.cjs';
+// import VitePluginChenIconPark from './plugin/vite-plugin-icon-park/index.cjs';
 // import ViteConsole from './plugin/vite-console/console.js';
 // import VitePluginLog from './plugin/vite-plugin-log/index.cjs';
 // import VitePluginChenVantAutoImport from './plugin/vant-auto-import/auto-import.cjs';
@@ -13,6 +13,7 @@ import VitePluginChenIconPark from './plugin/vite-plugin-icon-park/index.cjs';
 import ViteClearConsoleAlertDebug from '@cjc/vite-plugin-chen-clear-console-alert-debug';
 import VitePluginChenVantAutoImport from '@cjc/vite-plugin-chen-vant-auto-import';
 import ViteConsole from "@cjc/vite-plugin-console";
+import VitePluginChenIconParkAutoImport from '@cjc/vite-plugin-chen-icon-park-auto-import';
 import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vitePluginPurgeIcons from 'vite-plugin-purge-icons';
@@ -82,6 +83,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
       Markdown(),
       ViteClearConsoleAlertDebug(['alert', 'debugger']),
       VitePluginChenVantAutoImport(),
+      VitePluginChenIconParkAutoImport(),
       // ViteLibStaticImport(),
       svgLoader(), // 动态加载 SVG 文件
       ViteConsole(),
@@ -93,7 +95,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
         symbolId: 'icon-[name]', // 指定symbolId格式
         // inject: "body-last",
       }),
-      VitePluginChenIconPark()
     ],
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css', 'vue', '.cjs'],
