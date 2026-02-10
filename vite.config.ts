@@ -5,6 +5,7 @@ import fs from 'fs';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import type { UserConfig, ConfigEnv } from 'vite';
+import VitePluginChenIconPark from './plugin/vite-plugin-icon-park/index.cjs';
 // import ViteConsole from './plugin/vite-console/console.js';
 // import VitePluginLog from './plugin/vite-plugin-log/index.cjs';
 // import VitePluginChenVantAutoImport from './plugin/vant-auto-import/auto-import.cjs';
@@ -91,7 +92,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
         iconDirs: findAllSvgsDirectoriesWithFilter(root),
         symbolId: 'icon-[name]', // 指定symbolId格式
         // inject: "body-last",
-      })
+      }),
+      VitePluginChenIconPark()
     ],
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css', 'vue', '.cjs'],

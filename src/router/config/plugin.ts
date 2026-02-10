@@ -5,7 +5,7 @@ export const PluginRouter =[
     component:()=>import('@/views/plugin/icon-park/index.vue'),
     children: [],
     meta:{
-      name:'自引入icon park图标',
+      name:'按需引入icon-park图标',
       headerMenu
     }
   },{
