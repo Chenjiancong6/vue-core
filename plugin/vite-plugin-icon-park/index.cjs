@@ -15,7 +15,13 @@ module.exports = async function (options) {
     // 检查是否存在script标签
     if (!/<script\b/i.test(vueSfcString)) {
       return vueSfcString;
-    }
+    };
+    // 解析Vue单文件组件字符串
+    let res = parse(vueSfcString);
+    // 如果script标签上存在 nosetup 属性，直接返回
+    if (res.descriptor?.script?.attrs?.nosetup) {
+      return vueSfcString;
+    };
 
     // 使用正则表达式匹配第一个script标签
     return vueSfcString.replace(
@@ -110,6 +116,14 @@ module.exports = async function (options) {
     },
     // 转换钩子函数，在每个传入模块请求时被调用, 处理Vue文件
     transform(code, id) {
+      // 不处理node_modules目录下的文件
+      if(id.includes('node_modules')) {
+        return {
+          code,
+          map: null,
+        };
+      };
+      
       // 只处理vue文件,其他文件不处理
       if (!filterReg.test(id)) {
         return {
@@ -118,18 +132,18 @@ module.exports = async function (options) {
         };
       };
 
-      let newCode = autoImportIconParkComponents(code);
-      let resultCode = {
-        code: newCode,
-        map: null,
-      };
-
-      // 如果启用了source map，生成source map
-      if (configServer.build.sourcemap) {
-        let ms = new MagicString(newCode);
-        resultCode.map = ms.generateMap({ hires: true })
-      };
-      return resultCode;
+        let newCode = autoImportIconParkComponents(code);
+        let resultCode = {
+          code: newCode,
+          map: null,
+        };
+  
+        // 如果启用了source map，生成source map
+        if (configServer.build.sourcemap) {
+          let ms = new MagicString(newCode);
+          resultCode.map = ms.generateMap({ hires: true })
+        };
+        return resultCode;
     },
     enforce: "pre",
   };

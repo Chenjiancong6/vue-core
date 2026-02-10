@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" nosetup>
 import { h } from "vue";
 
 export default {

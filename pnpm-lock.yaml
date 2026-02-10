@@ -36,8 +36,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.25)
       '@cjc/vite-plugin-chen-icon-park-auto-import':
-        specifier: ^1.0.0
-        version: 1.0.0(vue@3.5.25)
+        specifier: ^1.0.2
+        version: 1.0.2(vue@3.5.25)
       '@cjc/vite-plugin-console':
         specifier: ^1.0.5
         version: 1.0.5
@@ -196,8 +196,8 @@ packages:
     peerDependencies:
       vue: ^3.x
 
-  '@cjc/vite-plugin-chen-icon-park-auto-import@1.0.0':
-    resolution: {integrity: sha512-fv+iCL0dgZ1nyQV1bEb1lYAhck94eXDYlRsshRInPMH8Ahg+osIhhxPpeXzUHQ/E+oAcyT70or3g0/4y9e5hjQ==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-chen-icon-park-auto-import/-/@cjc/vite-plugin-chen-icon-park-auto-import-1.0.0.tgz}
+  '@cjc/vite-plugin-chen-icon-park-auto-import@1.0.2':
+    resolution: {integrity: sha512-YtsPbBFFi7HLYNC3shugadzyXrSUjqSxQKXa4cJGfeOk+VGs0VGNt0m6y+r8iIp7xUJIuHNCKF5FDWtG6PfLTw==, tarball: https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/@cjc/vite-plugin-chen-icon-park-auto-import/-/@cjc/vite-plugin-chen-icon-park-auto-import-1.0.2.tgz}
     peerDependencies:
       vue: ^3.x
 
@@ -3423,7 +3423,7 @@ snapshots:
     dependencies:
       vue: 3.5.25
 
-  '@cjc/vite-plugin-chen-icon-park-auto-import@1.0.0(vue@3.5.25)':
+  '@cjc/vite-plugin-chen-icon-park-auto-import@1.0.2(vue@3.5.25)':
     dependencies:
       magic-string: 0.30.21
       vue: 3.5.25

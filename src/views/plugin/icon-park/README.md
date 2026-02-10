@@ -4,11 +4,19 @@
 
 # 介绍
 
-根据template标签自动按需引入对应的`icon-park`组件样式文件
+1.根据template标签自动按需引入对应的`icon-park`组件样式文件
 
-icon-park 图标参考官网：[https://iconpark.oceanengine.com/home](https://)
+2.icon-park 图标参考官网：[https://iconpark.oceanengine.com/home](https://)
 
-使用这个插件的前提是要安装` icon-park` 这个图标库，然后才能按需引入，安装命令如下：
+3.插件处理的文件默认是`vue3`的文件，都会在`script`标签上加上`setup` 属性，如果不希望加上或者想在`vue3`中写`vue2`的写法，这里支持加入一个属性 `nosetup`, 加了这个属性后，插件就不会自动导入`setup`，示例如下：
+
+```
+<script nosetup>
+
+</script>
+```
+
+4.使用这个插件的前提是要安装` icon-park` 这个图标库，然后才能按需引入，安装命令如下：
 
 ```
 pnpm add @icon-park/vue-next --save
