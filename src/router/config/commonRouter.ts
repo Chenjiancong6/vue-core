@@ -90,6 +90,14 @@ export const commonRouter = [
     },
   },
   {
+    path:'/vue-defer',
+    component: () => import("@/views/comp/vue-defer/index.vue"),
+    meta: {
+      name: "vue3懒渲染组件",
+      headerMenu,
+    },
+  },
+  {
     path: "/table",
     meta: {
       name: "表格",

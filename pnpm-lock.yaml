@@ -125,6 +125,9 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.6.3(vue@3.5.25)
+      vuedefer:
+        specifier: ^0.0.2
+        version: 0.0.2(vue@3.5.25)
     devDependencies:
       '@cjc/vite-plugin-chen-vant-auto-import':
         specifier: ^1.1.0
@@ -2091,7 +2094,7 @@ packages:
     engines: {node: '>= 4'}
 
   image-size@0.5.5:
-    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==, tarball: https://packages.aliyun.com/68747ea6ef24fb34afabd70d/npm/badg-npm/image-size/-/image-size-0.5.5.tgz}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
 
@@ -3308,6 +3311,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  vuedefer@0.0.2:
+    resolution: {integrity: sha512-cW9fxQILvxk0Aovq595wgn6XBy+SI7BDa5d+wUP+O6PU3gS4EJwCuMS7VvU+WYp0C0HfpCDeHvoxlsOKeswRkA==}
+    peerDependencies:
+      vue: ^3.0.0
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -7360,6 +7368,10 @@ snapshots:
       '@vue/runtime-dom': 3.5.25
       '@vue/server-renderer': 3.5.25(vue@3.5.25)
       '@vue/shared': 3.5.25
+
+  vuedefer@0.0.2(vue@3.5.25):
+    dependencies:
+      vue: 3.5.25
 
   webidl-conversions@3.0.1: {}
 
