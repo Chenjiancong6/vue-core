@@ -18,6 +18,7 @@ import ViteLibStaticImport from "@cjc/vite-plugin-lib-static-import";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vitePluginPurgeIcons from 'vite-plugin-purge-icons';
 import Markdown from 'vite-plugin-md';
+import bundleAnalyzer from 'vite-bundle-analyzer'; // 引入分析插件
 
 const root = process.cwd();
 const pathResolve = (dir: string) => resolve(root, '.', dir);
@@ -28,6 +29,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
   const argMode = process.argv[3] === '--mode' ? process.argv[4] : process.argv[3];
   const configDir = pathResolve('config');
   const env = loadEnv(isBuild ? mode : argMode, configDir);
+
+  const analyzePlugins = [];
+  // 分析打包体积,当运行pnpm run build:analyze时,会生成分析报告
+  if (process.env.ANALYZE === 'true') {
+    analyzePlugins.push(bundleAnalyzer());
+  }
 
   // 动态扫描项目中所有包含 svgs文件夹的目录
   function findAllSvgsDirectoriesWithFilter(rootPath) {
@@ -95,6 +102,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
         symbolId: 'icon-[name]', // 指定symbolId格式
         // inject: "body-last",
       }),
+      ...analyzePlugins,
     ],
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css', 'vue', '.cjs'],
