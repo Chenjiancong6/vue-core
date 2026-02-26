@@ -2,7 +2,7 @@
  <div class="chen-clear-console">
   <h1>一个用于清除代码中 `console`、`alert`、`debugger`语句的 Vite 插件</h1>
    <h1>如何使用：</h1>
-  <div class="text">安装插件：pnpm add @cjc/vite-plugin-chen-vant-auto-import</div>
+  <div class="text">安装插件：pnpm add @cjc/vite-plugin-chen-clear-console-alert-debug</div>
   <h1>功能特性:</h1>
   <div class="text">1. 支持清除 `console.log`、`console.warn`、`console.error`等所有 console 方法</div>
   <div class="text">2. 支持清除 `alert`弹窗语句</div>
