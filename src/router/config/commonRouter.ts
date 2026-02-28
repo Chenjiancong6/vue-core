@@ -50,6 +50,14 @@ export const commonRouter = [
     ],
   },
   {
+    path:'/plate-number',
+    component: () => import("@/views/comp/plate-number/index.vue"),
+    meta: {
+      name: "移动端-车牌号码",
+      headerMenu,
+    },
+  },
+  {
     path: "/dynamic-form",
     component: () => import("@/views/comp/dynamic-form/index.vue"),
     meta: {
