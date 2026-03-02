@@ -49,6 +49,7 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.5.13",
+    "vue-markdown-render": "^2.3.0",
     "vue-router": "^4.5.0",
     "vuedefer": "^0.0.2"
   },

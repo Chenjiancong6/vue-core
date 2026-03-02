@@ -11,7 +11,10 @@
           </template>
           <template v-if="item.type === 'reply'">
             <div class="ai-msg">
-              <div class="ai-msg-content">{{ item.content }}</div>
+              <!-- <div class="ai-msg-content">{{ item.content }}</div> -->
+              <div class="ai-msg-content">
+                <VueMarkdown :source="item.content" />
+              </div>
             </div>
           </template>
         </div>
@@ -26,6 +29,7 @@ import { emitter, useEmitt } from '@/hooks/use-emitt';
 import { Event } from '@/events/event'
 import { sendMessage, msgList, initStore, resetStore } from './ai-msg-store';
 import BottomInputCom from './components/bottom-input-com/index.vue';
+import VueMarkdown from 'vue-markdown-render';
 
 const inputText = ref('')
 
