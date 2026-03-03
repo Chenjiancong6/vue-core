@@ -33,7 +33,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { sendMessage } from '@/views/AI/chat/ai-msg-store';
+import { sendMessage } from '@/views/AI/chat/no-stream/ai-msg-store';
 import AIModelList from './components/ai-model-list.vue';
 import NewDialogue from './components/new-dialogue.vue';
 

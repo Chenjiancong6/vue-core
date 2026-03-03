@@ -18,7 +18,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { resetMsgList } from '@/views/AI/chat/ai-msg-store';
+import { resetMsgList } from '@/views/AI/chat/no-stream/ai-msg-store';
 import { noStreamLLM } from '@/ai-lib/llm';
 
 /**

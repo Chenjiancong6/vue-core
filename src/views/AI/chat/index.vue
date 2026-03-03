@@ -27,7 +27,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { emitter, useEmitt } from '@/hooks/use-emitt';
 import { Event } from '@/events/event'
-import { sendMessage, msgList, initStore, resetStore } from './ai-msg-store';
+import { sendMessage, msgList, initStore, resetStore } from './no-stream/ai-msg-store';
 import BottomInputCom from './components/bottom-input-com/index.vue';
 import VueMarkdown from 'vue-markdown-render';
 
