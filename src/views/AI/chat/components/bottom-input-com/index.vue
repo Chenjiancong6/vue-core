@@ -11,6 +11,17 @@
         <div class="left-btn-group">
           <AIModelList />
           <NewDialogue />
+          <!-- 是否开启流式处理切换 -->
+          <el-switch
+            v-model="hasLLMStream"
+            size="large"
+            class="stream-switch"
+            @change="setSwitchStream"
+            inline-prompt
+            style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+            active-text="开启流式处理"
+            inactive-text="非流式"
+          />
         </div>
         <div class="right-btn">
           <div class="ai-send" @click="handleSendMsg">
@@ -32,12 +43,25 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { sendMessage } from '@/views/AI/chat/no-stream/ai-msg-store';
 import AIModelList from './components/ai-model-list.vue';
 import NewDialogue from './components/new-dialogue.vue';
+import { useLLMLocalStorage } from '@/ai-lib/ai-llm/use-llm-localStorage';
 
 const inputText = ref('');
+
+const hasLLMStream = ref<boolean>(false);
+
+const { setIsllmStream, getIsllmStream } = useLLMLocalStorage();
+
+onMounted(() => {
+  hasLLMStream.value = getIsllmStream();
+});
+
+const setSwitchStream = (flag: boolean) => {
+  setIsllmStream(flag);
+}
 
 const handleKeyDown = (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
@@ -135,7 +159,10 @@ const handleSendMsg = () => {
     &:hover {
       background: #888585;
     }
-
  }
+}
+.stream-switch {
+  margin-left: 10px;
+  padding-bottom: 5px;
 }
 </style>

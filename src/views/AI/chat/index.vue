@@ -27,11 +27,15 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { emitter, useEmitt } from '@/hooks/use-emitt';
 import { Event } from '@/events/event'
-import { sendMessage, msgList, initStore, resetStore } from './no-stream/ai-msg-store';
+import { sendMessage, initStoreNoStream, resetStoreNoStream } from './no-stream/ai-msg-store';
+import { msgList } from './ai-message-list-store';
 import BottomInputCom from './components/bottom-input-com/index.vue';
 import VueMarkdown from 'vue-markdown-render';
+import { useLLMLocalStorage } from "@/ai-lib/ai-llm/use-llm-localStorage";
 
-const inputText = ref('')
+const inputText = ref('');
+
+const { isllmStream } = useLLMLocalStorage();
 
 watch(() => msgList.value, () => {
   console.log('msgList.value', msgList.value);
@@ -39,12 +43,24 @@ watch(() => msgList.value, () => {
   deep: true
 })
 
-onMounted(() => {
-  initStore();
+watch(isllmStream, (newVal) => {
+  // 为true时，流式传输
+  if (newVal) {
+    resetStoreNoStream();
+  }else{
+    // 非流式传输
+    initStoreNoStream();
+  }
+},{
+  immediate: true
 })
 
+// onMounted(() => {
+//   initStoreNoStream();
+// })
+
 onUnmounted(() => {
-  resetStore();
+  resetStoreNoStream();
 })
 
 </script>

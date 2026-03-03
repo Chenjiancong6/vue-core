@@ -1,4 +1,5 @@
 import Request from '@/network/chatRequest';
+import { _requestData, _presendMsgObj } from '../llm-request-data-store';
 
 /**
  * LLMNoStream 非流式处理
@@ -8,18 +9,6 @@ export class LLMNoStream {
   _apiUrl = ''; // api地址
   _model = ''; // 模型名称
   _index = 0; // 索引
-
-  // 发送请求的参数
-  _requestData = {
-    messages: [],
-  };
-
-/**
- * 有时候需要在发送消息前，预埋一些要同步发送的消息，但是后续可能会被移除掉
- * @example 例如：
- * {"role": "system","content": "你的名字叫超级大哈克"},
-*/
-  _presendMsgObj = {};
 
   // 完整的回复回调函数
   _onResponseCallback = (msg) => {};
@@ -46,8 +35,8 @@ export class LLMNoStream {
     const toSendData = {
       model: this._model,
       messages: [
-        ...Object.values(this._presendMsgObj),
-        ...this._requestData.messages,
+        ...Object.values(_presendMsgObj),
+        ..._requestData.messages,
         {
           role: 'user', // 用户发送的消息
           content: msg
@@ -55,7 +44,7 @@ export class LLMNoStream {
       ]
     };
     // 把每次发送的消息保存到栈中，在下一次调用ai 接口时，会把栈中的消息一起发送，实现多轮对话
-    this._requestData.messages.push({ role: 'user', content: msg });
+    _requestData.messages.push({ role: 'user', content: msg });
 
     // 调用接口
     Request.post({
@@ -64,7 +53,7 @@ export class LLMNoStream {
     }).then((res:any) => {
       // console.log(res, '非流式处理-llm');
       // 把ai返回的消息保存到栈中
-      this._requestData.messages.push({
+      _requestData.messages.push({
         role: 'assistant', // 助手发送的消息
         content: res?.choices[0]?.message?.content,
       });
@@ -81,7 +70,7 @@ export class LLMNoStream {
    * 添加预发送消息
    */
   addPresendMsg(key: string,role: string,content: any) {
-    this._presendMsgObj[key] = {
+    _presendMsgObj[key] = {
       role,
       content
     }
@@ -91,8 +80,8 @@ export class LLMNoStream {
    * 清除单条预发送消息
    */
   removePresendMsg(key: string) {
-    if (this._presendMsgObj[key]) {
-      delete this._presendMsgObj[key];
+    if (_presendMsgObj[key]) {
+      delete _presendMsgObj[key];
     }
   }
 
@@ -100,8 +89,8 @@ export class LLMNoStream {
    * 清除所有预发送消息
    */
   clearPresendMsg() {
-    for(const key in this._presendMsgObj) {
-      delete this._presendMsgObj[key];
+    for(const key in _presendMsgObj) {
+      delete _presendMsgObj[key];
     }
   }
 
@@ -109,7 +98,7 @@ export class LLMNoStream {
    * 清空多轮对话中的历史对话消息
    */
   clearHistoryMsg() {
-    this._requestData.messages = [];
+    _requestData.messages = [];
   }
 
 }

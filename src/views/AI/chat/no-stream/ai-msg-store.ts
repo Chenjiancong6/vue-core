@@ -5,15 +5,7 @@ import { Event } from '@/events/event';
 import { v4 as uuidv4 } from 'uuid';
 import { AIMsg } from '@/types/message';
 import { ElMessage } from 'element-plus'
-
-/**
- * msgList: 用户提问的数据和AI回复的数据保存在这个数组对象中
- */
-export const msgList = ref<AIMsg[]>([]);
-
-export const resetMsgList = () => {
-  msgList.value = [];
-}
+import { msgList, resetMsgList } from '../ai-message-list-store';
 
 /**
  * 发送消息,每次输入问题后发送前，都会调用这个函数
@@ -103,7 +95,7 @@ const _handleUpdateMessage = (msgObj: AIMsg) => {
  * _handleUpdateMessage: 在全局emitter.emit(Event.UPDATE_MESSAGE, 'xxx') 调用时，会触发这个函数
  * _handleAppendMessage: 在全局emitter.emit(Event.APPEND_MESSAGE, 'xxx') 调用时，会触发这个函数
  */
-export const initStore = () => {
+export const initStoreNoStream = () => {
   emitter.on(Event.APPEND_MESSAGE, _handleAppendMessage);
   emitter.on(Event.UPDATE_MESSAGE, _handleUpdateMessage);
 }
@@ -111,7 +103,7 @@ export const initStore = () => {
 /**
  * 重置store
  */
-export const resetStore = () => {
+export const resetStoreNoStream = () => {
   msgList.value = [];
   emitter.off(Event.APPEND_MESSAGE, _handleAppendMessage);
   emitter.off(Event.UPDATE_MESSAGE, _handleUpdateMessage);
