@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { sendMessage } from '@/views/AI/chat/no-stream/ai-msg-store';
+import { sendStreamMsg } from '@/views/AI/chat/llm-stream/ai-stream-msg-store';
 import AIModelList from './components/ai-model-list.vue';
 import NewDialogue from './components/new-dialogue.vue';
 import { useLLMLocalStorage } from '@/ai-lib/ai-llm/use-llm-localStorage';
@@ -72,8 +73,15 @@ const handleKeyDown = (e) => {
 
 const handleSendMsg = () => {
   if (inputText.value.trim() === '') return;
-  // 发送消息
-  sendMessage(inputText.value);
+  if (hasLLMStream.value) {
+    // 流式处理
+    let flag = sendStreamMsg(inputText.value);
+    if(!flag) return;
+  } else {
+    // 非流式处理
+    let flag = sendMessage(inputText.value);
+    if(!flag) return;
+  }
   // 清空输入框
   inputText.value = '';
 }

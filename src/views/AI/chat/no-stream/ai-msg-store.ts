@@ -104,7 +104,6 @@ export const initStoreNoStream = () => {
  * 重置store
  */
 export const resetStoreNoStream = () => {
-  msgList.value = [];
   emitter.off(Event.APPEND_MESSAGE, _handleAppendMessage);
   emitter.off(Event.UPDATE_MESSAGE, _handleUpdateMessage);
 }

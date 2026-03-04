@@ -37,11 +37,11 @@ const inputText = ref('');
 
 const { isllmStream } = useLLMLocalStorage();
 
-watch(() => msgList.value, () => {
-  console.log('msgList.value', msgList.value);
-}, {
-  deep: true
-})
+// watch(() => msgList.value, () => {
+//   console.log('msgList.value', msgList.value);
+// }, {
+//   deep: true
+// })
 
 watch(isllmStream, (newVal) => {
   // 为true时，流式传输
@@ -60,6 +60,7 @@ watch(isllmStream, (newVal) => {
 // })
 
 onUnmounted(() => {
+  msgList.value = [];
   resetStoreNoStream();
 })
 

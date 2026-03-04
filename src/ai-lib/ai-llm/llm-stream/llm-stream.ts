@@ -1,5 +1,7 @@
 import Request from '@/network/chatRequest';
 import { _requestData, _presendMsgObj } from '../llm-request-data-store';
+import { v4 as uuidv4 } from 'uuid';
+import { msgList } from '@/views/AI/chat/ai-message-list-store'
 
 /**
  * LLMSteam 流式处理
@@ -9,6 +11,8 @@ import { _requestData, _presendMsgObj } from '../llm-request-data-store';
 export class LLMStream {
   _apiUrl = ''; // api地址
   _model = ''; // 模型名称
+  // deepseek v3 模型 API 接口的 token
+  deepseekAPIKeyToken = '76536990-3525-4f56-8d95-2ed176aa0372';
 
   constructor(option: any) {
     this._apiUrl = option.apiUrl;
@@ -18,7 +22,12 @@ export class LLMStream {
   /**
    * 调用ai 接口
    */
-  chat(msg: string):void {
+  async chat(msg: string): Promise<void> {
+    // 生成唯一id
+    const _uuId = uuidv4();
+    let streamContent = '';
+    // 在msgList数组中，找到id等于_uuId的消息，把它的status设置为done
+
     // 合并预发送消息和请求消息
     const toSendData = {
       model: this._model, // 模型
@@ -35,15 +44,97 @@ export class LLMStream {
     // 把每次发送的消息保存到栈中，在下一次调用ai 接口时，会把栈中的消息一起发送，实现多轮对话
     _requestData.messages.push({ role: 'user', content: msg });
 
-    // 调用接口
-    Request.post({
-      url: this._apiUrl,
-      data: toSendData,
-    }).then((res) => {
+    // 调用接口前，生成一条除以thinging状态的消息，用于展示在界面上
+    msgList.value.push({
+      id: _uuId,
+      status: 'thinking',
+    });
+
+    // 根据id,找到msgList数组对象中对应的消息
+    const msgObjIndex = msgList.value.findIndex(item => item.id == _uuId);
+
+    try {
+      // 使用fetch API调用ai接口的流式数据，因为axios在浏览器环境不支持流式处理，所以这里使用fetch API
+      const response = await fetch(`https://ark.cn-beijing.volces.com/api${this._apiUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.deepseekAPIKeyToken}`,
+        },
+        body: JSON.stringify(toSendData),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);  
+      };
+
+      // 获取响应体的读取器
+      const reader = response.body.getReader();
+      // 创建一个文本解码器，用于将二进制数据转为字符串
+      const decoder = new TextDecoder();
+      let buffer = '';
       
-    }).catch((err) => {
-      console.log(err)
-    })
+      // 数据块处理
+      function processChunk(chunk) {
+        buffer += chunk;
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // 保留最后一行，可能不完整
+        for(const line of lines) {
+          if (!line.trim()) continue;
+          if (line.trim() == 'event:message') continue;
+          try {
+            let data = line.replace(/^data:/, '').replace(/^data:/, '').trim();
+            // 解析结束标记
+            if (data === '[DONE]') {
+              // 无论成功或失败，都把status设置为done
+              msgList.value[msgObjIndex].status = 'done';
+              // 把ai返回的消息保存到栈中
+              _requestData.messages.push({
+                role: 'assistant', // 助手发送的消息
+                content: streamContent,
+              });
+              return true; // 结束标志
+            };
+
+            // 提取流式数据
+            const parseData = JSON.parse(data);
+            // 获取 content
+            const content = parseData.choices?.[0]?.delta?.content;
+            // 如果有内容，就添加到累积变量中
+            if (content) {
+              streamContent += content;
+            };
+            // 覆盖数据
+            msgList.value[msgObjIndex] = {
+              id: _uuId,
+              status: 'stream',
+              content: streamContent,
+              type: 'reply',
+            };  
+
+          }catch(e) {
+            console.log('错误的行', line)
+            console.warn('解析消息片段失败:', e);
+          }
+        }
+        return false;
+      };
+
+      // 持续读取流
+      while(true) {
+        const { done, value } = await reader.read();
+        if(done) break;
+        // 将接收到的二进制数据解码为字符串
+        const chunk = decoder.decode(value, { stream: true });
+        // 处理数据块
+        if(processChunk(chunk)) break;
+      }
+
+    }catch(err) {
+      console.error(err);
+    }finally {
+      // 无论成功或失败，都把status设置为done
+      msgList.value[msgObjIndex].status = 'done';
+    }
   }
 
   /**
