@@ -1,7 +1,7 @@
 <template>
   <div class="ai-chat--wrap">
     <div>chat 聊天</div>
-    <div class="ai-chat-container">
+    <div class="ai-chat-container" ref="chatContainerRef">
       <div class="ai-chat-list">
         <div class="ai-chat-msglist__item" v-for="item in msgList" :key="item.id">
           <template v-if="item.type === 'ask'">
@@ -34,14 +34,28 @@ import VueMarkdown from 'vue-markdown-render';
 import { useLLMLocalStorage } from "@/ai-lib/ai-llm/use-llm-localStorage";
 
 const inputText = ref('');
+const chatContainerRef = ref<HTMLDivElement>(null);
+
+// 平滑滚动到底部
+function smoothScrollToBottom() {
+  if(!chatContainerRef.value) return;
+  let chatContainerHeight = chatContainerRef.value?.clientHeight; // 获取元素的可见区域高度
+  let chatContainerRefScrollHeight = chatContainerRef.value?.scrollHeight; // 获取元素的滚动高度
+  if(chatContainerRefScrollHeight > chatContainerHeight + 20) {
+    chatContainerRef.value.scrollTo({
+      top: chatContainerRefScrollHeight,
+      behavior: 'smooth' // 平滑滚动
+    });
+  }
+}
 
 const { isllmStream } = useLLMLocalStorage();
 
-// watch(() => msgList.value, () => {
-//   console.log('msgList.value', msgList.value);
-// }, {
-//   deep: true
-// })
+watch(() => msgList.value, () => {
+  smoothScrollToBottom();
+}, {
+  deep: true
+})
 
 watch(isllmStream, (newVal) => {
   // 为true时，流式传输
