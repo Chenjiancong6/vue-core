@@ -28,6 +28,7 @@ export class LLMStream {
     // 生成唯一id
     const _uuId = uuidv4();
     let streamContent = '';
+    let reasoning_content = ''; //  reasoning_content 用于存储模型的推理内容(思考过程)
     // 在msgList数组中，找到id等于_uuId的消息，把它的status设置为done
 
     // 合并预发送消息和请求消息
@@ -109,15 +110,21 @@ export class LLMStream {
             const parseData = JSON.parse(data);
             // 获取 content
             const content = parseData.choices?.[0]?.delta?.content;
+            const reasoningContent = parseData.choices?.[0]?.delta?.reasoning_content;
+
             // 如果有内容，就添加到累积变量中
             if (content) {
               streamContent += content;
             };
+            if(reasoningContent) {
+              reasoning_content += reasoningContent;
+            }
             // 覆盖数据
             msgList.value[msgObjIndex] = {
               id: _uuId,
               status: 'stream',
               content: streamContent,
+              reasoning_content,
               type: 'reply',
             };  
 

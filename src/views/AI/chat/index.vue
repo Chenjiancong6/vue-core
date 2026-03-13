@@ -11,7 +11,10 @@
           </template>
           <template v-if="item.type === 'reply'">
             <div class="ai-msg">
-              <!-- <div class="ai-msg-content">{{ item.content }}</div> -->
+              <div class="ai-msg-reasoning-content" v-if="item.reasoning_content">
+                <div>推理过程：</div>
+                <VueMarkdown :source="item.reasoning_content" />
+              </div>
               <div class="ai-msg-content">
                 <VueMarkdown :source="item.content" />
               </div>
@@ -125,5 +128,9 @@ onUnmounted(() => {
   margin-top: 30px;
 }
 
+.ai-msg-reasoning-content {
+  color: #999;
+  margin-bottom: 20px;
+}
 
 </style>

@@ -22,12 +22,13 @@ export class AIMsgHandler {
     console.log('currentChatMsgObjcurrentChatMsgObj',currentChatMsgObj);
     
     // 这里通过回到函数的方法，noStreamLLM实例中在拿到ai返回的消息
-    this._noStreamLLM.onResponse(({content, res})=> {
+    this._noStreamLLM.onResponse(({content,reasoning_content, res})=> {
       console.log(content,'responseMsg----',res);
       // 这里更新消息状态为done
       this.updateMessage({
         id: currentChatMsgObj.id,
         content: content || '',
+        reasoning_content: reasoning_content || '', // 推理过程
         status: 'done',
         type: 'reply',
       })

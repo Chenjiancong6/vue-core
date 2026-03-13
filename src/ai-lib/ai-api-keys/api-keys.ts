@@ -24,6 +24,13 @@ export function getApiKeys(): ApiKeyConfig[] {
       baseurl: 'https://ark.cn-beijing.volces.com/api',
       url: '/v3/chat/completions',
       keys: '76536990-3525-4f56-8d95-2ed176aa0372'
+    },
+    {
+      name: '智谱glm-5',
+      model: 'glm-5',
+      baseurl: 'https://open.bigmodel.cn/api',
+      url: '/paas/v4/chat/completions',
+      keys: '7b4356d269e64e1889844aff2d063f4e.JgC4VOY0TPJfyL8a'
     }
   ];
 }

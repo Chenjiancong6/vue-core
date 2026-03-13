@@ -58,7 +58,7 @@ export class LLMNoStream {
         content: res?.choices[0]?.message?.content,
       });
       // 回调响应数据
-      this._onResponseCallback({content: res?.choices[0]?.message?.content,res: res});
+      this._onResponseCallback({content: res?.choices[0]?.message?.content, reasoning_content: res?.choices[0]?.message?.reasoning_content, res: res});
       
       // this._index++; // 索引增加
     }).catch((err) => {
