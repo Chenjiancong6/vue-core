@@ -2,6 +2,10 @@ import Request from '@/network/chatRequest';
 import { _requestData, _presendMsgObj } from '../llm-request-data-store';
 import { v4 as uuidv4 } from 'uuid';
 import { msgList } from '@/views/AI/chat/ai-message-list-store'
+import { getSelectedModel } from '@/ai-lib/ai-api-keys/persistence';
+import { getApiKeys } from '@/ai-lib/ai-api-keys/api-keys';
+
+let apiKeys = getApiKeys();
 
 /**
  * LLMSteam 流式处理
@@ -11,8 +15,6 @@ import { msgList } from '@/views/AI/chat/ai-message-list-store'
 export class LLMStream {
   _apiUrl = ''; // api地址
   _model = ''; // 模型名称
-  // deepseek v3 模型 API 接口的 token
-  deepseekAPIKeyToken = '76536990-3525-4f56-8d95-2ed176aa0372';
 
   constructor(option: any) {
     this._apiUrl = option.apiUrl;
@@ -54,12 +56,20 @@ export class LLMStream {
     const msgObjIndex = msgList.value.findIndex(item => item.id == _uuId);
 
     try {
+      // 先从缓存中获取选中的模型
+      let llmCache = getSelectedModel();
+      let _URL = '';
+      if(llmCache) {
+        _URL = `${llmCache.baseurl}${llmCache.url}`;
+      }else {
+        _URL = `${apiKeys[0].baseurl}${apiKeys[0].url}`;
+      }
       // 使用fetch API调用ai接口的流式数据，因为axios在浏览器环境不支持流式处理，所以这里使用fetch API
-      const response = await fetch(`https://ark.cn-beijing.volces.com/api${this._apiUrl}`, {
+      const response = await fetch(_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.deepseekAPIKeyToken}`,
+          'Authorization': `Bearer ${llmCache?.keys || apiKeys[0].keys}`,
         },
         body: JSON.stringify(toSendData),
       });

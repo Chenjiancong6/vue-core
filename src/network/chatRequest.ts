@@ -5,17 +5,17 @@
 import Crequest from './request';
 const TIME_OUT = 20000;
 import localCache from '@/utils/cache';
+import { getSelectedModel } from '@/ai-lib/ai-api-keys/persistence';
+import { getApiKeys } from '@/ai-lib/ai-api-keys/api-keys';
 
-// deepseek v3 模型 API 接口的 token
-const deepseekAPIKeyToken = '76536990-3525-4f56-8d95-2ed176aa0372';
+let apiKeys = getApiKeys();
 
-// https://ark.cn-beijing.volces.com/api/v3/chat/completions
 const Request = new Crequest({
-  baseURL: 'https://ark.cn-beijing.volces.com/api',
+  baseURL: getSelectedModel()?.baseurl || apiKeys[0].baseurl,
   timeout: TIME_OUT,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${deepseekAPIKeyToken}`,
+    'Authorization': `Bearer ${getSelectedModel()?.keys || apiKeys[0].keys}`,
   }
   // interceptors: {
   //   requestInterceptor: (config: any) => {
