@@ -1,6 +1,27 @@
 <template>
   <div class="vant-auto-import">
     <div class="intro-info">
+      <h1>为什么要自己写Vant 按需导入插件的原因：</h1>
+      <div>
+        <div>1.官方提供的按需引入组件样式，需要安装导入三个包，使用起来会变得繁琐，不方便管理</div>
+        <div>2.自己写插件，可以自动引入对应的vant组件的依赖代码，使用起来更加方便</div>
+        <div>3.插件的代码量比较小，不会影响性能</div>
+      </div>
+      <h1>官方推荐插件导入和使用方式：</h1>
+      <div>
+        <div>1.安装插件</div>
+        <div>pnpm add @vant/auto-import-resolver unplugin-vue-components unplugin-auto-import -D</div>
+        <div>2. 配置插件</div>
+        <div>plugins: [
+            AutoImport({
+              resolvers: [VantResolver()],
+            }),
+            Components({
+              resolvers: [VantResolver()],
+            }),
+          ]
+        </div>
+      </div>
       <h1>vite-plugin-chen-vant-auto-import 插件介绍：</h1>
       <div class="item">根据template标签自动引入对应的vant组件的插件</div>
       <div class="item">比如使用van-button组件，在template标签中使用van-button组件，插件会自动引入van-button组件的依赖代码</div>
@@ -74,5 +95,8 @@ const handleClick = () => {
   .item {
     margin: 10px 0;
   }
+}
+h1{
+ margin-top: 50px; 
 }
 </style>
