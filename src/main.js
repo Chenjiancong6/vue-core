@@ -21,8 +21,8 @@ import '@/global/js/echarts';
 import Vue3DraggableResizable from '@v3e/vue3-draggable-resizable'
 //需引入默认样式
 import '@v3e/vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
-// 在入口文件注册vite-plugin-svg-icons插件虚拟模块，用于引入svg图标
-import 'virtual:svg-icons-register'; 
+// 在入口文件注册vite-plugin-svg-icons插件虚拟模块，用于引入svg图标（弃用，已经实现在插件中自动导入了）
+// import 'virtual:svg-icons-register'; 
 // 引入图片预加载函数
 import { preloadImages } from '@/hooks/preloadImages';
 // 引入列表滑动上升动画指令
