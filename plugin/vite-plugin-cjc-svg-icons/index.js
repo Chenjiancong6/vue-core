@@ -81,15 +81,18 @@ function createSvgIconsPlugin(opt) {
   }
   return {
     name: "vite:svg-icons",
+    // 插件配置解析
     configResolved(resolvedConfig) {
       isBuild = resolvedConfig.command === "build";
     },
+    // 模块路径解析
     resolveId(id) {
       if ([SVG_ICONS_REGISTER_NAME, SVG_ICONS_CLIENT].includes(id)) {
         return id;
       }
       return null;
     },
+    // 模块内容加载
     async load(id, ssr) {
       if (!isBuild && !ssr)
         return null;
@@ -106,6 +109,8 @@ function createSvgIconsPlugin(opt) {
         return idSet;
       }
     },
+    // 配置服务器中间件 (configureServer用于在 Vite 开发服务器启动前，对其进行自定义配置或扩展)
+    // 这个中间件的作用是，在服务器端处理虚拟模块的请求，返回svg图标的内容
     configureServer: ({ middlewares }) => {
       middlewares.use(cors({ origin: "*" }));
       middlewares.use(async (req, res, next) => {
@@ -126,6 +131,7 @@ function createSvgIconsPlugin(opt) {
       });
     },
     // 处理入口文件，添加虚拟模块导入,这是我自己添加的功能!
+    // transform用来在模块加载完成后，对模块源码进行转换（编译、改写）
     transform(code, id) {
       // 只处理main.ts / main.js文件
       if (!id.endsWith('main.ts') && !id.endsWith('main.js')) {
