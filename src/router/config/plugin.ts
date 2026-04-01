@@ -32,6 +32,14 @@ export const PluginRouter =[
       name:'清除浏览器控制台打印',
       headerMenu
     }
+  },{
+    path:'/svg-icons',
+    component:()=>import('@/views/plugin/svg-icons/index.vue'),
+    children: [],
+    meta:{
+      name:'svg-icons插件二次封装',
+      headerMenu
+    }
   }
 ];
 

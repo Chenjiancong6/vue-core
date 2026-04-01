@@ -20,10 +20,10 @@
     <div class="note">
       <h1>组件的优势说明：</h1>
       <div>
-        1. 当渲染本地组件时， vite-plugin-svg-icons 插件会收集项目中所有svgs文件夹下的图标，将所有 SVG 文件打包成一个大的 SVG Sprite，每个图标成为一个 'symbol' 元素，通过 'use' 元素引用。
+        1. 当渲染本地组件时， <strong>@cjc/vite-plugin-cjc-svg-icons</strong> 插件会收集项目中所有svgs文件夹下的图标，将所有 SVG 文件打包成一个大的 SVG Sprite，每个图标成为一个 'symbol' 元素，通过 'use' 元素引用。
       </div>
       <div>
-        2. 当使用线上的 iconify图标库的svg图标时，vite-plugin-purge-icons 插件在构建时，扫描你的源码，找到所有在使用的在线图标，然后从 Iconify 的库中只提取这些图标的代码，生成一个极小的图标包。
+        2. 当使用线上的 iconify图标库的svg图标时，<strong>vite-plugin-purge-icons</strong> 插件在构建时，扫描你的源码，找到所有在使用的在线图标，然后从 Iconify 的库中只提取这些图标的代码，生成一个极小的图标包。
       </div>
     </div>
   </div>
