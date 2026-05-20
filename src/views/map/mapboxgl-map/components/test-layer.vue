@@ -2,18 +2,18 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { inject, onMounted } from 'vue';
 
-// 这个map就是mapbox-gl实例
-const map = inject('map');
+// map-layers.vue 提供的 key 是 'mapObj'，包含 { map, baseMap }
+// map 是 mapbox Map 实例（Vue 通过 this.$parent.map 取值时已自动解包 shallowRef）
+const { map, baseMap } = inject('mapObj');
 
-// 这个baseMap是base-map实例
-const baseMap = inject('baseMap');
-
-// 地图聚焦
-map.flyTo({
-    center: [113.9542664, 22.5318036],
-    zoom: 16
+onMounted(() => {
+    // 地图聚焦
+    map.flyTo({
+        center: [113.9542664, 22.5318036],
+        zoom: 16
+    });
 });
 
 </script>

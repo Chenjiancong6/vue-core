@@ -23,7 +23,8 @@ function loadMapboxglScriptAndCss() {
     const loadScript = new Promise((resolve) => {
       if (!window.__BAOSHE_VAR_MAPBOXGL) {
         console.error(
-          "找不到变量window.__BAOSHE_VAR_MAPBOXGL的定义，请确保项目已经使用@sutpc/lib-static-import-plugin处理第三方库"
+          // @cjc/vite-plugin-lib-static-import
+          "找不到变量window.__BAOSHE_VAR_MAPBOXGL的定义，请确保项目已经使用@cjc/vite-plugin-lib-static-import处理第三方库"
         );
         resolve();
         return;
@@ -32,6 +33,7 @@ function loadMapboxglScriptAndCss() {
       let script = document.createElement("script");
       // __BAOSHE_VAR_MAPBOXGL变量由@sutpc/lib-static-import包提供
       script.src = window.__BAOSHE_VAR_MAPBOXGL;
+      script.type = "module";
       script.onload = resolve;
       document.body.appendChild(script);
     });
