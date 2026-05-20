@@ -1,6 +1,6 @@
 {
-  "name": "@baoshe/vue3-basemap-mapboxgl",
-  "version": "1.0.9",
+  "name": "@cjc/vue3-basemap-mapboxgl",
+  "version": "1.0.0",
   "description": "基于mapboxgl的vue3组件basemap",
   "main": "src/index.ts",
   "scripts": {
@@ -8,19 +8,18 @@
     "build": "webpack"
   },
   "publishConfig": {
-    "registry": "https://packages.aliyun.com/68747ea6ef24fb34afabd70d/npm/badg-npm/"
+    "registry": "https://packages.aliyun.com/68cba88215dfc6c8604f7adc/npm/repo-pncpo/"
   },
   "keywords": [
     "mapboxgl",
     "vue3"
   ],
-  "author": "baoshe",
+  "author": "cjc",
   "license": "ISC",
   "dependencies": {
     "lodash-es": "^4.x",
     "mapbox-gl": "^1.x",
-    "@baoshe/dom-resize": "^1.0.x",
-    "@baoshe/config": "^1.0.x",
-    "@baoshe/vue3-hooks": "^1.0.x"
+    "@cjc/dom-resize-observer": "^1.x",
+    "@cjc/scaleConfig": "^1.x"
   }
 }
