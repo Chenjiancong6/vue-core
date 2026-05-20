@@ -47,6 +47,9 @@ importers:
       '@cjc/vite-plugin-lib-static-import':
         specifier: ^1.0.0
         version: 1.0.0(rollup@4.60.1)
+      '@cjc/vue3-basemap-mapboxgl':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@cjc/vue3-data-container':
         specifier: ^1.0.1
         version: 1.0.1
@@ -231,6 +234,9 @@ packages:
 
   '@cjc/vite-plugin-lib-static-import@1.0.0':
     resolution: {integrity: sha512-gEYjnc8qDDt2OHxc6T7uysRx1Nswav8vt75K37khOuu0TIiTdk3T9FZybP6MsUPnLQEGIKnvJUn2FAufq0027Q==}
+
+  '@cjc/vue3-basemap-mapboxgl@1.0.0':
+    resolution: {integrity: sha512-0o8nunlTsRRZbcs9TMWRSRgRE/Rgz/l+y+Eg2SO8oH8GalEinwoJVQkPgcO+rFXTnGLsv21s6mHZFnap/ZADuA==}
 
   '@cjc/vue3-data-container@1.0.1':
     resolution: {integrity: sha512-UqINKiLlZTubqldpteoBRFfG+upQDWLG4Y40vRBiw01TX6N36WrO2dUMcNgRrBPUbm07It1ycihbhQbr9QO4YA==}
@@ -3506,6 +3512,13 @@ snapshots:
       rollup-plugin-external-globals: 0.7.3(rollup@4.60.1)
     transitivePeerDependencies:
       - rollup
+
+  '@cjc/vue3-basemap-mapboxgl@1.0.0':
+    dependencies:
+      '@cjc/dom-resize-observer': 1.0.1
+      '@cjc/scaleConfig': 1.0.1
+      lodash-es: 4.17.23
+      mapbox-gl: 1.13.3
 
   '@cjc/vue3-data-container@1.0.1': {}
 

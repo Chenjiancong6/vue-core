@@ -7,7 +7,8 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import BaseMap from '@/components/vue3-basemap-mapboxgl/src/index';
+// import BaseMap from '@/components/vue3-basemap-mapboxgl/src/index';
+import BaseMap from '@cjc/vue3-basemap-mapboxgl';
 import TestLayer from './components/test-layer.vue';
 
 </script>
