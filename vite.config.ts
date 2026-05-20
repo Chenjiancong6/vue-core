@@ -42,6 +42,16 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
   return {
     envDir: pathResolve('config'),
     base: env.VITE_BASE_PATH,
+    server: {
+      proxy: {
+        //  天地图电子地图图层 代理 wgs84坐标系
+        [env.VITE_API_BASEPATH]: {
+          target: env.VITE_BASE_URL,
+          changeOrigin: true,
+          ws: true
+        },
+      },
+    },
     plugins: [
       vue({
         include: [/\.vue$/, /\.md$/], // <-- 让 Vue 也处理 md 文件

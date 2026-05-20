@@ -10,22 +10,22 @@ const markerRef = ref(null);
 
 onMounted(() => {
   map.flyTo({
-    center: [113.9092883,22.5807411],
+    center: [113.9047911,22.5840839],
     zoom: 16
   });
 
   const marker = new mapboxgl.Marker({ element: markerRef.value })
-    .setLngLat([113.9092883,22.5807411])
+    .setLngLat([113.9047911,22.5840839])
     .addTo(map);
 
   const popup = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false,
     offset: 25
-  }).setHTML('<span>我在这里</span>');
+  }).setHTML('<span>我在这里,我是wgs84坐标系的</span>');
 
   marker.getElement().addEventListener('mouseenter', () => {
-    popup.setLngLat([113.9092883,22.5807411]).addTo(map);
+    popup.setLngLat([113.9047911,22.5840839]).addTo(map);
   });
 
   marker.getElement().addEventListener('mouseleave', () => {
