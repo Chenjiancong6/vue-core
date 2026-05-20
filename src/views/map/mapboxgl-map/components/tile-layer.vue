@@ -4,6 +4,7 @@
 import { inject, onBeforeUnmount, PropType, watch } from 'vue';
 import { layerPrefix } from '@/utils/map';
 
+// 天地图瓦片图层类型 (矢量瓦片 | 栅格瓦片)
 type TileType = 'vector' | 'image';
 
 const props = defineProps({
