@@ -5,7 +5,6 @@ import {
   wgs84ToGcj02,
 } from "@cjc/zebra";
 import baosheConfig from '@cjc/scaleConfig';
-import { coordinates } from "./store.ts"; // 用户选择的坐标系 （默认是 gcj02）
 import { ElMessage } from "element-plus";
 
 // 转换函数对象

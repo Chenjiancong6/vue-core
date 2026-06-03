@@ -19,6 +19,7 @@ import baosheConfig from '@cjc/scaleConfig';
 const baseMapRef = ref<InstanceType<typeof BaseMap> | null>(null);
 // 面板输入框经纬度数据
 const panelPosition = ref<{ lng: number, lat: number } | null>(null);
+// 获取鼠标点击和输入框输入的经纬度数据
 const position = ref<{ lng: number, lat: number } | null>(null);
 
 let map: any = null;
