@@ -109,3 +109,9 @@ const handleChangeTile = (newTile: TileType) => {
   }
 }
 </style>
+
+<style lang="less">
+.el-main:has(.chen__mapboxgl-map) {
+  padding: 0 !important;
+}
+</style>

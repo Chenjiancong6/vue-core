@@ -20,3 +20,8 @@ import Pointlayer from './point-layer/index.vue';
   height: 100%;
 }
 </style>
+<style lang="less">
+.el-main:has(.amap-container) {
+  padding: 0 !important;
+}
+</style>
