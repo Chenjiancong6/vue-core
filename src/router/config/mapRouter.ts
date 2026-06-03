@@ -15,6 +15,13 @@ export const mapRouter = [{
     name:'mapboxgl地图',
     headerMenu
   }
+},{
+  path:'/mapTool',
+  component: () => import('@/views/map/map-tool/index.vue'),
+  meta:{
+    name:'地图坐标拾取器工具',
+    headerMenu
+  }
 }];
 
 // 默认的打开的第一个菜单
