@@ -29,7 +29,7 @@
     "@cjc/vue3-echarts-mobile": "^1.0.3",
     "@cjc/vue3-plate-number": "^1.0.0",
     "@cjc/vue3-svg-icon": "^1.0.0",
-    "@cjc/zebra": "^1.0.2",
+    "@cjc/zebra": "^1.0.3",
     "@icon-park/vue-next": "^1.4.2",
     "@iconify/vue": "^5.0.0",
     "@v3e/vue3-draggable-resizable": "^1.0.0",

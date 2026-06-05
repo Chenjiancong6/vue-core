@@ -66,8 +66,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.31)
       '@cjc/zebra':
-        specifier: ^1.0.2
-        version: 1.0.2(lodash-es@4.17.23)
+        specifier: ^1.0.3
+        version: 1.0.3(lodash-es@4.17.23)
       '@icon-park/vue-next':
         specifier: ^1.4.2
         version: 1.4.2(vue@3.5.31)
@@ -253,8 +253,8 @@ packages:
   '@cjc/vue3-svg-icon@1.0.0':
     resolution: {integrity: sha512-67FekHrHgbyIKt9HHSjQK30heYMFkr9Eapd7vm2d1ILLNH0bXe9QKP5X1ZZAw70rBEHdfNVeI5gCdTVc//dHpg==}
 
-  '@cjc/zebra@1.0.2':
-    resolution: {integrity: sha512-qifTeGPoHVQWjpKSytVy9j6rPN78upowtThlcHLjgXpvx1Ws50yKjatxYowzvZh+EtKTK8Tls8lqKIoAU7wjfg==}
+  '@cjc/zebra@1.0.3':
+    resolution: {integrity: sha512-oN0nOMRGMcVF3PIvS8Q2BoNCLHvGQlNoMcWYFApNgynoJ/LsfTdpxq2IYoAnRum95m3nHSx+yAwEg+QR/dgZLQ==}
     peerDependencies:
       lodash-es: ^4.17.21
 
@@ -3541,7 +3541,7 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@cjc/zebra@1.0.2(lodash-es@4.17.23)':
+  '@cjc/zebra@1.0.3(lodash-es@4.17.23)':
     dependencies:
       '@turf/turf': 6.5.0
       lodash-es: 4.17.23
