@@ -12,8 +12,13 @@
           <template v-if="item.type === 'reply'">
             <div class="ai-msg">
               <div class="ai-msg-reasoning-content" v-if="item.reasoning_content">
-                <div>推理过程：</div>
-                <VueMarkdown :source="item.reasoning_content" />
+                <div class="ai-msg-reasoning-content--title" @click="handleClickExpand(item.id)">
+                  <div>推理过程</div>
+                  <div class="ai-msg-reasoning-content__arrow" :class="{'has-expand': expandMap[item.id]}"> <Icon icon="svg-icon:arrow_down" /></div>
+                </div>
+                <template v-if="expandMap[item.id]">
+                  <VueMarkdown :source="item.reasoning_content" />
+                </template>
               </div>
               <div class="ai-msg-content">
                 <VueMarkdown :source="item.content" />
@@ -34,10 +39,16 @@ import { sendMessage, initStoreNoStream, resetStoreNoStream } from './no-stream/
 import { msgList } from './ai-message-list-store';
 import BottomInputCom from './components/bottom-input-com/index.vue';
 import VueMarkdown from 'vue-markdown-render';
+import Icon from '@cjc/vue3-svg-icon';
 import { useLLMLocalStorage } from "@/ai-lib/ai-llm/use-llm-localStorage";
 
 const inputText = ref('');
 const chatContainerRef = ref<HTMLDivElement>(null);
+const expandMap = ref<Record<number | string, boolean>>({});
+
+const handleClickExpand = (id: number | string) => {
+  expandMap.value[id] = !expandMap.value[id];
+}
 
 // 平滑滚动到底部
 function smoothScrollToBottom() {
@@ -54,7 +65,12 @@ function smoothScrollToBottom() {
 
 const { isllmStream } = useLLMLocalStorage();
 
-watch(() => msgList.value, () => {
+watch(() => msgList.value, (newList) => {
+  newList.forEach(item => {
+    if (!(item.id in expandMap.value)) {
+      expandMap.value[item.id] = item.content === null;
+    }
+  });
   smoothScrollToBottom();
 }, {
   deep: true
@@ -130,7 +146,23 @@ onUnmounted(() => {
 
 .ai-msg-reasoning-content {
   color: #999;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
+.ai-msg-reasoning-content--title {
+  display: flex;
+  align-items: center;
+  :hover {
+    color: #333;
+  }
+    .ai-msg-reasoning-content__arrow {
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+    &.has-expand {
+      transform: rotate(180deg);
+      transition: all 0.3s ease-in-out;
+    }
+  }
 
+}
 </style>
