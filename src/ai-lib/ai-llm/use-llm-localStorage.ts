@@ -1,11 +1,11 @@
 import { onMounted, ref } from 'vue';
 
-// 是否开启流式处理
-const isllmStream = ref<boolean>(false);
+
 const localStorageKey = 'isllmStream';
 
 export const useLLMLocalStorage = () => {
-
+  // 是否开启流式处理
+  const isllmStream = ref<boolean>(false);
   // 设置是否开启流式处理
   const setIsllmStream = (flag: boolean) => {
     isllmStream.value = flag;
