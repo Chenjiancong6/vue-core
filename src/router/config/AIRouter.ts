@@ -25,6 +25,14 @@ export const AIRouter =[
       name:'RAGFlow知识库',
       headerMenu
     }
+  },{
+    path:'/RAGAI',
+    component:()=>import('@/views/AI/rag-ai-chat/index.vue'),
+    children: [],
+    meta:{
+      name:'RAG-AI助手',
+      headerMenu
+    }
   }
 ];
 
