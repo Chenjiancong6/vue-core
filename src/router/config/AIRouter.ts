@@ -17,6 +17,14 @@ export const AIRouter =[
       name:'AI助手',
       headerMenu
     }
+  }, {
+    path:'/RAGFlow',
+    component:()=>import('@/views/AI/rag-flow/index.vue'),
+    children: [],
+    meta:{
+      name:'RAGFlow知识库',
+      headerMenu
+    }
   }
 ];
 
