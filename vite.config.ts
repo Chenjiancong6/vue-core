@@ -50,6 +50,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
           changeOrigin: true,
           ws: true
         },
+        // import.meta.env.VITE_RAGFOLW_URL+ '/'+import.meta.env.VITE_RAGFOLW_CHAT_ID+'/chat/completions'
+        '/ragflow/chat/completions': {
+          target: env.VITE_RAGFOLW_URL + `/${env.VITE_RAGFOLW_CHAT_ID}`,
+          changeOrigin: true,
+          ws: true,
+          // 重写路径，将 /ragflow/chat/completions 变成 /chat/completions
+          rewrite: (path) => path.replace(/^\/ragflow/, ''),
+        }
       },
     },
     plugins: [

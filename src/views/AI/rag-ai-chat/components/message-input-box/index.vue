@@ -42,6 +42,14 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
+import { ragflow_URL_body_config } from '@/views/AI/rag-ai-chat/store';
+import { useAiChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-ai-chat-msg-list';
+import { useHistoryChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-history-chat-msg-list';
+import { ragflow_chat_request } from '@/views/AI/rag-ai-chat/components/request/chatRequest';
+
+const { addAIMsg } = useAiChatMsgList();
+const { addHistoryChatMsg } = useHistoryChatMsgList();
 
 const inputText = ref('');
 
@@ -58,17 +66,43 @@ const handleKeyDown = (e) => {
   }
 }
 
-const handleSendMsg = () => {
+const handleSendMsg = async () => {
   if (inputText.value.trim() === '') return;
+
   if (hasLLMStream.value) {
     // 流式处理
    
   } else {
     // 非流式处理
 
-  }
-  // 清空输入框
-  inputText.value = '';
+  };
+  let res = await ragflow_chat_request({
+    ...ragflow_URL_body_config,
+    messages: [
+      {
+        role: 'user',
+        content: inputText.value,
+      }
+    ]
+  });
+  console.log("接口响应数据",res);
+  if(!res) return;
+
+  // 添加ai聊天消息
+  addAIMsg({
+    id: uuidv4(), // 生成唯一id
+    type: 'ask',
+    content: inputText.value,
+  });
+  // 添加历史聊天消息
+  addHistoryChatMsg({
+    role: 'user',
+    content: inputText.value,
+  });
+  setTimeout(() => {
+    // 清空输入框
+    // inputText.value = '';
+  }, 500);
 }
 
 
