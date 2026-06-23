@@ -1,6 +1,9 @@
 <template>
   <div class="rag-ai-chat-wrap">
-    <div class="text">RAG知识库AI助手</div>
+    <div class="text">
+      <div>RAG知识库AI助手</div>
+      <div class="text-desc" @click="handleClickDesc">(说明)</div>
+    </div>
     <div class="ai-chat-container" ref="chatContainerRef">
       <div class="ai-chat-list">
         <div class="ai-chat-msglist__item" v-for="item in aiChatMsgList" :key="item.id">
@@ -39,6 +42,7 @@ import MessageInputBox from './components/message-input-box/index.vue';
 import VueMarkdown from 'vue-markdown-render';
 import Icon from '@cjc/vue3-svg-icon';
 import { aiChatMsgList } from './store.ts';
+import { ElMessageBox } from 'element-plus';
 
 const chatContainerRef = ref<HTMLDivElement>(null);
 const expandMap = ref<Record<number | string, boolean>>({});
@@ -69,7 +73,27 @@ watch(() => aiChatMsgList.value, (newList) => {
   smoothScrollToBottom();
 }, {
   deep: true
-})
+});
+
+// 点击说明
+const handleClickDesc = () => {
+    ElMessageBox.alert(
+    `<div>
+      <div>AI助手使用的前提是需要和RAGFlow知识库进行连接</div>
+      <div>需要和RAGFlow知识库中的聊天助手进行绑定，通过以下步骤进行绑定：</div>
+      <ul>
+        <li>1.注册登录RAGFlow知识库管理系统，创建一个 API KEY</li>
+        <li>2.创建并绑定聊天助手，调接口时传入聊天助手的chat_id</li>
+        <li>3.在接口的header中添加Authorization字段，值为Bearer API_KEY</li>
+      </ul>
+    </div>`,
+    'AI助手调用说明',
+    {
+      dangerouslyUseHTMLString: true,
+      draggable: true,
+    }
+  )
+};
 
 </script>
 <style lang="less" scoped>
@@ -81,9 +105,15 @@ watch(() => aiChatMsgList.value, (newList) => {
   height: 100%;
 
   .text {
+    display: flex;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 20px;
+  }
+  .text-desc {
+    cursor: pointer;
+    color: var(--el-color-primary);
+    text-decoration: underline;
   }
 }
 
