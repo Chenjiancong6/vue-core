@@ -52,7 +52,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
         },
         // import.meta.env.VITE_RAGFOLW_URL+ '/'+import.meta.env.VITE_RAGFOLW_CHAT_ID+'/chat/completions'
         '/ragflow/chat/completions': {
-          target: env.VITE_RAGFOLW_URL + `/${env.VITE_RAGFOLW_CHAT_ID}`,
+          target: env.VITE_RAGFOLW_URL + `/openai/${env.VITE_RAGFOLW_CHAT_ID}`,
           changeOrigin: true,
           ws: true,
           // 重写路径，将 /ragflow/chat/completions 变成 /chat/completions

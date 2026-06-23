@@ -91,7 +91,7 @@ const handleSendMsg = async () => {
   if(!hasLLMStream.value) {
     loading = ElLoading.service({
       lock: true,
-      text: 'Loading',
+      text: '正在思考中...',
       background: 'rgba(0, 0, 0, 0.7)',
     })
   }

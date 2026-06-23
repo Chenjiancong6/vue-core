@@ -5,6 +5,7 @@ export interface AIMsg {
   reasoning_content?: string; // 推理内容(思考过程)
   type?: 'ask' | 'reply'; // 消息类型
   status?: 'thinking' | 'done' | 'stream' | 'error'; // 消息状态
+  reference?: Array<any>; // 参考引用
 };
 
 // 聊天消息列表数据格式

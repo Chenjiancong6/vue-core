@@ -11,11 +11,16 @@ const { addHistoryChatMsg } = useHistoryChatMsgList();
 function getNoStreamResult(res: any) {
   if (!res) return;
   const result = res?.choices?.[0]?.message?.content || '';
-  console.log(res, '非流式处理-获取大语音模型返回结果', result);
+  // 数组对象去重，只保留document_id不同的
+  const reference = res?.choices?.[0]?.message?.reference || [];
+  // 按 document_id 去重
+  const uniqueReference = Array.from(new Map(reference.map(item => [item.document_id, item])).values());
+  console.log( '非流式处理-获取大语音模型返回结果:', res,);
   addAIMsg({
     content: result,
     type: 'reply',
     status: 'done',
+    reference: uniqueReference || [],
   });
   addHistoryChatMsg({
     role: 'assistant',
@@ -44,7 +49,7 @@ async function getStreamResult(response: any, _uuId: string) {
   // 创建一个文本解码器，用于将二进制数据转为字符串
   const decoder = new TextDecoder();
   let buffer = '';
-
+  let uniqueReference = []; // 引用的文档
   // 数据块处理
   function processChunk(chunk) {
     buffer += chunk;
@@ -73,6 +78,13 @@ async function getStreamResult(response: any, _uuId: string) {
         // 获取 content
         const content = parseData.choices?.[0]?.delta?.content;
         const reasoningContent = parseData.choices?.[0]?.delta?.reasoning_content;
+        // 获取 reference 引用的文档
+        const reference = parseData.choices?.[0]?.delta?.reference || [];
+
+        if(reference.length > 0) {
+          // 按 document_id 去重
+          uniqueReference = Array.from(new Map(reference.map(item => [item.document_id, item])).values());
+        }
 
         // 如果有内容，就添加到累积变量中
         if (content) {
@@ -88,6 +100,7 @@ async function getStreamResult(response: any, _uuId: string) {
           content: streamContent,
           reasoning_content,
           type: 'reply',
+          reference: uniqueReference || [], // 引用的文档
         };
 
       } catch (e) {

@@ -29,6 +29,12 @@
                 <VueMarkdown :source="item.content" />
               </div>
             </div>
+            <div class="ai-msg-reference" v-if="item?.reference?.length > 0">
+              <h3 class="ai-msg-reference__title">参考资料：</h3>
+              <div v-for="ref in item.reference" :key="ref.document_id" class="ai-msg-reference__item" @click="handleClickDownload(ref)">
+                {{ ref.document_name }}
+              </div>
+            </div>
           </template>
         </div>
       </div>
@@ -43,13 +49,19 @@ import VueMarkdown from 'vue-markdown-render';
 import Icon from '@cjc/vue3-svg-icon';
 import { aiChatMsgList } from './store.ts';
 import { ElMessageBox } from 'element-plus';
+import { referenceDownloadRequest } from './components/request/downloadRequest.ts';
 
 const chatContainerRef = ref<HTMLDivElement>(null);
 const expandMap = ref<Record<number | string, boolean>>({});
 
+// 点击下载参考资料
+const handleClickDownload = async (data) => {
+  const res = await referenceDownloadRequest(data);
+};
+
 const handleClickExpand = (id: number | string) => {
   expandMap.value[id] = !expandMap.value[id];
-}
+};
 
 // 平滑滚动到底部
 function smoothScrollToBottom() {
@@ -178,5 +190,12 @@ const handleClickDesc = () => {
     }
   }
 
+}
+
+.ai-msg-reference__item {
+  cursor: pointer;
+  margin-top: 5px;
+  color: var(--el-color-primary);
+  text-decoration: underline;
 }
 </style>
