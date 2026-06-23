@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
-import { ragflow_URL_body_config, hasLLMStream, aiChatMsgList } from '@/views/AI/rag-ai-chat/store';
+import { ragflow_URL_body_config, hasLLMStream, aiChatMsgList, historyChatMsgList } from '@/views/AI/rag-ai-chat/store';
 import { useAiChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-ai-chat-msg-list';
 import { useHistoryChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-history-chat-msg-list';
 import { ragflow_chat_request } from '@/views/AI/rag-ai-chat/components/request/chatRequest';
@@ -64,6 +64,7 @@ const disabledSend = computed(() => {
 
   // 找到最新的ai聊天消息，判断是否是流式处理
   const lastMsg = aiChatMsgList.value[aiChatMsgList.value.length - 1];
+  if(!lastMsg) return false;
   if(lastMsg.status === 'thinking' || lastMsg.status === 'stream') {
     ElMessage({
       message: 'ai模型还在思考中，请稍后再试',
@@ -115,12 +116,7 @@ const handleSendMsg = async () => {
   const res = await ragflow_chat_request({
     ...ragflow_URL_body_config,
     stream: hasLLMStream.value, // 是否开启流式处理
-    messages: [
-      {
-        role: 'user',
-        content: inputText.value,
-      }
-    ]
+    messages: [...historyChatMsgList.value]
   });
   // 关闭loading提示
   if(loading) {

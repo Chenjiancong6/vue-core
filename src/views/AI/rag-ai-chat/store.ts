@@ -22,13 +22,13 @@ export const ragflow_URL_body_config = {
   "stream": false, // 是否开启流式输出 (这里根据配置项动态传入)
   "extra_body": {
     "reference": false, // 是否开启参考引用功能
-    "reference_metadata": {
-      "include": true,
-      "fields": [
-        "author",
-        "year",
-        "source"
-      ]
-    }
+    // "reference_metadata": {
+    //   "include": true,
+    //   "fields": [
+    //     "author",
+    //     "year",
+    //     "source"
+    //   ]
+    // }
   }
 }
