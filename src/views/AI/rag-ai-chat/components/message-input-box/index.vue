@@ -41,25 +41,41 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
-import { ragflow_URL_body_config } from '@/views/AI/rag-ai-chat/store';
+import { ragflow_URL_body_config, hasLLMStream, aiChatMsgList } from '@/views/AI/rag-ai-chat/store';
 import { useAiChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-ai-chat-msg-list';
 import { useHistoryChatMsgList } from '@/views/AI/rag-ai-chat/components/hooks/use-history-chat-msg-list';
 import { ragflow_chat_request } from '@/views/AI/rag-ai-chat/components/request/chatRequest';
+import { ElLoading, ElMessage } from 'element-plus';
 
 const { addAIMsg } = useAiChatMsgList();
 const { addHistoryChatMsg } = useHistoryChatMsgList();
 
 const inputText = ref('');
 
-const hasLLMStream = ref<boolean>(true);
-
 const setSwitchStream = (flag: boolean) => {
   hasLLMStream.value = flag;
-}
+};
+
+// 流式处理模式时，如果AI还没回复完，禁止再次发送消息
+const disabledSend = computed(() => {
+  if(!hasLLMStream.value) return false;
+
+  // 找到最新的ai聊天消息，判断是否是流式处理
+  const lastMsg = aiChatMsgList.value[aiChatMsgList.value.length - 1];
+  if(lastMsg.status === 'thinking' || lastMsg.status === 'stream') {
+    ElMessage({
+      message: 'ai模型还在思考中，请稍后再试',
+      type: 'error',
+    });
+    return true;
+  }
+  return false;
+});
 
 const handleKeyDown = (e) => {
+  if(disabledSend.value) return;
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault(); // 阻止默认的回车换行行为
     handleSendMsg();    // 调用发送消息函数
@@ -67,27 +83,17 @@ const handleKeyDown = (e) => {
 }
 
 const handleSendMsg = async () => {
+  if(disabledSend.value) return;
   if (inputText.value.trim() === '') return;
-
-  if (hasLLMStream.value) {
-    // 流式处理
-   
-  } else {
-    // 非流式处理
-
-  };
-  let res = await ragflow_chat_request({
-    ...ragflow_URL_body_config,
-    messages: [
-      {
-        role: 'user',
-        content: inputText.value,
-      }
-    ]
-  });
-  console.log("接口响应数据",res);
-  if(!res) return;
-
+  let loading = null;
+  // 如果是非流式处理，才显示loading提示、否则不显示loading提示
+  if(!hasLLMStream.value) {
+    loading = ElLoading.service({
+      lock: true,
+      text: 'Loading',
+      background: 'rgba(0, 0, 0, 0.7)',
+    })
+  }
   // 添加ai聊天消息
   addAIMsg({
     id: uuidv4(), // 生成唯一id
@@ -99,10 +105,28 @@ const handleSendMsg = async () => {
     role: 'user',
     content: inputText.value,
   });
+
   setTimeout(() => {
     // 清空输入框
-    // inputText.value = '';
-  }, 500);
+    inputText.value = '';
+  }, 100);
+
+  // 调用接口获取ai模型回复
+  const res = await ragflow_chat_request({
+    ...ragflow_URL_body_config,
+    stream: hasLLMStream.value, // 是否开启流式处理
+    messages: [
+      {
+        role: 'user',
+        content: inputText.value,
+      }
+    ]
+  });
+  // 关闭loading提示
+  if(loading) {
+    loading.close();
+  }
+  // console.log("接口响应数据",res);
 }
 
 
