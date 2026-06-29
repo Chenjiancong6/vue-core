@@ -54,6 +54,6 @@ export declare interface IRequest {
   getConfig?: () => ConfigOption,
   query: (options: RequestOption)=> Promise<any>,
   cancel: (id: string)=> void,
-  addRequestInterceptor: (callback: any, errorCallback: any)=> void,
-  addResponseInterceptor: (callback: any, errorCallback: any)=> void,
+  addRequestInterceptor: (callback: ()=>void, errorCallback: ()=>void)=> void,
+  addResponseInterceptor: (callback: ()=>void, errorCallback: ()=>void)=> void,
 }
