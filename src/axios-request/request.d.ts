@@ -20,10 +20,12 @@ export declare interface IRequestOption {
   loading?: boolean;
   cancelToken?: any;
   cancel?: boolean;
-  cancelId?: string;
+  cancelId?: symbol | string;
   isUpload?: boolean;
   // loading的作用域
   context?: HTMLDivElement | undefined;
+  // 当前接口请求是否禁用全局请求参数。默认false
+  globalDataDisabled?: boolean;
 }
 
 // 请求参数类型
@@ -53,7 +55,7 @@ export declare interface IRequest {
   config: (options: ConfigOption)=> void,
   getConfig?: () => ConfigOption,
   query: (options: RequestOption)=> Promise<any>,
-  cancel: (id: string)=> void,
-  addRequestInterceptor: (callback: ()=>void, errorCallback: ()=>void)=> void,
-  addResponseInterceptor: (callback: ()=>void, errorCallback: ()=>void)=> void,
+  cancel: (cancelId?: symbol | string) => void,
+  addRequestInterceptor: (callback?: (config: any)=> any, errorCallback?:(error: any)=> any)=> any,
+  addResponseInterceptor: (callback?: (response: any)=> any, errorCallback?: (error: any)=> any)=> any,
 }

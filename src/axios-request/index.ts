@@ -63,6 +63,10 @@ class Request {
     if(options.responseType) {
       axios.defaults.responseType = options.responseType;
     }
+    // 全局请求数据格式
+    if(options.contentType) {
+      this.contentType = options.contentType as ContentType;
+    }
 
     // 全局请求数据
     if(options.globalData) {
@@ -102,6 +106,7 @@ class Request {
 
     // 设置contentType 
     let contentType = options.contentType || this.contentType;
+    console.log('设置contentType', contentType);
     if(contentType === 'form') {
       requestConfig.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     } else {
@@ -117,10 +122,11 @@ class Request {
     // 某些请求不需要前缀，覆盖掉axios.default.headers的baseURL字段
     if(options?.needPre == false) {
       requestConfig['baseURL'] = '';
+      axios.defaults.baseURL = '';
     }
 
     // 创建取消请求实例new axios.CancelToken。把请求添加到请求列表中
-    if(options?.cancel) {
+    if(options?.cancel !=false) {
      options.cancelToken = new axios.CancelToken((cancel) => {
       if(options.cancelId) {
         this._requestCancelList.push({
@@ -139,20 +145,26 @@ class Request {
 
     // 请求参数
     let requestData = options?.data || {};
-    console.log('this.headers', this.headers);
     console.log('requestConfig', requestConfig);
+
+
+    let _globalData = this.globalData || {};
+    // 当前接口请求是否禁用全局请求参数。默认false
+    if(options?.globalDataDisabled) {
+      _globalData = {};
+    }
 
     // 如果有全局请求参数，把参数拼接到接口请求参数中
     // 本次请求，需要设置全局请求参数
     if(options?.isUpload) {
-      for(const key in this.globalData) {
+      for(const key in _globalData) {
         // 上传模式下，数据一般是new FormData得到的，带有append的方法
-        options.data.append(key, this.globalData[key]);
+        options.data.append(key, _globalData[key]);
       }
     }else {
       // 非上传模式下，把全局请求参数添加到接口请求参数对象中
-      for(const key in this.globalData) {
-        requestData[key] = this.globalData[key];
+      for(const key in _globalData) {
+        requestData[key] = _globalData[key];
       }
     }
 
@@ -220,17 +232,22 @@ class Request {
   };
 
   /**
-   * 取消请求
+   * 取消请求, 如果传入cancelId, 则取消指定的请求, 否则取消全部请求
+   * 默认是空字符串，取消全部请求
    * @param cancelId 取消请求的id
    */
-  cancel(cancelId: string) {
-    if(cancelId) {
-      let reqCancel = this._requestCancelList.find((item) => item.cancelId === cancelId);
-      if(reqCancel) {
-        reqCancel.cancel({config: reqCancel.config});
+  // cancel提供一个默认值
+  cancel(cancelId: symbol | string = '') {
+    if (cancelId) {
+      for (let reqCancel of this._requestCancelList) {
+        if (reqCancel.cancelId == cancelId) {
+          reqCancel.cancel({
+            config: reqCancel.config,
+          });
+        }
       }
-      return ;
-    };
+      return;
+    }
     // 切换路由时，取消全部的请求
     this._requestCancelList.forEach((item) => {
       item.cancel({config: item.config});

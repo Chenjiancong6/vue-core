@@ -33,6 +33,14 @@ export const AIRouter =[
       name:'RAG-AI助手',
       headerMenu
     }
+  },{
+    path:'/test-axios',
+    component:()=>import('@/views/AI/test-axios/index.vue'),
+    children: [],
+    meta:{
+      name:'测试axios',
+      headerMenu
+    }
   }
 ];
 

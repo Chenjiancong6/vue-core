@@ -45,13 +45,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig =>{
     server: {
       proxy: {
         //  ragflow 代理
-        // [env.VITE_API_RAGFOLW_BASEPATH]: {
-        //   target: env.VITE_RAGFOLW_URL,
-        //   changeOrigin: true,
-        //   // 去掉env.VITE_API_RAGFOLW_BASEPATH前缀
-        //   rewrite: (path) => path.replace(env.VITE_API_RAGFOLW_BASEPATH, ''),
-        //   ws: true,
-        // },
+        [env.VITE_API_RAGFOLW_BASEPATH]: {
+          target: env.VITE_RAGFOLW_URL,
+          changeOrigin: true,
+          // 去掉env.VITE_API_RAGFOLW_BASEPATH前缀
+          rewrite: (path) => path.replace(env.VITE_API_RAGFOLW_BASEPATH, ''),
+          ws: true,
+        },
         //  天地图电子地图图层 代理 wgs84坐标系
         [env.VITE_API_BASEPATH]: {
           target: env.VITE_BASE_URL,
