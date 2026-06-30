@@ -67,7 +67,7 @@ request.cancel(cancelId);
 | contentType        | String         | form   | 可选值有：form、json。对应的请求数据格式分别为：application/x-www-form-urlencoded、application/json。一般项目全局定义即可，除非接口需要特别定义。 |
 | cancel             | Boolean        | true   | 是否允许取消该请求                                                                                                                                |
 | cancelId           | String, Symbol | ''     | 该请求用于取消请求的id，例如：cancelId=123;调用request.cancel('123')就会取消该请求                                                                |
-| globalDataDisabled | Boolean        | flase  | 当前接口是否禁用全局参数                                                                                                                          |
+| globalDataDisabled | Boolean        | flase  | 当前接口是否禁用globalData全局请求参数                                                                                                            |
 
 上面几个方法返回的都是promise对象。
 
