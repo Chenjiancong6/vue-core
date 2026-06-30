@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { Axios, AxiosRequestConfig, AxiosInstance } from "axios";
 import qs from 'qs';
 import { IRequest, ContentType, RequestOption, ConfigOption } from './request.d';
 
@@ -299,3 +299,53 @@ class Request {
 const request:IRequest = new Request();
 
 export default request;
+
+// 加载工程public目录下的文件
+let staticFileAxios = null;
+
+function getStaticAxios() {
+  if(staticFileAxios) {
+    return staticFileAxios;
+  }
+  staticFileAxios = axios.create({
+    baseURL: import.meta.env.VITE_BASE_PATH,
+  });
+  // 响应成功时，返回响应数据res.data
+  staticFileAxios.interceptors.response.use(function(res) {
+    return res.data;
+  }, function(err) {
+    return Promise.reject(err);
+  });
+  return staticFileAxios;
+};
+
+/**
+ * 加载public目录下的静态文件，兼容路由history模式
+ * 
+ * import { getStaticFile } from '@cjc/axios';
+ * 
+ * getStaticFile('xxx.json').then( res => {});
+ * @param {string | object} option 传public目录下的文件url
+ * @returns Promise<ResponseData>
+ */
+const getStaticFile = (option: string): Promise<any> => {
+  return getStaticAxios()(option);
+};
+
+
+/**
+ * 创建axios实例,用于创建不被工程的请求配置影响的干净的请求实例
+ * @param option axios实例的配置项
+ * @returns axios实例
+ */
+const createAxios = (option?: any): AxiosInstance => {
+  const _options = {
+    baseURL: '',
+    ...option,
+  };
+  return axios.create(_options);
+};
+
+
+
+export { axios, Axios, createAxios, getStaticFile };
