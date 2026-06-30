@@ -26,6 +26,16 @@ export declare interface IRequestOption {
   context?: HTMLDivElement | undefined;
   // 当前接口请求是否禁用全局请求参数。默认false
   globalDataDisabled?: boolean;
+  // 单个请求拦截器
+  requestInterceptor?: {
+    callback: (config: any)=> any;
+    errorCallback?: (error: any)=> any;
+  };
+  // 单个响应拦截器
+  responseInterceptor?: {
+    callback: (response: any)=> any;
+    errorCallback?: (error: any)=> any;
+  };
 }
 
 // 请求参数类型

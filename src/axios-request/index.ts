@@ -166,8 +166,17 @@ class Request {
       for(const key in _globalData) {
         requestData[key] = _globalData[key];
       }
-    }
+    };
 
+    /**
+     * 单个请求方法请求和响应拦截器
+     */
+    if(options?.requestInterceptor) {
+      axios.interceptors.request.use(options?.requestInterceptor?.callback, options?.requestInterceptor?.errorCallback);
+    }
+    if(options?.responseInterceptor) {
+      axios.interceptors.response.use(options?.responseInterceptor?.callback, options?.responseInterceptor?.errorCallback);
+    };
 
     // 返回的请求实例
     let requestPromise = null;
