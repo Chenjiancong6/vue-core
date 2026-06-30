@@ -4,7 +4,7 @@
 
 ## 组件安装
 
-```
+```javascript
 pnpm i @cjc/axios
 ```
 
@@ -13,6 +13,7 @@ pnpm i @cjc/axios
 ### config
 
 用于全局配置请求的参数，比如：请求前缀、默认的header、默认的数据类型等
+
 
 | 参数名称    | 类型   | 默认值 | 说明                                                                                                                              |
 | ----------- | ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +24,7 @@ pnpm i @cjc/axios
 
 globalData参数示例
 
-```
+```javascript
 // src/global/js/request.js中 执行，然后在main.ts 进行全局注册
 import request from '@cjc/axios'; 
 request.config({ 
@@ -40,6 +41,7 @@ request.config({
 
 ### cancel
 
+
 | 参数名称 | 类型   | 默认值 | 说明                                                                                                                     |
 | -------- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------ |
 | cancelId | String | Symbol | 要取消的请求的cancelId，不传则取消全部的请求。cancelId在get、post、delete、put等请求中作为参数带上，该值开发者自己定义。 |
@@ -55,6 +57,7 @@ request.cancel(cancelId);
 ```
 
 ### post | get | delete | put | patch
+
 
 | 参数名称           | 类型           | 默认值 | 说明                                                                                                                                              |
 | ------------------ | -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,13 +80,14 @@ request.cancel(cancelId);
 
 ### getStaticFile
 
+
 | 参数名称 | 类型   | 默认值 | 说明                                                                                                                                                                                                                                          |
 | -------- | ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | url      | string | ''     | 需要在工程配置中添加打包路径： VITE_BASE_PATH ，比如VITE_BASE_PATH  = / 。加载工程public目录下的文件，支持路由为history模式。url是public目录下的文件相对public的路径，例如：某文件路径是public/static/test.json，则这里要传：static/test.json |
 
 方法使用示例：
 
-```
+```javascript
 import { getStaticFile } from '@cjc/axios'; 
 getStaticFile('test.json').then( res => { // res就是静态文件的内容 });
 ```
@@ -92,13 +96,14 @@ getStaticFile('test.json').then( res => { // res就是静态文件的内容 });
 
 用于创建不被工程的请求配置影响的干净的请求实例。
 
+
 | 参数名称 | 类型   | 默认值 | 说明                                                   |
 | -------- | ------ | ------ | ------------------------------------------------------ |
 | option   | Object | {}     | 参数的属性参考axios.create(opens new window)方法的参数 |
 
 方法使用示例：
 
-```
+```javascript
 import { createAxios } from '@cjc/axios';
  const axios = createAxios(); 
 ```
@@ -107,7 +112,7 @@ import { createAxios } from '@cjc/axios';
 
 配置请求的loading实例，允许在请求发生时，触发一个loading动画,一般在 src/global/js/request.js 中配置
 
-```
+```javascript
 import { configLoading } from '@cjc/axios'; 
 import Loading from '@cjc/vue3-loading';
  configLoading(Loading)
@@ -123,7 +128,7 @@ TIP
 
 一般放在src/global/js/request.js中,然后在main.ts 中 全局注册使用
 
-```
+```javascript
 // 初始化配置全局请求，全局的数据格式和全局的头部
  // 一般放在src/global/js/request.js中 
 request.config({
@@ -156,7 +161,7 @@ getData(options) {
 
 ### 组件调用api.js代码示例
 
-```
+```javascript
 <template>
 <div ref="loadingRef">
     <el-button>点击按钮</el-button>
@@ -184,7 +189,7 @@ const loadData = async () => {
 
 ### 文件上传示例
 
-```
+```javascript
 <template>
 <input ref="fileRef" @change="uploadData"/>
 </template>
