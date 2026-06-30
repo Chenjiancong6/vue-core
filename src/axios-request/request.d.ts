@@ -1,5 +1,5 @@
 // ts declare 关键字 用于声明一个全局的变量、函数、类等 （只给类型，不给实现）
-import type { AxiosStatic, AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 /**
  * form 是 application/x-www-form-urlencoded 的缩写
@@ -17,11 +17,13 @@ export declare interface IRequestOption {
   headers?: any;
   contentType?: ContentType;
   needPre?: boolean;
-  loading?: boolean;
+
   cancelToken?: any;
   cancel?: boolean;
   cancelId?: symbol | string;
   isUpload?: boolean;
+  // 是否需要loading 动画, 默认false
+  loading?: boolean;
   // loading的作用域
   context?: HTMLDivElement | undefined;
   // 当前接口请求是否禁用全局请求参数。默认false
@@ -46,9 +48,10 @@ export declare type ConfigOption = {
   requestPre?: string;
   headers?: any;
   globalData?: any; // 全局请求数据
-  globalConfig?: any; // 全局配置参数
   contentType?: ContentType;
   timeout?: number;
+  // 是否需要loading 动画, 默认false
+  loading?: boolean;
   // `responseType` 表示浏览器将要响应的数据类型
   // 选项包括: 'arraybuffer', 'document', 'json', 'text', 'stream'
   // 浏览器专属：'blob'

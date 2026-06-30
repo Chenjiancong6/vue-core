@@ -1,5 +1,6 @@
-import axios, { Axios, AxiosRequestConfig, AxiosInstance } from "axios";
 import qs from 'qs';
+import { configLoading } from './loading';
+import axios, { Axios, AxiosRequestConfig, AxiosInstance } from "axios";
 import { IRequest, ContentType, RequestOption, ConfigOption } from './request.d';
 
 const CONFIG = Symbol();
@@ -348,4 +349,4 @@ const createAxios = (option?: any): AxiosInstance => {
 
 
 
-export { axios, Axios, createAxios, getStaticFile };
+export { axios, Axios, createAxios, getStaticFile, configLoading };
