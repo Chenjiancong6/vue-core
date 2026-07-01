@@ -147,23 +147,14 @@ export const commonRouter = [
         },
       },
     ],
-  },
-  {
-    path: "/preload-images",
-    component: () => import("@/views/preload-images/index.vue"),
+  },{
+    path: "/request-axios",
+    component: () => import("@/views/comp/request-axios/index.vue"),
     meta: {
-      name: "图片预加载",
+      name: "网络请求axios",
       headerMenu,
     },
-  },
-  {
-    path: "/preload-images-about",
-    component: () => import("@/views/preload-images-about/index.vue"),
-    meta: {
-      name: "图片预加载说明",
-      headerMenu,
-    },
-  },
+  }
 ];
 
 // 默认的打开的第一个菜单
