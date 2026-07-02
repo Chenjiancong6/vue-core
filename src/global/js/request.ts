@@ -1,17 +1,28 @@
-import request from  "@/axios-request/index";
-import axios from "axios";
+import request, { axios, configLoading } from  "@/axios-request/index";
+import Loading from "@/components/vue3-loading/vue3-pc-loading/index";
+
 
 request.config({
   // requestPre: import.meta.env.VITE_RAGFOLW_URL,
-  requestPre: import.meta.env.VITE_API_RAGFOLW_BASEPATH,
-  headers: {
-    'Authorization': `Bearer ${import.meta.env.VITE_RAGFOLW_API_KEY}`,
-    // 'Content-Type': 'application/x-www-form-urlencoded',
-  },
+  // requestPre: import.meta.env.VITE_API_RAGFOLW_BASEPATH,
+  requestPre: import.meta.env.VITE_API_BASEPATH,
+  // loading: true,
+  // headers: {
+  //   'Authorization': `Bearer ${import.meta.env.VITE_RAGFOLW_API_KEY}`,
+  //   // 'Content-Type': 'application/x-www-form-urlencoded',
+  // },
   //  globalData: {
   //   moduleId: 'transpaas'
   // }
-})
+});
+
+// 设置loading 配置
+configLoading(Loading);
+// 设置全局loading 样式
+Loading.setGlobalLoadingStyle({
+  background: 'rgba(0, 0, 0, 0.5)',
+});
+
 
 // request.addResponseInterceptor(function(response) {
 //   // 添加返回值自定义拦截逻辑

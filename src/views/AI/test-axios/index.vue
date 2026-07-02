@@ -1,6 +1,6 @@
 <template>
- <div>
-  <el-button type="primary" @click="handleClickDownload">点击下载文档</el-button>
+ <div ref="downloadRef">
+  <el-button type="primary" @click="handleClickDownload" >点击下载文档</el-button>
   <el-button type="primary" @click="handleClickCancel">点击取消下载</el-button>
   <el-button type="primary" @click="handleClickPost">园区post 请求</el-button>
   <el-button type="primary" @click="handleClickUpload">上传文件</el-button>
@@ -14,7 +14,7 @@ import axios from 'axios';
 import { joinPaths } from '@cjc/zebra';
 import request, { getStaticFile } from "@/axios-request/index";
 
-console.log('axios.defaults.baseURL', axios.defaults.baseURL);
+const downloadRef = ref(null);
 
 const callCykjcsApi = async (apiOption, requestOption = null) => {
 
@@ -59,6 +59,8 @@ async function referenceDownloadRequest(data: { dataset_id: string; document_id:
       responseType: 'blob',
       cancelId,
       needPre: false,
+      loading: true,
+      context: downloadRef.value,
       // timeout: 10000,
     });
     
