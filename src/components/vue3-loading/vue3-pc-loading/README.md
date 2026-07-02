@@ -8,7 +8,6 @@
 pnpm i @cjc/vue3-loading
 ```
 
-
 ### 方法说明
 
 #### setGlobalLoadingStyle
@@ -21,7 +20,6 @@ import Loading from "@cjc/vue3-loading"
 // 设置全局loading 样式
  Loading.setGlobalLoadingStyle({ background: 'rgba(0, 0, 0, 0.5)' });
 ```
-
 
 #### setGlobalContext
 
@@ -66,13 +64,12 @@ onMounted(() => {
 </style>
 ```
 
-
 #### add
 
 增加一个loading
 
 ```javascript
-import Loading from '@cjc/cjc-loading';
+import Loading from '@cjc/vue3-loading';
 
 // loading作用在全局
 Loading.add()
