@@ -50,7 +50,7 @@ export const commonRouter = [
     ],
   },
   {
-    path:'/plate-number',
+    path: '/plate-number',
     component: () => import("@/views/comp/plate-number/index.vue"),
     meta: {
       name: "移动端-车牌号码",
@@ -98,7 +98,7 @@ export const commonRouter = [
     },
   },
   {
-    path:'/vue-defer',
+    path: '/vue-defer',
     component: () => import("@/views/comp/vue-defer/index.vue"),
     meta: {
       name: "vue3懒渲染组件",
@@ -147,22 +147,41 @@ export const commonRouter = [
         },
       },
     ],
-  },{
-    path: "/request-axios",
-    component: () => import("@/views/comp/request-axios/index.vue"),
+  }, {
+    path: '/network',
     meta: {
-      name: "网络请求axios",
+      name: "网络请求",
       headerMenu,
     },
-  },{
-    path:'/test-axios',
-    component:()=>import('@/views/comp/test-axios/index.vue'),
-    children: [],
-    meta:{
-      name:'测试axios',
-      headerMenu
-    }
+    children: [
+      {
+        path: "request-axios",
+        component: () => import("@/views/comp/request-axios/index.vue"),
+        meta: {
+          name: "网络请求axios",
+          headerMenu,
+        },
+      }, {
+        path: 'test-axios',
+        component: () => import('@/views/comp/test-axios/index.vue'),
+        children: [],
+        meta: {
+          name: '测试axios',
+          headerMenu
+        }
+      }, {
+        path: 'vue3-loading',
+        component: () => import('@/views/comp/vue3-loading/index.vue'),
+        children: [],
+        meta: {
+          name: '加载PC端loading组件',
+          headerMenu
+        }
+      }
+    ],
   }
+
+
 ];
 
 // 默认的打开的第一个菜单
