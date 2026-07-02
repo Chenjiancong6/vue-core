@@ -1,16 +1,18 @@
-import request, { axios, configLoading } from  "@/axios-request/index";
-import Loading from "@/components/vue3-loading/vue3-pc-loading/index";
+// import request, { axios, configLoading } from  "@/axios-request/index";
+// import Loading from "@/components/vue3-loading/vue3-pc-loading/index";
+import request, { axios, configLoading } from  "@cjc/axios";
+import Loading from "@cjc/vue3-loading";
 
 
 request.config({
   // requestPre: import.meta.env.VITE_RAGFOLW_URL,
-  // requestPre: import.meta.env.VITE_API_RAGFOLW_BASEPATH,
-  requestPre: import.meta.env.VITE_API_BASEPATH,
+  requestPre: import.meta.env.VITE_API_RAGFOLW_BASEPATH,
+  // requestPre: import.meta.env.VITE_API_BASEPATH,
   // loading: true,
-  // headers: {
-  //   'Authorization': `Bearer ${import.meta.env.VITE_RAGFOLW_API_KEY}`,
-  //   // 'Content-Type': 'application/x-www-form-urlencoded',
-  // },
+  headers: {
+    'Authorization': `Bearer ${import.meta.env.VITE_RAGFOLW_API_KEY}`,
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+  },
   //  globalData: {
   //   moduleId: 'transpaas'
   // }

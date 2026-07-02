@@ -10,9 +10,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
 import { joinPaths } from '@cjc/zebra';
-import request, { getStaticFile } from "@/axios-request/index";
+// import request, { getStaticFile } from "@/axios-request/index";
+import request, { getStaticFile } from "@cjc/axios";
 
 const downloadRef = ref(null);
 
