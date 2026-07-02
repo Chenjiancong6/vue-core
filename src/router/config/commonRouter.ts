@@ -154,6 +154,14 @@ export const commonRouter = [
       name: "网络请求axios",
       headerMenu,
     },
+  },{
+    path:'/test-axios',
+    component:()=>import('@/views/comp/test-axios/index.vue'),
+    children: [],
+    meta:{
+      name:'测试axios',
+      headerMenu
+    }
   }
 ];
 
