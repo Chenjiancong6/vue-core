@@ -14,6 +14,8 @@ const removeLoading = (config) => {
 
   if(config) {
     loadingInstance?.remove(config.context);
+  }else {
+    loadingInstance?.remove();
   }
 };
 
@@ -27,18 +29,15 @@ axios.interceptors.request.use((config:any) => {
    * 2. 当全局loading 为true,当前请求loading为 false 时, 不添加loading 动画
    * 3. 当全局loading 为false,当前请求loading为 true 时, 添加loading 动画
    */
-  if(config?.loading == false) {
+  if(config?.loading === false) {
     removeLoading(config);
     return config;
   };
-  if(config?.loading == true) {
+  if(config?.loading === true || globalConfig.loading  === true) {
     loadingInstance?.add(config.context);
     return config;
   };
-  if(globalConfig.loading  == true) {
-    loadingInstance?.add(config.context);
-    return config;
-  };
+
   return config;
 
 },function(error) {
