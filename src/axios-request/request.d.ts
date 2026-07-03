@@ -25,7 +25,7 @@ export declare interface IRequestOption {
   // 是否需要loading 动画, 默认false
   loading?: boolean;
   // loading的作用域
-  context?: HTMLDivElement | undefined;
+  context?: HTMLDivElement | object;
   // 当前接口请求是否禁用全局请求参数。默认false
   globalDataDisabled?: boolean;
   // 单个请求拦截器

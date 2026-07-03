@@ -65,6 +65,9 @@ importers:
       '@cjc/vue3-loading':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.31)
+      '@cjc/vue3-mobile-loading':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.31)
       '@cjc/vue3-plate-number':
         specifier: ^1.0.0
         version: 1.0.0
@@ -261,6 +264,9 @@ packages:
 
   '@cjc/vue3-loading@1.0.0':
     resolution: {integrity: sha512-L8JQkzclwR/jKp/nu3Ffzch4a8Yt7Wjo0dpXXI+24cQ40Htt4uVJ4EWzkwZ4jBHAXl8AwjX3kqTqnTDMbY3n4Q==}
+
+  '@cjc/vue3-mobile-loading@1.0.0':
+    resolution: {integrity: sha512-rYdvebPGT+HWgQzZfa1ohaV50AC6qyRDOL/Q5gYZ6KaJUjnWZixk7ufa0VcnE8ROTqJWm+Es7WT8l9reCTL20Q==}
 
   '@cjc/vue3-plate-number@1.0.0':
     resolution: {integrity: sha512-u9JBYYp8tN7JYP/l0WZzuDyQ/t7h16AcKvOdwmrMGhk2Oie3oD8f4iwYOJumBcqU8LtgbXJjtaKxLR1Eonb45w==}
@@ -3572,6 +3578,12 @@ snapshots:
       element-plus: 2.13.6(vue@3.5.31)
     transitivePeerDependencies:
       - typescript
+      - vue
+
+  '@cjc/vue3-mobile-loading@1.0.0(vue@3.5.31)':
+    dependencies:
+      vant: 4.9.24(vue@3.5.31)
+    transitivePeerDependencies:
       - vue
 
   '@cjc/vue3-plate-number@1.0.0': {}

@@ -177,7 +177,15 @@ export const commonRouter = [
           name: '加载PC端loading组件',
           headerMenu
         }
-      }
+      }, {
+        path: 'vue3-loading-mobile',
+        component: () => import('@/views/comp/vue3-loading-mobile/index.vue'),
+        children: [],
+        meta: {
+          name: '加载移动端loading组件',
+          headerMenu
+        }
+      },
     ],
   }
 

@@ -1,7 +1,10 @@
 // import request, { axios, configLoading } from  "@/axios-request/index";
 // import Loading from "@/components/vue3-loading/vue3-pc-loading/index";
+// import Loading from "@/components/vue3-loading/vue3-mobile-loading/index";
 import request, { axios, configLoading } from  "@cjc/axios";
+// import Loading from "@cjc/vue3-mobile-loading";
 import Loading from "@cjc/vue3-loading";
+
 
 
 request.config({
@@ -20,10 +23,11 @@ request.config({
 
 // 设置loading 配置
 configLoading(Loading);
+
 // 设置全局loading 样式
-Loading.setGlobalLoadingStyle({
-  background: 'rgba(0, 0, 0, 0.5)',
-});
+// Loading.setGlobalLoadingStyle({
+//   background: 'rgba(0, 0, 0, 0.5)',
+// });
 
 
 // request.addResponseInterceptor(function(response) {

@@ -6,6 +6,7 @@
   <el-button type="primary" @click="handleClickUpload">上传文件</el-button>
   <el-button type="primary" @click="handleClickRequestInterceptor">请求拦截器</el-button>
   <el-button type="primary" @click="handleClickDownloadStaticFile">下载静态资源</el-button>
+  <el-button type="primary" @click="handleClickLoadingMobile">移动端loading加载</el-button>
  </div>
 </template>
 <script setup lang="ts">
@@ -47,7 +48,6 @@ const callCykjcsApi = async (apiOption, requestOption = null) => {
   }
   return res;
 }
-
 
 const cancelId = Symbol();
 async function referenceDownloadRequest(data: { dataset_id: string; document_id: string; document_name: string }) {
@@ -153,6 +153,19 @@ const handleClickRequestInterceptor = async () => {
 const handleClickDownloadStaticFile = async () => {
   const res = await getStaticFile('static/js/mapbox-gl.js');
   console.log("1测试下载静态资源",res);
+}
+
+const handleClickLoadingMobile = async () => {
+  const dataset_id = "80bbc1546e0b11f1ad948bb20dc46ede";
+  const document_id = "88e73afc6e0b11f1ad948bb20dc46ede";
+  const response = await request.get({
+    url: `/datasets/${dataset_id}/documents/${document_id}`,
+    responseType: 'blob',
+    loading: true, // 开启loading
+    // context: {
+    //   message: '自定义loading提示',
+    // },
+  });
 }
 
 
