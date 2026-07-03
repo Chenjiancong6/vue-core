@@ -26,11 +26,9 @@ const response = await request.get({
 
 #### add
 
-```####
+```javascript
 
 增加一个loading
-
-```javascript
 import Loading from '@cjc/vue3-loading-mobile';
 
 // loading作用在全局
