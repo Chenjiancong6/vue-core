@@ -166,7 +166,7 @@ export const commonRouter = [
         component: () => import('@/views/comp/test-axios/index.vue'),
         children: [],
         meta: {
-          name: '测试axios',
+          name: '测试axios功能',
           headerMenu
         }
       }, {
