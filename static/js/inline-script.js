@@ -1,0 +1,1 @@
+window.__BAOSHE_VAR_ECHARTS="/node_modules/.pnpm/echarts@6.0.0/node_modules/echarts/dist/echarts.min.js";;window.__BAOSHE_VAR_MAPBOXGL="/node_modules/.pnpm/mapbox-gl@1.13.3/node_modules/mapbox-gl/dist/mapbox-gl.js";window.__BAOSHE_VAR_MAPBOXGL_CSS="/node_modules/.pnpm/mapbox-gl@1.13.3/node_modules/mapbox-gl/dist/mapbox-gl.css";

@@ -1,0 +1,2 @@
+/* empty css                                                              */import{h as t,r as o,a as r,p as n,e as p,f as a}from"./index-CJ0lrX-z.js";const c="/vue-core/assets/%E5%9B%BE%E5%83%8F-BlaVWJpL.jpeg",_={__name:"index",setup(l){return(i,e)=>{const s=o("Vue3DraggableResizable");return r(),n(s,{parent:!0,class:"v3-drag-zoom-container"},{default:p(()=>[...e[0]||(e[0]=[a("div",{class:"drap-warp"},[a("img",{src:c,alt:""})],-1)])]),_:1})}}},u=t(_,[["__scopeId","data-v-a61d92c9"]]);export{u as default};
+//# sourceMappingURL=index-CBofNhS_.js.map
