@@ -2,6 +2,16 @@
 
 > 本文档用于帮助AI理解项目结构，进行代码开发和维护
 
+## 核心规则
+
+1. 最小改动原则:修复或优化时，追求最优、最小改动，不做不必要的重构或变更
+2. 零副作用原则:修改一个功能时，禁止影响其他已有的功能。修改前充分理解上下文，修改后确认不会引入回归问题
+
+* 完成工作后禁止写任何说明、总结、更新及其他文档
+* 使用中文回答
+* 修改完不用你重启服务验证，用户自己会验证
+* 实现功能的时候注意代码质量，能封装尽量封装，遵循高内聚低耦合
+
 ## 项目概述
 
 **vue-core** 是一个基于 Vue3 + Vite 的个人组件库和演示项目，包含了大量的自定义组件、AI功能集成、地图组件、图表组件等。
@@ -13,27 +23,24 @@
 
 ## 快速开始
 
-\\ash
-
+```bash
 # 安装依赖
-
 pnpm install
 
 # 启动开发服务器 (端口: 8088)
-
 pnpm dev
 
 # 生产构建
-
 pnpm build
 
 # 构建体积分析
-
 pnpm build:analyze
+```
 
 ## 项目目录结构
 
-\vue-core/
+```
+vue-core/
 ├── src/
 │   ├── ai-lib/                    # AI大语言模型相关库
 │   │   ├── ai-api-keys/          # API密钥管理
@@ -62,12 +69,42 @@ pnpm build:analyze
 │   │   │   └── request.ts        # 请求全局配置
 │   │   └── style/                # 全局样式
 │   ├── hooks/                     # 自定义Hooks
+│   │   ├── preloadImages.ts      # 图片预加载
+│   │   ├── use-draggable.ts      # 拖拽功能
+│   │   ├── use-emitt.ts          # 事件发射器
+│   │   ├── use-eventListener.ts  # 事件监听
+│   │   ├── use-iat.ts            # 语音识别
+│   │   ├── use-maskName.ts       # 名称脱敏
+│   │   └── useCanvasTextWaterfallFlow.ts  # 画布文字瀑布流
 │   ├── layout/                    # 布局组件
+│   │   ├── components/
+│   │   │   ├── setting/          # 设置面板（主题切换等）
+│   │   │   ├── aside-menu.vue    # 侧边菜单
+│   │   │   ├── header-menu.vue   # 顶部菜单
+│   │   │   └── useMenu.ts        # 菜单逻辑
+│   │   └── index.vue
 │   ├── network/                   # 网络请求
 │   ├── router/                    # 路由配置
+│   │   ├── config/
+│   │   │   ├── AIRouter.ts       # AI功能路由
+│   │   │   ├── commonRouter.ts   # 通用组件路由
+│   │   │   ├── echartsRouter.ts  # 图表路由
+│   │   │   ├── mapRouter.ts      # 地图路由
+│   │   │   └── plugin.ts         # 插件演示路由
+│   │   └── index.js              # 路由入口
 │   ├── types/                     # TypeScript类型定义
 │   ├── utils/                     # 工具函数
 │   ├── views/                     # 页面视图
+│   │   ├── AI/                    # AI功能页面
+│   │   │   ├── chat/              # AI助手聊天
+│   │   │   ├── iat/               # 讯飞语音识别
+│   │   │   ├── rag-ai-chat/       # RAG AI聊天
+│   │   │   └── rag-flow/          # RAGFlow知识库
+│   │   ├── comp/                  # 组件演示页面
+│   │   ├── ec/                    # ECharts演示
+│   │   ├── map/                   # 地图演示
+│   │   ├── NotFound/              # 404页面
+│   │   └── plugin/                # Vite插件演示
 │   ├── zebra/                     # 工具函数库
 │   ├── App.vue
 │   ├── main.js                    # 应用入口
@@ -81,7 +118,7 @@ pnpm build:analyze
 ├── vite.config.ts                 # Vite配置
 ├── tsconfig.json                  # TypeScript配置
 └── package.json
-\
+```
 
 ## 核心依赖说明
 
@@ -134,8 +171,9 @@ pnpm build:analyze
 ## Vite插件配置
 
 项目使用了大量自定义Vite插件（已发布到 @cjc 命名空间下）：
-// vite.config.ts 中使用的插件
 
+```typescript
+// vite.config.ts 中使用的插件
 - @cjc/vite-plugin-chen-clear-console-alert-debug  // 清除console/alert/debugger
 - @cjc/vite-plugin-chen-vant-auto-import           // Vant自动导入
 - @cjc/vite-plugin-chen-icon-park-auto-import      // IconPark自动导入
@@ -146,33 +184,35 @@ pnpm build:analyze
 - vite-plugin-md                                   // Markdown支持
 - vite-svg-loader                                  // SVG加载器
 - vite-bundle-analyzer                             // 构建体积分析
+```
 
 ## 路由系统
 
 ### 路由配置位置
 
-- \src/router/index.js\: 路由入口
-- \src/router/config/commonRouter.ts\: 通用组件路由
-- \src/router/config/echartsRouter.ts\: 图表路由
-- \src/router/config/mapRouter.ts\: 地图路由
-- \src/router/config/AIRouter.ts\: AI功能路由
-- \src/router/config/plugin.ts\: 插件路由
+- @@src/router/index.js@@: 路由入口
+- @@src/router/config/commonRouter.ts@@: 通用组件路由
+- @@src/router/config/echartsRouter.ts@@: 图表路由
+- @@src/router/config/mapRouter.ts@@: 地图路由
+- @@src/router/config/AIRouter.ts@@: AI功能路由
+- @@src/router/config/plugin.ts@@: 插件路由
 
 ### 路由模式
 
-- 使用 \createWebHashHistory()\ Hash模式
+- 使用 @@createWebHashHistory()@@ Hash模式
 
 ### 菜单系统
 
 - 顶部菜单分为5个分类：**组件、图表、地图、AI、vite插件**
 - 侧边菜单根据顶部选中菜单动态变化
-- 菜单逻辑在 \src/layout/components/useMenu.ts
+- 菜单逻辑在 @@src/layout/components/useMenu.ts@@
 
 ## 核心功能模块详解
 
 ### 1. 请求封装 (@cjc/axios)
 
-**配置位置**: \src/global/js/request.ts
+**配置位置**: @@src/global/js/request.ts@@
+
 **主要功能**:
 
 - 全局请求前缀配置
@@ -184,40 +224,43 @@ pnpm build:analyze
 - 支持静态文件读取
 
 **使用示例**:
-\\	typescript
+
+```typescript
 import request from '@cjc/axios';
 
 // GET请求
 const res = await request.get({
-url: '/api/data',
-data: { id: 1 },
-loading: true,
-context: domRef  // 局部loading
+  url: '/api/data',
+  data: { id: 1 },
+  loading: true,
+  context: domRef  // 局部loading
 });
 
 // POST请求
 const res = await request.post({
-url: '/api/save',
-data: formData,
-contentType: 'json'
+  url: '/api/save',
+  data: formData,
+  contentType: 'json'
 });
 
 // 取消请求
 const cancelId = Symbol('request');
 request.post({ url: '/api', cancelId });
 request.cancel(cancelId);
-\
+```
 
 ### 2. AI大语言模型模块
 
-**入口文件**: \src/ai-lib/llm.ts
+**入口文件**: @@src/ai-lib/llm.ts@@
+
 **核心类**:
 
-- \LLMNoStream\: 非流式请求
-- \LLMStream\: 流式请求（SSE）
-- \AIMsgHandler\: AI消息处理器
+- @@LLMNoStream@@: 非流式请求
+- @@LLMStream@@: 流式请求（SSE）
+- @@AIMsgHandler@@: AI消息处理器
 
-**API密钥配置**: \src/ai-lib/ai-api-keys/api-keys.ts
+**API密钥配置**: @@src/ai-lib/ai-api-keys/api-keys.ts@@
+
 **支持模型**:
 
 - DeepSeek系列
@@ -226,19 +269,21 @@ request.cancel(cancelId);
 
 ### 3. Loading组件
 
-**PC端**: \@cjc/vue3-loading\ (基于Element Plus)
-**移动端**: \@cjc/vue3-mobile-loading\ (基于Vant)
+**PC端**: ``cjc/vue3-loading@@ (基于Element Plus) **移动端**: ``cjc/vue3-mobile-loading@@ (基于Vant)
 
 **全局配置**:
-\\	typescript
+
+```typescript
 import { configLoading } from '@cjc/axios';
 import Loading from '@cjc/vue3-loading';
 configLoading(Loading);
-\
+```
 
 ### 4. 水印组件
 
-**位置**: \src/components/watermark/**演示页面**: \src/views/comp/watermark/
+**位置**: @@src/components/watermark/@@
+**演示页面**: @@src/views/comp/watermark/@@
+
 **功能**:
 
 - Canvas绘制水印
@@ -247,7 +292,9 @@ configLoading(Loading);
 
 ### 5. 列表懒加载
 
-**位置**: \src/components/list-scroll-lazy-loading/**演示页面**: \src/views/comp/list-lazyLoading/
+**位置**: @@src/components/list-scroll-lazy-loading/@@
+**演示页面**: @@src/views/comp/list-lazyLoading/@@
+
 **功能**:
 
 - 滚动到底部自动加载
@@ -256,7 +303,8 @@ configLoading(Loading);
 
 ### 6. 表格滚动优化
 
-**位置**: \src/components/scroll-table/**功能**:
+**位置**: @@src/components/scroll-table/@@
+**功能**:
 
 - el-table滚动增强
 - 虚拟滚动优化
@@ -264,7 +312,9 @@ configLoading(Loading);
 
 ### 7. ECharts组件
 
-**PC端**: \src/components/vue3-echarts/**移动端**: \src/components/vue3-echarts-mobile/
+**PC端**: @@src/components/vue3-echarts/@@
+**移动端**: @@src/components/vue3-echarts-mobile/@@
+
 **功能**:
 
 - 自适应容器大小
@@ -275,7 +325,8 @@ configLoading(Loading);
 
 #### 高德地图
 
-**位置**: \src/components/gaode-map/**功能**:
+**位置**: @@src/components/gaode-map/@@
+**功能**:
 
 - 地图图层管理
 - 点标记、线、面绘制
@@ -283,7 +334,8 @@ configLoading(Loading);
 
 #### MapboxGL
 
-**位置**: \src/components/vue3-basemap-mapboxgl/**功能**:
+**位置**: @@src/components/vue3-basemap-mapboxgl/@@
+**功能**:
 
 - 底图切换
 - 瓦片图层管理
@@ -294,93 +346,94 @@ configLoading(Loading);
 
 **相关组件**:
 
-- \vue3-drag-zoom\: 图片/内容拖拽缩放
-- \@v3e/vue3-draggable-resizable\: 可拖拽可调整大小组件
-- \src/hooks/use-draggable.ts\: 自定义拖拽Hook
+- @@v3-drag-zoom@@: 图片/内容拖拽缩放
+- @@v3e/vue3-draggable-resizable@@: 可拖拽可调整大小组件
+- @@src/hooks/use-draggable.ts@@: 自定义拖拽Hook
 
 ## 开发规范
 
 ### 组件开发规范
 
 1. **组件文件结构**:
-   \   component-name/
+   
+   ```
+   component-name/
    ├── index.vue       # 组件入口
    ├── README.md       # 组件文档（可选）
    └── components/     # 子组件（可选）
-   \
+   ```
 2. **页面演示路由**:
-
+   
    - 在对应router配置文件中添加路由
    - meta.name 为菜单显示名称
    - meta.headerMenu 为顶部菜单分类
 3. **使用 @ 别名**:
-   \\	ypescript
+   
+   ```typescript
    import xxx from '@/components/xxx';
-   \
+   ```
 
 ### 网络请求规范
 
-1. **API定义位置**: 组件同级目录下的 \pi.js\ / \pi.ts2. **请求方式**: 统一使用 \@cjc/axios3. **Loading控制**: 根据场景选择全局/局部loading
-2. **取消请求**: 页面切换时自动取消，重要请求设置 \cancel: false
+1. **API定义位置**: 组件同级目录下的 @@api.js@@ / @@api.ts@@
+2. **请求方式**: 统一使用 ```cjc/axios@@
+3. **Loading控制**: 根据场景选择全局/局部loading
+4. **取消请求**: 页面切换时自动取消，重要请求设置 @@cancel: false@@
 
 ### 样式规范
 
 1. 使用 Less 预处理器
-2. 全局样式在 \src/global/style/\ 中
+2. 全局样式在 @@src/global/style/@@ 中
 3. 组件样式使用 scoped
-4. 布局样式在 \layout.less\ 中统一管理
+4. 布局样式在 @@layout.less@@ 中统一管理
 
 ## 环境变量配置
 
-**配置文件位置**: \config/.env.*
-\\ash
+**配置文件位置**: @@config/.env.*@@
 
+```bash
 # 基础路径
-
 VITE_BASE_PATH = /
 
 # 接口前缀（用于proxy转发）
-
 VITE_API_BASEPATH=/industry-brain-api/v8/test
 VITE_BASE_URL = https://baoshe.sutpc.com
 
 # RAGFlow配置
-
 VITE_API_RAGFOLW_BASEPATH=/ragflow-basepath
 VITE_RAGFOLW_URL = http://192.168.7.129/api/v1
 VITE_RAGFOLW_API_KEY = ragflow-xxx
 VITE_RAGFOLW_CHAT_ID = xxx
 
 # 应用标题
-
 VITE_APP_TITLE = vue3-core核心组件
+```
 
-**Proxy配置**: 在 \vite.config.ts\ 的 \server.proxy\ 中配置
+**Proxy配置**: 在 @@vite.config.ts@@ 的 @@server.proxy@@ 中配置
 
 ## 构建与部署
 
 ### 构建命令
 
-\\ash
-
+```bash
 # 普通构建
-
 pnpm build
 
 # 带体积分析的构建
-
 pnpm build:analyze
-\
+```
 
 ### 构建输出
 
-- 输出目录: \dist/- SourceMap: 已开启
+- 输出目录: @@dist/@@
+- SourceMap: 已开启
 
 ## 私有npm包说明
 
 项目大量使用了作者发布的私有npm包（@cjc命名空间）：
 
-\@cjc/axios                              # 请求封装
+```
+@cjc/axios                              # 请求封装
 @cjc/dom-resize-observer                # DOM尺寸监听
 @cjc/ellipsis-text                      # 文本省略组件
 @cjc/gaode-map                          # 高德地图组件
@@ -404,17 +457,17 @@ pnpm build:analyze
 @cjc/vue3-svg-icon                       # SVG图标组件
 @cjc/zebra                                # 工具函数库
 @cjc/vite-plugin-chen-vant-auto-import   # Vant自动导入
-\
+```
 
 ## 常见问题与解决方案
 
 ### 1. 私有npm包安装失败
 
-确保已配置正确的npm源（阿里云私有仓库）。参考 \README.md\ 中的配置说明。
+确保已配置正确的npm源（阿里云私有仓库）。参考 @@README.md@@ 中的配置说明。
 
 ### 2. Loading不显示
 
-检查是否在 \src/global/js/request.ts\ 中调用了 \configLoading(Loading)\。
+检查是否在 @@src/global/js/request.ts@@ 中调用了 @@configLoading(Loading)@@。
 
 ### 3. 组件样式问题
 
@@ -432,17 +485,21 @@ pnpm build:analyze
 
 ### 添加新组件
 
-1. 在 \src/components/\ 下创建组件目录
-2. 在 \src/views/comp/\ 下创建演示页面
-3. 在 \src/router/config/commonRouter.ts\ 中添加路由配置
+1. 在 @@src/components/@@ 下创建组件目录
+2. 在 @@src/views/comp/@@ 下创建演示页面
+3. 在 @@src/router/config/commonRouter.ts@@ 中添加路由配置
 4. 设置 meta.headerMenu 为 '组件' 或其他分类
 
 ### 添加新的AI功能
 
-1. 在 \src/ai-lib/\ 下添加相关实现
-2. 在 \src/views/AI/\ 下创建演示页面
-3. 在 \src/router/config/AIRouter.ts\ 中添加路由
+1. 在 @@src/ai-lib/@@ 下添加相关实现
+2. 在 @@src/views/AI/@@ 下创建演示页面
+3. 在 @@src/router/config/AIRouter.ts@@ 中添加路由
 
 ### 修改全局配置
 
-- 请求配置: \src/global/js/request.ts- 样式配置: \src/global/style/- 环境变量: \config/.env.*- Vite配置: \ite.config.ts
+- 请求配置: @@src/global/js/request.ts@@
+- 样式配置: @@src/global/style/@@
+- 环境变量: @@config/.env.*@@
+- Vite配置: @@vite.config.ts@@
+
