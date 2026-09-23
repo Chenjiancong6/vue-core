@@ -187,6 +187,14 @@ export const commonRouter = [
         }
       },
     ],
+  },
+  {
+    path:'/ani-number',
+    component: () => import("@/views/comp/ani-number/index.vue"),
+    meta: {
+      name: "滚动数字组件",
+      headerMenu,
+    },
   }
 
 
