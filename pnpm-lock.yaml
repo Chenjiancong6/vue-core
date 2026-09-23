@@ -50,6 +50,9 @@ importers:
       '@cjc/vite-plugin-lib-static-import':
         specifier: ^1.0.0
         version: 1.0.0(rollup@4.60.1)
+      '@cjc/vue3-animation-number':
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.31)
       '@cjc/vue3-basemap-mapboxgl':
         specifier: ^1.0.0
         version: 1.0.0
@@ -249,6 +252,9 @@ packages:
 
   '@cjc/vite-plugin-lib-static-import@1.0.0':
     resolution: {integrity: sha512-gEYjnc8qDDt2OHxc6T7uysRx1Nswav8vt75K37khOuu0TIiTdk3T9FZybP6MsUPnLQEGIKnvJUn2FAufq0027Q==}
+
+  '@cjc/vue3-animation-number@1.0.0':
+    resolution: {integrity: sha512-e3AVLf+JTRJysClZ1WKeE2+yEZW7Y3F1CAQJCUAz+lV3dRHgn3BG4YF+ALI7+2qqJwQscuZ343VnXflJlJ2AGA==}
 
   '@cjc/vue3-basemap-mapboxgl@1.0.0':
     resolution: {integrity: sha512-0o8nunlTsRRZbcs9TMWRSRgRE/Rgz/l+y+Eg2SO8oH8GalEinwoJVQkPgcO+rFXTnGLsv21s6mHZFnap/ZADuA==}
@@ -3552,6 +3558,12 @@ snapshots:
       rollup-plugin-external-globals: 0.7.3(rollup@4.60.1)
     transitivePeerDependencies:
       - rollup
+
+  '@cjc/vue3-animation-number@1.0.0(vue@3.5.31)':
+    dependencies:
+      '@vueuse/core': 13.9.0(vue@3.5.31)
+    transitivePeerDependencies:
+      - vue
 
   '@cjc/vue3-basemap-mapboxgl@1.0.0':
     dependencies:

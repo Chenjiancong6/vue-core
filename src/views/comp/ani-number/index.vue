@@ -7,6 +7,13 @@
         <div>{{scope.row}}</div>
       </template>
     </CountTo>
+    <AniNumber
+      :start="0"
+      :end="3650000" 
+      :autoPlay="true"
+      :duration="3000" 
+      prefix="¥"
+      suffix="rmb" />
   </div>
   <div class="requestAnimation-number">
     <div class="title">基于requestAnimationFrame实现的数字动画计数</div>
@@ -21,8 +28,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import CountTo from './useTransition-number/index.vue'
-import RequestAnimationNumber from './requestAnimation-number/index.vue'
+import CountTo from './useTransition-number/index.vue';
+import RequestAnimationNumber from './requestAnimation-number/index.vue';
+import AniNumber from '@cjc/vue3-animation-number';
 
 </script>
 <style lang="less" scoped>
