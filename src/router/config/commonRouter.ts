@@ -31,6 +31,14 @@ export const commonRouter = [
           headerMenu,
         },
       },
+      {
+        path: "canvas-screenshot",
+        component: () => import("@/views/comp/canvas-screenshot/index.vue"),
+        meta: {
+          name: "截图工具",
+          headerMenu,
+        },
+      },
     ],
   },
   {
