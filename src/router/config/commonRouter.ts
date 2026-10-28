@@ -23,6 +23,14 @@ export const commonRouter = [
           headerMenu,
         },
       },
+      {
+        path: "canvas-signature-board",
+        component: () => import("@/views/comp/canvas-signature-board/index.vue"),
+        meta: {
+          name: "canvas手写签名板",
+          headerMenu,
+        },
+      },
     ],
   },
   {
